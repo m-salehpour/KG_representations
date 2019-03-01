@@ -1,0 +1,1731 @@
+
+###################################################################
+Profile:
+
+
+
+> db.system.profile.find().sort( { ts : 1 } ).pretty()
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /Product/,
+					"Objects" : {
+						"$all" : [
+							"ProductFeature14",
+							"ProductFeature10",
+							"ProductType64"
+						]
+					},
+					"$comment" : "ISWC_SUB_ONEMil_Query1"
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"num1" : {
+						"$gt" : 1
+					}
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 62461,
+	"docsExamined" : 6721,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 492,
+	"nreturned" : 2,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(494)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(494)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(494)
+			}
+		}
+	},
+	"responseLength" : 4545,
+	"protocol" : "op_msg",
+	"millis" : 378,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:09:30.001Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : "Product123"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query2",
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 3611,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IDHACK",
+	"execStats" : {
+		"stage" : "IDHACK",
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 2,
+		"advanced" : 1,
+		"needTime" : 0,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"keysExamined" : 1,
+		"docsExamined" : 1
+	},
+	"ts" : ISODate("2019-02-11T07:09:35.554Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /Product/,
+					"Objects" : {
+						"$all" : [
+							"ProductFeature48",
+							"ProductType91"
+						],
+						"$nin" : [
+							"ProductFeature51"
+						]
+					},
+					"$comment" : "ISWC_SUB_ONEMil_Query3"
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num3" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric3"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"num1" : {
+						"$gt" : 25
+					},
+					"num3" : {
+						"$lt" : 250
+					}
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 62461,
+	"docsExamined" : 6721,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 487,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(489)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(489)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(489)
+			}
+		}
+	},
+	"responseLength" : 2543,
+	"protocol" : "op_msg",
+	"millis" : 125,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:09:43.140Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"$and" : [
+						{
+							"_id" : /Product/
+						},
+						{
+							"Objects" : {
+								"$in" : [
+									"ProductType91"
+								]
+							}
+						},
+						{
+							"Objects" : {
+								"$in" : [
+									"ProductFeature51"
+								]
+							}
+						},
+						{
+							"$or" : [
+								{
+									"Objects" : {
+										"$in" : [
+											"ProductFeature48"
+										]
+									}
+								},
+								{
+									"Objects" : {
+										"$in" : [
+											"ProductFeature45"
+										]
+									}
+								}
+							]
+						}
+					],
+					"$comment" : "ISWC_SUB_ONEMil_Query4"
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : 1,
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : 1,
+					"num1" : 1,
+					"num2" : 1,
+					"label" : 1,
+					"f1" : {
+						"$cond" : {
+							"if" : {
+								"$and" : [
+									{
+										"$in" : [
+											"ProductFeature48",
+											"$Objects"
+										]
+									},
+									{
+										"$gt" : [
+											"$num1",
+											20
+										]
+									}
+								]
+							},
+							"then" : 1,
+							"else" : 0
+						}
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : 1,
+					"num1" : 1,
+					"num2" : 1,
+					"label" : 1,
+					"f2" : {
+						"$cond" : {
+							"if" : {
+								"$and" : [
+									{
+										"$in" : [
+											"ProductFeature45",
+											"$Objects"
+										]
+									},
+									{
+										"$gt" : [
+											"$num2",
+											25
+										]
+									}
+								]
+							},
+							"then" : 1,
+							"else" : 0
+						}
+					},
+					"f1" : 1
+				}
+			},
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"f1" : 1
+						},
+						{
+							"f2" : 1
+						}
+					]
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			},
+			{
+				"$skip" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 62461,
+	"docsExamined" : 6721,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 487,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(489)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(489)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(489)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 132,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:09:51.945Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : "Product17",
+					"$comment" : "ORIGINAL_ISWC_SUB_ONEMil_Query5_PArt1"
+				}
+			},
+			{
+				"$project" : {
+					"Predicates" : "$Predicates",
+					"rPredicates" : {
+						"$reverseArray" : "$Predicates"
+					},
+					"Objects" : "$Objects",
+					"rObjects" : {
+						"$reverseArray" : "$Objects"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"productFeatures" : {
+						"$slice" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productFeature"
+								]
+							},
+							{
+								"$abs" : {
+									"$subtract" : [
+										{
+											"$indexOfArray" : [
+												"$rPredicates",
+												"productFeature"
+											]
+										},
+										{
+											"$indexOfArray" : [
+												"$Predicates",
+												"productFeature"
+											]
+										}
+									]
+								}
+							}
+						]
+					},
+					"productPropertyNumeric1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"productPropertyNumeric2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					}
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		}
+	},
+	"responseLength" : 549,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:03.714Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Product/,
+					"Objects" : {
+						"$all" : [
+							"ProductFeature109",
+							"ProductFeature107",
+							"ProductFeature102",
+							"ProductFeature1606",
+							"ProductFeature1605",
+							"ProductFeature1604",
+							"ProductFeature1595",
+							"ProductFeature1594",
+							"ProductFeature1580",
+							"ProductFeature4670",
+							"ProductFeature4669",
+							"ProductFeature4652",
+							"ProductFeature4640"
+						]
+					},
+					"$comment" : "ISWC_SUB_ONEMil_Query5_PArt2"
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"label" : "$label",
+					"cond1" : {
+						"$and" : [
+							{
+								"$lt" : [
+									"$num1",
+									1163
+								]
+							},
+							{
+								"$gt" : [
+									"$num1",
+									873
+								]
+							}
+						]
+					},
+					"cond2" : {
+						"$and" : [
+							{
+								"$lt" : [
+									"$num2",
+									582
+								]
+							},
+							{
+								"$gt" : [
+									"$num2",
+									823
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"cond1" : true,
+					"cond2" : true
+				}
+			},
+			{
+				"$project" : {
+					"cond1" : 0,
+					"cond2" : 0
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 5
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 6722,
+	"docsExamined" : 6721,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 52,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(54)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(54)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(54)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 38,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:03.788Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Product/,
+					"$comment" : "ORIGINAL_ISWC_SUB_ONEMil_Query6"
+				}
+			},
+			{
+				"$project" : {
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"label" : {
+						"$regex" : /is/
+					}
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"cursorid" : NumberLong("7787068143434709656"),
+	"keysExamined" : 910,
+	"docsExamined" : 910,
+	"numYield" : 7,
+	"nreturned" : 101,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(9)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(9)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(9)
+			}
+		}
+	},
+	"responseLength" : 6722,
+	"protocol" : "op_msg",
+	"millis" : 29,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:11.601Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Vendor/,
+					"$comment" : "ORIGINAL_ISWC_SUB_ONEMil_Query7_PArt1"
+				}
+			},
+			{
+				"$project" : {
+					"country" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"country"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"country" : "US"
+				}
+			},
+			{
+				"$project" : {
+					"country" : 0
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 21,
+	"docsExamined" : 21,
+	"cursorExhausted" : true,
+	"numYield" : 3,
+	"nreturned" : 7,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		}
+	},
+	"responseLength" : 282,
+	"protocol" : "op_msg",
+	"millis" : 82,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:18.682Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"_id" : /^Offer/
+						},
+						{
+							"_id" : /^Review/
+						},
+						{
+							"_id" : "Product1"
+						}
+					],
+					"$comment" : "ISWC_SUB_ONEMil_Query7_PArt2"
+				}
+			},
+			{
+				"$project" : {
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					},
+					"product" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"product"
+								]
+							}
+						]
+					},
+					"vendor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"vendor"
+								]
+							}
+						]
+					},
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"price" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"price"
+								]
+							}
+						]
+					},
+					"eq" : {
+						"$cond" : [
+							{
+								"$gt" : [
+									{
+										"$arrayElemAt" : [
+											"$Objects",
+											{
+												"$indexOfArray" : [
+													"$Predicates",
+													"date"
+												]
+											}
+										]
+									},
+									ISODate("2000-10-01T00:00:00Z")
+								]
+							},
+							1,
+							0
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"reviewFor" : "Product1"
+						},
+						{
+							"_id" : "Product1"
+						},
+						{
+							"$and" : [
+								{
+									"product" : "Product1"
+								},
+								{
+									"vendor" : {
+										"$in" : [
+											"Vendor12",
+											"Vendor17",
+											"Vendor2",
+											"Vendor21",
+											"Vendor4",
+											"Vendor7",
+											"Vendor9"
+										]
+									}
+								},
+								{
+									"eq" : 1
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 55683,
+	"docsExamined" : 55680,
+	"cursorExhausted" : true,
+	"numYield" : 442,
+	"nreturned" : 7,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(458)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(458)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(458)
+			}
+		}
+	},
+	"responseLength" : 1179,
+	"protocol" : "op_msg",
+	"millis" : 1339,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:20.069Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : "Product1"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query8_PArt1",
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 2827,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IDHACK",
+	"execStats" : {
+		"stage" : "IDHACK",
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 2,
+		"advanced" : 1,
+		"needTime" : 0,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"keysExamined" : 1,
+		"docsExamined" : 1
+	},
+	"ts" : ISODate("2019-02-11T07:10:31.604Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Review/,
+					"$comment" : "ISWC_SUB_ONEMil_Query8_PArt2"
+				}
+			},
+			{
+				"$project" : {
+					"language" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"language"
+								]
+							}
+						]
+					},
+					"title" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"title"
+								]
+							}
+						]
+					},
+					"text" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"text"
+								]
+							}
+						]
+					},
+					"reviewDate" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"reviewer" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewer"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"reviewFor" : "Product1",
+					"language" : "zh"
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "_id",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$sort" : {
+					"reviewDate" : -1
+				}
+			},
+			{
+				"$limit" : 20
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 19180,
+	"docsExamined" : 19179,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 153,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(165)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(165)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(164)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 298,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:31.936Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Review/,
+					"$comment" : "ISWC_SUB_ONEMil_Query9"
+				}
+			},
+			{
+				"$project" : {
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					},
+					"title" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"title"
+								]
+							}
+						]
+					},
+					"reviewer" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewer"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "_id",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$reviewer",
+					"Reviews" : {
+						"$push" : {
+							"_id" : "$_id",
+							"title" : "$title",
+							"product" : "$reviewFor",
+							"date" : "$date"
+						}
+					}
+				}
+			},
+			{
+				"$match" : {
+					"_id._id" : "Reviewer1089"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 19180,
+	"docsExamined" : 19179,
+	"cursorExhausted" : true,
+	"numYield" : 153,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(38523)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(38523)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(38522)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 1730,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:43.468Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Offer/,
+					"$comment" : "ISWC_SUB_ONEMil_Query10"
+				}
+			},
+			{
+				"$project" : {
+					"deliveryDays" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"deliveryDays"
+								]
+							}
+						]
+					},
+					"vendor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"vendor"
+								]
+							}
+						]
+					},
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"product" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"product"
+								]
+							}
+						]
+					},
+					"price" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"price"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"deliveryDays" : {
+						"$lte" : 4
+					},
+					"product" : "Product1",
+					"date" : {
+						"$gt" : ISODate("2005-04-03T00:00:00Z")
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "vendor",
+					"foreignField" : "_id",
+					"as" : "vendor"
+				}
+			},
+			{
+				"$match" : {
+					"vendor.Objects" : "US"
+				}
+			},
+			{
+				"$sort" : {
+					"price" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 36501,
+	"docsExamined" : 36500,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 287,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(303)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(303)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(302)
+			}
+		}
+	},
+	"responseLength" : 710,
+	"protocol" : "op_msg",
+	"millis" : 504,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:51.711Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "iswcSUBONEk.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : "Offer1",
+					"$comment" : "ISWC_SUB_ONEMil_Query11"
+				}
+			},
+			{
+				"$project" : {
+					"Predicates" : "$Predicates",
+					"Objects" : "$Objects",
+					"product" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"product"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "product",
+					"foreignField" : "_id",
+					"as" : "product"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("97460ace-5db5-454f-a458-6b26adf283d3")
+		},
+		"$db" : "iswcSUBONEk"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(4)
+			}
+		}
+	},
+	"responseLength" : 2850,
+	"protocol" : "op_msg",
+	"millis" : 2,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-11T07:10:59.283Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

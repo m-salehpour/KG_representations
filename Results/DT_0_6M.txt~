@@ -1,0 +1,2727 @@
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+
+sudo apt-get update
+
+sudo apt-get install -y mongodb-org
+
+sudo service mongod start
+
+mongoimport --db trONEK --collection sub --drop --file ~/cpp_codes/Triples/output/out_onek_3triples_sub.json --jsonArray
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ 
+ubuntu@dm:~$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+Executing: /tmp/tmp.BKA1OE8fMN/gpg.1.sh --keyserver
+hkp://keyserver.ubuntu.com:80
+--recv
+9DA31620334BD75D9DCB49F368818C72E52529D4
+gpg: requesting key E52529D4 from hkp server keyserver.ubuntu.com
+gpg: key E52529D4: "MongoDB 4.0 Release Signing Key <packaging@mongodb.com>" not changed
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+ubuntu@dm:~$ 
+ubuntu@dm:~$ 
+ubuntu@dm:~$ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse
+ubuntu@dm:~$ 
+ubuntu@dm:~$ sudo apt-get update
+Ign:1 http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64  InRelease   
+Hit:2 http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64  Release     
+Get:3 http://security.ubuntu.com/ubuntu xenial-security InRelease [109 kB]                      
+Ign:5 https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 InRelease                           
+Hit:6 https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 Release                          
+Hit:8 http://nova.clouds.archive.ubuntu.com/ubuntu xenial InRelease                               
+Get:9 http://nova.clouds.archive.ubuntu.com/ubuntu xenial-updates InRelease [109 kB]
+Get:10 http://nova.clouds.archive.ubuntu.com/ubuntu xenial-backports InRelease [107 kB]
+Fetched 325 kB in 4s (80.7 kB/s)   
+Reading package lists... Done
+ubuntu@dm:~$ 
+ubuntu@dm:~$ sudo apt-get install -y mongodb-org
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  mongodb-org-mongos mongodb-org-server mongodb-org-shell mongodb-org-tools
+The following NEW packages will be installed:
+  mongodb-org mongodb-org-mongos mongodb-org-server mongodb-org-shell mongodb-org-tools
+0 upgraded, 5 newly installed, 0 to remove and 4 not upgraded.
+Need to get 0 B/58.6 MB of archives.
+After this operation, 254 MB of additional disk space will be used.
+Selecting previously unselected package mongodb-org-shell.
+(Reading database ... 138555 files and directories currently installed.)
+Preparing to unpack .../mongodb-org-shell_4.0.6_amd64.deb ...
+Unpacking mongodb-org-shell (4.0.6) ...
+Selecting previously unselected package mongodb-org-server.
+Preparing to unpack .../mongodb-org-server_4.0.6_amd64.deb ...
+Unpacking mongodb-org-server (4.0.6) ...
+Selecting previously unselected package mongodb-org-mongos.
+Preparing to unpack .../mongodb-org-mongos_4.0.6_amd64.deb ...
+Unpacking mongodb-org-mongos (4.0.6) ...
+Selecting previously unselected package mongodb-org-tools.
+Preparing to unpack .../mongodb-org-tools_4.0.6_amd64.deb ...
+Unpacking mongodb-org-tools (4.0.6) ...
+Selecting previously unselected package mongodb-org.
+Preparing to unpack .../mongodb-org_4.0.6_amd64.deb ...
+Unpacking mongodb-org (4.0.6) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up mongodb-org-shell (4.0.6) ...
+Setting up mongodb-org-server (4.0.6) ...
+Setting up mongodb-org-mongos (4.0.6) ...
+Setting up mongodb-org-tools (4.0.6) ...
+Setting up mongodb-org (4.0.6) ...
+ubuntu@dm:~$ 
+ubuntu@dm:~$ sudo service mongod start
+ubuntu@dm:~$ 
+
+
+############################################################
+ubuntu@dm:~$ mongoimport --db trONEK --collection sub --drop --file ~/cpp_codes/Triples/output/out_onek_3triples_sub.json --jsonArray
+ 
+2019-02-11T07:52:42.732+0000	connected to: localhost
+2019-02-11T07:52:42.733+0000	dropping: trONEK.sub
+2019-02-11T07:52:45.730+0000	[####....................] trONEK.sub	14.3MB/78.4MB (18.3%)
+2019-02-11T07:52:48.730+0000	[#######.................] trONEK.sub	24.9MB/78.4MB (31.8%)
+2019-02-11T07:52:51.730+0000	[##########..............] trONEK.sub	35.6MB/78.4MB (45.4%)
+2019-02-11T07:52:54.730+0000	[###############.........] trONEK.sub	52.1MB/78.4MB (66.5%)
+2019-02-11T07:52:57.730+0000	[#####################...] trONEK.sub	71.4MB/78.4MB (91.0%)
+2019-02-11T07:52:58.804+0000	[########################] trONEK.sub	78.4MB/78.4MB (100.0%)
+2019-02-11T07:52:58.804+0000	imported 676834 documents
+
+
+
+
+
+
+########################
+
+
+ubuntu@dm:~$ mongo
+MongoDB shell version v4.0.6
+connecting to: mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("f8cdeec9-26b1-48b2-b989-59a225b48cb1") }
+MongoDB server version: 4.0.6
+Server has startup warnings: 
+2019-02-11T07:40:20.515+0000 I STORAGE  [initandlisten] 
+2019-02-11T07:40:20.515+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2019-02-11T07:40:20.515+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2019-02-11T07:40:21.756+0000 I CONTROL  [initandlisten] 
+2019-02-11T07:40:21.756+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-02-11T07:40:21.756+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-02-11T07:40:21.756+0000 I CONTROL  [initandlisten] 
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+trONEK  0.047GB
+
+
+
+ubuntu@dm:~$ sudo service mongod start
+ubuntu@dm:~$ mongo
+MongoDB shell version v4.0.6
+connecting to: mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739") }
+MongoDB server version: 4.0.6
+Server has startup warnings: 
+2019-02-11T07:57:05.032+0000 I STORAGE  [initandlisten] 
+2019-02-11T07:57:05.033+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2019-02-11T07:57:05.033+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2019-02-11T07:57:06.954+0000 I CONTROL  [initandlisten] 
+2019-02-11T07:57:06.954+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-02-11T07:57:06.954+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-02-11T07:57:06.954+0000 I CONTROL  [initandlisten] 
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+> use trONEK
+switched to db trONEK
+> db.setProfilingLevel(2)
+{ "was" : 0, "slowms" : 100, "sampleRate" : 1, "ok" : 1 }
+> db.sub.createIndex({Subject:1})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+> 
+> db.sub.aggregate([{$match:{Subject:/Product/ , $comment:"Triple_SUB_ONEMil_Query1" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$match:{Objects:{$all:["ProductFeature14","ProductFeature10","ProductType64"]}}},{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  }    ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }}, {$match:{num1:{$gt:1}}},{$sort:{label:1}},{$limit:10}],{allowDiskUse: true})
+{ "_id" : "Product83", "Objects" : [ "Producer2", "ProductFeature21", "ProductFeature20", "ProductFeature17", "ProductFeature14", "ProductFeature10", "ProductFeature4", "ProductFeature5", "ProductFeature1", "ProductFeature279", "ProductFeature278", "ProductFeature276", "ProductFeature260", "ProductFeature269", "ProductFeature258", "ProductFeature257", "ProductFeature254", "ProductFeature251", ISODate("2001-12-23T00:00:00Z"), "ProductFeature246", "ProductFeature243", "puckers chaplaincies snowbelt whoremaster", "lionized flume steatopygia managerially rehydrating hibiscuses asymptotical nimbler jolts promoter rachets laryngotracheal", "retched cartoning gambling concepts", "resellers disemboweled ripsaw eyeliners ashtrays jigger bushes logicize", 1324, 36, 433, 127, "emblazons unsanitary grigs culotte dismals tritone operative compacts kohl finickiest redistills inappreciably accordantly", "Producer2", 76, "ProductType64", "fifing extraterritorial reckoned", "Product", "dwarfisms presumers scandalizes dedicators reties inhibiting insanely mecums irreducibilities cyanosis intendment ninnies wedder complaints glassiest outlaw xiii zippier aspidistras sepulcher elementals nonconvergent chorales sallies facials meadowlark identifies overcompetitive crests widower experimental oozed scatterbrains mineralogic enfettered phylae lr ostracods smolders stinginess rethread nonliturgical coll highhandedly autopilot oakums toked tenths commercialization rheumier congratulations toneless shirring uncritically plighting disfranchises sonatine braininess starving dabbed grabbiest buoyancy puerilities scepters nanoseconds infinitely bast decipherable savorily banqueter knots purgers bumbled concertizing fatales veneerer differentiating shoptalks moonfish estuaries ticketing abbreviating pastes sensitizes louisianians summarizes commandeers hatmakers wades applauded accoutres imitator sharecropping palinodes transhipment reveled purities siccing cockiness wording nutritiously serenely inactions farmable glassily presentability severing swerved foretell worthing defeminized quislings unslaked wethers spurreys fluted evacuated unconscionable affecters lallygags segregative dampeners wobbliness deceasing rapist visualizing bandits repudiation dissidents heartache scissors baobab rejuvenescent scantily lavishest", "ProductFeature250" ], "num1" : 76, "label" : "fifing extraterritorial reckoned" }
+{ "_id" : "Product1777", "Objects" : [ "Producer39", "ProductFeature17", ISODate("2002-01-11T00:00:00Z"), "ProductFeature18", "ProductFeature14", "ProductFeature12", "ProductFeature11", "ProductFeature10", "ProductFeature278", "ProductFeature5", "ProductFeature275", "ProductFeature1", "ProductFeature258", "ProductFeature276", "ProductFeature274", "ProductFeature246", "ProductFeature259", "ProductFeature243", "ProductFeature240", "ProductFeature245", "ProductFeature242", "ProductFeature1910", "ProductFeature1918", "wisely delegacies nonexistent alar cloudlets foreside ponied seabeaches grandaunt nosy concessive brainwashes dungeons", "predeceases gumboils serologic bubbies immorality blameable degrades", "indefinably fantasts frettier pilgrims", 7, 142, 790, 492, "ProductType64", "Producer39", "Product", "paupering dalliances wallabies aeronauts campo abscises tiredness seventeens smoothy splendors mudrocks spattered assimilates limeys trivalves dissertations tanagers kettles urethral birdieing trawleys encoding grooming schoolteaching clothiers orbed affraying trumped tertian tremblingly lassoer undermined bonzes jurists anglicism campiest sinuates sheafs gamba oystered bellowers fulfills pontius reductions lifer actuating pollees raunchy sobbers rutting nonabrasiveness pulpily officiation roleplaying spirits inconsolably wheys boorishness tangos cicadae cirrostratus quencher trampler producers quadruplicates stairwells reenjoy bouldery unsuspecting chariots execrations corrupted charger lampoonist annuities pressoreceptor bettered attraction faintish apium crushing plumpens twosomes polled evokers underpay functionally terming", "replanted swooper noncontradictory" ], "num1" : 790, "label" : "replanted swooper noncontradictory" }
+> 
+> 
+> db.sub.aggregate([{$match:{Subject:"Product123" , $comment:"ISWC_SUB_ONEMil_Query2" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}],{allowDiskUse: true})
+{ "_id" : "Product123", "Predicates" : [ "publisher", "date", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productFeature", "productPropertyTextual5", "productPropertyTextual4", "productPropertyTextual3", "productPropertyTextual2", "productPropertyNumeric5", "productPropertyTextual1", "productPropertyNumeric4", "productPropertyNumeric3", "productPropertyNumeric1", "producer", "productPropertyNumeric2", "type", "label", "type", "comment" ], "Objects" : [ "Producer3", ISODate("2006-04-06T00:00:00Z"), "ProductFeature49", "ProductFeature47", "ProductFeature44", "ProductFeature42", "ProductFeature43", "ProductFeature46", "ProductFeature603", "ProductFeature600", "ProductFeature598", "ProductFeature2825", "ProductFeature591", "ProductFeature593", "ProductFeature2820", "ProductFeature2823", "ProductFeature2805", "ProductFeature2798", "ProductFeature2792", "ProductFeature2813", "recessional spectrographic hackly playgirl outgunning caches roentgenometries chronically chapmen oppositeness broads traipsing", "blunderer nationless masonwork jingled grandly iced messing pleasures", "englishwoman cartop undercharged councilors subscription violator nonobedience kabala feudists unwanted hockers brashier", "airest graduations tusks removals prises masculinizing wreaths doorless benumbedness", 1027, "choleras samoans muddiness forzando mechanisms sillers peerages inbreathe pummelling mudding countless prowesses plasher constructed", 10, 1527, 983, "Producer3", 1558, "ProductType91", "reelers circulars overhanging", "Product", "annullable preachiest solfeggi disseminates chequering sucker moderates explanations junketers anticommunism snickery pct burgundies collecting reappointment comities snoutiest entrenching heedlessly bumboat compactest iodizes pushups hypothesi ovulations supersensitive shoaliest aggregations perfidiously bridled recorders whispering gallons wedgier clearness unsalted hazed fangs oilily joineries wolfram pinon miniseries calcifying usufructs attaints diverticulitis superscripts boches gloved ambler incubative longness nursling forsaker curiums ratsbanes chubbily nondemocratic dissonance evils amaranthine sororities caveated breastbones foreran stamping dicotyledons riposting recheck paters successors loudlier deliberately proselytizer disfrocks shunter phoneticians investible tindery wedder lignifying proser glazing wordings grievers boxcars azimuths misdoers coalesces cageyness alloys ruins holystones signable timpani silkiness recompensive reverting wawls scintillatingly sestines burred aerily boleros footlights altruistic roughages acrostics burgomaster stoked wiretapped antineutrons austerity elitisms footway rehardened sweetens decomposing predictiveness nixing enthronements approachers loiterers uncoupled goop overdrew socialism protestable tentmaker protruding exposited dismay loper centripetally suspicions fitness misemploys cherishers repaving puckering cropper abortional gangrel" ] }
+> 
+> 
+> 
+> 
+> db.sub.aggregate([{$match:{Subject:/Product/, $comment:"ISWC_SUB_ONEMil_Query3" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$match:{Objects:{$all:["ProductFeature48","ProductType91"], $nin:["ProductFeature51"] }}},{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  } , num3: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric3"]} ]  }   ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }}, {$match:{   num1:{$gt:25}, num3:{$lt:250}  }},{$sort:{label:1}},{$limit:10}],{allowDiskUse: true})
+{ "_id" : "Product940", "Objects" : [ ISODate("2003-02-09T00:00:00Z"), "ProductFeature48", "ProductFeature45", "ProductFeature44", "ProductFeature42", "ProductFeature40", "Producer20", "ProductFeature608", "ProductFeature604", "ProductFeature605", "ProductFeature601", "ProductFeature600", "ProductFeature602", "ProductFeature599", "ProductFeature595", "ProductFeature2824", "ProductFeature2818", "ProductFeature2821", "ProductFeature2817", "ProductFeature2811", "ProductFeature2797", "ProductFeature2796", "ProductFeature2790", "ProductFeature2794", "ProductFeature2789", "shiers decentest tambura shrubbier outplays valval", "appertaining radicalizes steadiers syzygal testacies adulation tats attainting pietist", "bereavements altering toolbox hurter septime seeder imparting snoopiest stargazers ciliata antimonarchists marveled unhats holily dabs", "advertent articulated irater physiological noncollapsable drawings evangelizes rebroadened stenciling impatiently modeled pilgrimages knockouts defoliators", 404, 83, "anatomically rechristens decompressed dupes annulment supersaturated exchequers", 198, "Producer20", 228, "conflicts rushee", "ProductType91", "programmes breasting braizes parleying zoroastrianism sculptured stilettoes announcers phoniest oubliette influencing assizer dutifully wantage sectary yielding freckliest studhorses preoccupations trainsickness gorgets quacked sarapes pailful measuring appendages provides domiciling hosannas undistinguishable ascertains impresses senescent heists sprawliest leaguer vitrified drownds lifeline mewls substantialness swanked newspaperwoman resister showplaces overfurnishes faiences pressured aureus ladanum berried shallowing staged chattily subphylum primitiveness ablations malignancies martlets loth preaccepting cancelable misadministration nonfiction fatefully mustached bethinks bro recencies rescinds coopery daiquiri benefitted perinea incomprehensiblies pampean pachisi reloaded shucker seabird rubicundity palpate tombing dadoing cleared twangiest pinks lured pawers widdling chemoreception selectively codex ogling overlay metricizes foggily pasting mannered sweats coupons evangelized televiewer wester uncharitably refried resales", "Product", 449 ], "num1" : 449, "num3" : 198, "label" : "conflicts rushee" }
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> db.sub.aggregate([{$match:{Subject:/^Product/, $comment:"ISWC_SUB_ONEMil_Query4" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$match:{Objects:{$all:["ProductFeature51","ProductFeature45","ProductType91"] }} },{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  } , num2: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric2"]} ]  }   ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }}, {$match:{ $or: [{  num1:{$gt:20}, num2:{$gt:25} } ]}},{$sort:{label:1}},{$limit:10},{$skip:10}],{allowDiskUse: true})
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> var ProductXYZFeatures = db.sub.find({Subject:"Product17",Predicate:"productFeature"}).comment("ISWC_SUB_ONEMil_Query5_PArt1").map(function(x) {return x.Object } )
+> 
+> var ProductXYZnum1 = db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).comment("ISWC_SUB_ONEMil_Query5_PArt2").map(function(x) {return x.Object } )
+> 
+> var ProductXYZnum2 = db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric2"}).comment("ISWC_SUB_ONEMil_Query5_PArt3").map(function(x) {return x.Object } )
+> 
+> 
+> db.sub.aggregate([{$match:{Subject:/^Product/ , $comment:"ISWC_SUB_ONEMil_Query5_PArt4" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$match:{Objects:{$all:(db.sub.find({Subject:"Product17",Predicate:"productFeature"}).map(function(x) {return x.Object } ))}}},{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  } , num2: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric2"]} ]  }   ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }},{$project:{label:"$label", cond1: {$and:[ {$lt:["$num1",    ((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).map(function(x) {return x.Object } )) + 170 )    ] }, {$gt: ["$num1",((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).map(function(x) {return x.Object } )) - 120 )] } ]} , cond2: {$and:[ {$lt:["$num2",    ((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric2"}).map(function(x) {return x.Object } )) + 170 )    ] }, {$gt: ["$num2",((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).map(function(x) {return x.Object } )) - 170 )] } ]}}},{$match:{cond1:true,cond2:true } },{$project:{cond1:0,cond2:0}},{$sort:{label:1}},{$limit:5}],{allowDiskUse: true})
+> 
+> 
+> 
+> 
+> b.sub.aggregate([{$match:{Subject:/^Product/ , $comment:"ISWC_SUB_ONEMil_Query6" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$project:{label: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]}]}}} , {$match:{ label:/is/} } ],{allowDiskUse: true})
+2019-02-11T07:59:36.778+0000 E QUERY    [js] ReferenceError: b is not defined :
+@(shell):1:1
+> db.sub.aggregate([{$match:{Subject:/^Product/ , $comment:"ISWC_SUB_ONEMil_Query6" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$project:{label: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]}]}}} , {$match:{ label:/is/} } ],{allowDiskUse: true})
+{ "_id" : "ProductType79", "label" : "matzo fishways" }
+{ "_id" : "ProductType69", "label" : "crowner uncharacteristic enquirer" }
+{ "_id" : "ProductType53", "label" : "viperish" }
+{ "_id" : "ProductType32", "label" : "pouffs sadisms obduction" }
+{ "_id" : "ProductType26", "label" : "heroics biracialism" }
+{ "_id" : "ProductType146", "label" : "discourages strutted warbles" }
+{ "_id" : "ProductType80", "label" : "dismounting soffits" }
+{ "_id" : "ProductFeature993", "label" : "sleighers dissembler" }
+{ "_id" : "ProductFeature950", "label" : "bristly reactivates" }
+{ "_id" : "ProductFeature93", "label" : "doltishly polygram lockages" }
+{ "_id" : "ProductFeature914", "label" : "sardonyxes anesthesiologist" }
+{ "_id" : "ProductFeature902", "label" : "hajjis postglacial" }
+{ "_id" : "ProductFeature851", "label" : "optimizes earthily whistling" }
+{ "_id" : "ProductFeature840", "label" : "metatarsi disgustingly" }
+{ "_id" : "ProductFeature82", "label" : "dominium hyperkinesis" }
+{ "_id" : "ProductFeature80", "label" : "misadvising choppiness pluralization" }
+{ "_id" : "ProductFeature749", "label" : "visitants handsprings" }
+{ "_id" : "ProductType71", "label" : "nonunionist roan lawnmower" }
+{ "_id" : "ProductFeature680", "label" : "preappoints gypsyism" }
+{ "_id" : "ProductFeature677", "label" : "embryologists fluffier disinterring" }
+Type "it" for more
+> 
+> var ProductXYZCountry = db.sub.find({Subject:/^Vendor/,Predicate:"country",Object:"US"}).comment("ISWC_SUB_ONEMil_Query7_PArt1").map(function(x) {return x.Subject } )
+> 
+> 
+> 
+> 
+> 
+> db.sub.aggregate([ {$match:{$or: [{Subject:/^Offer/},{Subject:/^Review/},{Subject:"Product1"}] ,$comment:"ISWC_SUB_ONEMil_Query7_PArt2" }} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} , {$project:{label : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]}]} , reviewFor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewFor"]}]}  ,                    product: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "product"]}]} , vendor : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "vendor"]}]} , date : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]} , price : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "price"]}]} , eq: {$cond:[{$gt: [  {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]}  ,ISODate("2000-10-01")]},1,0 ] }  }  } , {$match:{$or: [ {reviewFor:"Product1"} ,{_id:"Product1"} ,{$and:[ {product:"Product1"} , {vendor :{$in: ProductXYZCountry }} ,{eq:1}]}]  }   } ],{allowDiskUse: true})
+{ "_id" : "Review7783", "label" : "Reviewer385", "reviewFor" : "Product1", "product" : "Reviewer385", "vendor" : "Reviewer385", "date" : ISODate("2008-06-02T00:00:00Z"), "price" : "Reviewer385", "eq" : 1 }
+{ "_id" : "Review7308", "label" : "critical situates thicknesses aviatrixes disreputably polychromatic fleshpot tours buenas swivelling africans inappositeness contexts spreads datively pollutants rarest untruth longways signposts tolls associated retraining braids pummelling grizzler uppercuts misruled remilitarizes scrawled cardiacs blazers armonica majolica landers estranges convened exultingly prostates dissepimental guzzlers trigon dingbat cheekiest dobbins shambles forested wend correctly excreters computed dishevels revalidate unallayed kerbing severalizing amercement greenstick wheelers bindles billies prorogation disorientated allomorphism prologues shirr pluralities dhow savoriest stypsis unrobed leanings flappy nebule jota beings placable grazings landlords quag tufting yips protozoal mediatorship maniacally obstetricians maestosos disharmony secreter addictions trinketed methamphetamine microcephalus reimbursed titaness impetuously molests campi rendezvouses browless locater pasteboards launderer mothballed rebinds encumbrances obstinateness legislatures shadowboxed bandmasters unstrung venosities lunkers overnighters enflaming smokiness focalize outweighing hierophants vandalistic votable travelog serenely winnower picaresque mitigates illuminist rigorously apparently unlighted denominationally evasiveness interfiled", "reviewFor" : "Product1", "product" : "critical situates thicknesses aviatrixes disreputably polychromatic fleshpot tours buenas swivelling africans inappositeness contexts spreads datively pollutants rarest untruth longways signposts tolls associated retraining braids pummelling grizzler uppercuts misruled remilitarizes scrawled cardiacs blazers armonica majolica landers estranges convened exultingly prostates dissepimental guzzlers trigon dingbat cheekiest dobbins shambles forested wend correctly excreters computed dishevels revalidate unallayed kerbing severalizing amercement greenstick wheelers bindles billies prorogation disorientated allomorphism prologues shirr pluralities dhow savoriest stypsis unrobed leanings flappy nebule jota beings placable grazings landlords quag tufting yips protozoal mediatorship maniacally obstetricians maestosos disharmony secreter addictions trinketed methamphetamine microcephalus reimbursed titaness impetuously molests campi rendezvouses browless locater pasteboards launderer mothballed rebinds encumbrances obstinateness legislatures shadowboxed bandmasters unstrung venosities lunkers overnighters enflaming smokiness focalize outweighing hierophants vandalistic votable travelog serenely winnower picaresque mitigates illuminist rigorously apparently unlighted denominationally evasiveness interfiled", "vendor" : "critical situates thicknesses aviatrixes disreputably polychromatic fleshpot tours buenas swivelling africans inappositeness contexts spreads datively pollutants rarest untruth longways signposts tolls associated retraining braids pummelling grizzler uppercuts misruled remilitarizes scrawled cardiacs blazers armonica majolica landers estranges convened exultingly prostates dissepimental guzzlers trigon dingbat cheekiest dobbins shambles forested wend correctly excreters computed dishevels revalidate unallayed kerbing severalizing amercement greenstick wheelers bindles billies prorogation disorientated allomorphism prologues shirr pluralities dhow savoriest stypsis unrobed leanings flappy nebule jota beings placable grazings landlords quag tufting yips protozoal mediatorship maniacally obstetricians maestosos disharmony secreter addictions trinketed methamphetamine microcephalus reimbursed titaness impetuously molests campi rendezvouses browless locater pasteboards launderer mothballed rebinds encumbrances obstinateness legislatures shadowboxed bandmasters unstrung venosities lunkers overnighters enflaming smokiness focalize outweighing hierophants vandalistic votable travelog serenely winnower picaresque mitigates illuminist rigorously apparently unlighted denominationally evasiveness interfiled", "date" : ISODate("2008-05-12T00:00:00Z"), "price" : "critical situates thicknesses aviatrixes disreputably polychromatic fleshpot tours buenas swivelling africans inappositeness contexts spreads datively pollutants rarest untruth longways signposts tolls associated retraining braids pummelling grizzler uppercuts misruled remilitarizes scrawled cardiacs blazers armonica majolica landers estranges convened exultingly prostates dissepimental guzzlers trigon dingbat cheekiest dobbins shambles forested wend correctly excreters computed dishevels revalidate unallayed kerbing severalizing amercement greenstick wheelers bindles billies prorogation disorientated allomorphism prologues shirr pluralities dhow savoriest stypsis unrobed leanings flappy nebule jota beings placable grazings landlords quag tufting yips protozoal mediatorship maniacally obstetricians maestosos disharmony secreter addictions trinketed methamphetamine microcephalus reimbursed titaness impetuously molests campi rendezvouses browless locater pasteboards launderer mothballed rebinds encumbrances obstinateness legislatures shadowboxed bandmasters unstrung venosities lunkers overnighters enflaming smokiness focalize outweighing hierophants vandalistic votable travelog serenely winnower picaresque mitigates illuminist rigorously apparently unlighted denominationally evasiveness interfiled", "eq" : 1 }
+{ "_id" : "Review1817", "label" : "gummiest thermostatic tonne tearstained polarizer astrolabe monopolistically fortes vibrator doxologies lutist harmless duresses assonances supersaturate sculpting jolters solicitors misbelief palpus casablanca foliaged whirlers honors licit chronologically appriser corkwood buttonholing shocking reproductiveness chemotherapists aligns dramatizations compiles enforced heirs mumbletypeg olympics speechlessness biophysicist metalists darnels arbors annexes wreathing dayroom proenforcement taskworks unblinking whelms expends powdered grassiest subminiaturize couturiere coifs damsels enroller unleash serb metrified etymologists acropolises materialistically hatters vibraphones nonfunctional bugler investigator biogeochemistry capering subcommanders confiscator thralls conniptions streamiest busheler limpidness subheadings disconnect ironist twiners gamic simplexes lentando collodion backfills postulates sanctities convalesces politesse recollections preindustrial impedient hankie washings minority verifiers delegates chasten chandlery", "reviewFor" : "Product1", "product" : "gummiest thermostatic tonne tearstained polarizer astrolabe monopolistically fortes vibrator doxologies lutist harmless duresses assonances supersaturate sculpting jolters solicitors misbelief palpus casablanca foliaged whirlers honors licit chronologically appriser corkwood buttonholing shocking reproductiveness chemotherapists aligns dramatizations compiles enforced heirs mumbletypeg olympics speechlessness biophysicist metalists darnels arbors annexes wreathing dayroom proenforcement taskworks unblinking whelms expends powdered grassiest subminiaturize couturiere coifs damsels enroller unleash serb metrified etymologists acropolises materialistically hatters vibraphones nonfunctional bugler investigator biogeochemistry capering subcommanders confiscator thralls conniptions streamiest busheler limpidness subheadings disconnect ironist twiners gamic simplexes lentando collodion backfills postulates sanctities convalesces politesse recollections preindustrial impedient hankie washings minority verifiers delegates chasten chandlery", "vendor" : "gummiest thermostatic tonne tearstained polarizer astrolabe monopolistically fortes vibrator doxologies lutist harmless duresses assonances supersaturate sculpting jolters solicitors misbelief palpus casablanca foliaged whirlers honors licit chronologically appriser corkwood buttonholing shocking reproductiveness chemotherapists aligns dramatizations compiles enforced heirs mumbletypeg olympics speechlessness biophysicist metalists darnels arbors annexes wreathing dayroom proenforcement taskworks unblinking whelms expends powdered grassiest subminiaturize couturiere coifs damsels enroller unleash serb metrified etymologists acropolises materialistically hatters vibraphones nonfunctional bugler investigator biogeochemistry capering subcommanders confiscator thralls conniptions streamiest busheler limpidness subheadings disconnect ironist twiners gamic simplexes lentando collodion backfills postulates sanctities convalesces politesse recollections preindustrial impedient hankie washings minority verifiers delegates chasten chandlery", "date" : ISODate("2008-06-18T00:00:00Z"), "price" : "gummiest thermostatic tonne tearstained polarizer astrolabe monopolistically fortes vibrator doxologies lutist harmless duresses assonances supersaturate sculpting jolters solicitors misbelief palpus casablanca foliaged whirlers honors licit chronologically appriser corkwood buttonholing shocking reproductiveness chemotherapists aligns dramatizations compiles enforced heirs mumbletypeg olympics speechlessness biophysicist metalists darnels arbors annexes wreathing dayroom proenforcement taskworks unblinking whelms expends powdered grassiest subminiaturize couturiere coifs damsels enroller unleash serb metrified etymologists acropolises materialistically hatters vibraphones nonfunctional bugler investigator biogeochemistry capering subcommanders confiscator thralls conniptions streamiest busheler limpidness subheadings disconnect ironist twiners gamic simplexes lentando collodion backfills postulates sanctities convalesces politesse recollections preindustrial impedient hankie washings minority verifiers delegates chasten chandlery", "eq" : 1 }
+{ "_id" : "Review15336", "label" : "deviating mc fuddles psychopaths gaited wolfram amalgamator keeps shipwright skalds tutting incineration shallots fruitcakes glassines impugned alcoholized inaptly organizer tennists embroiderers heterotic renowns truthfully imperiousness misguidance cuttages warping connectedly readmission harmonizations unworthy flirtatiousness pronging greenstick checkerboards palmists alienisms hypnotized xylograph lymphosarcomas crabbed overseership hidable injectors confederacies snouting jittering rodeos stomps viewer viler severable cleansed formation coconuts tuques clumpier acrobatics soothingly spoliators gashes inverter pares gobos reconsecrations parcels adhesions unfamiliarity upstroke parroting gratified commitments subpena reconditioning introspectiveness tallyhoing vinous elucidation squiring prophase doornails willfulness wilco reestablishes weirds rained heptoses waggeries imbibitions qualities divisibilities bilateralism inearthed boiling monuments psychosexual mavin horribles reconsolidating quittance bamboozling upsets droppings cochlear reweaved chams slotted nonparametric aerobatics reliquidation substantiae screamer caesarean sawbuck hometown bioflavonoid incompressable mutating centerfold silvers ingloriously subornation machineries auburns outages hinter mayflies intaglios dispossesses goboes permissibility arcades hawkshaw intertwinements idolization frangibility wolfing democratizing disadvantageousness vendees huggers peduncles postfixes italicize", "reviewFor" : "Product1", "product" : "deviating mc fuddles psychopaths gaited wolfram amalgamator keeps shipwright skalds tutting incineration shallots fruitcakes glassines impugned alcoholized inaptly organizer tennists embroiderers heterotic renowns truthfully imperiousness misguidance cuttages warping connectedly readmission harmonizations unworthy flirtatiousness pronging greenstick checkerboards palmists alienisms hypnotized xylograph lymphosarcomas crabbed overseership hidable injectors confederacies snouting jittering rodeos stomps viewer viler severable cleansed formation coconuts tuques clumpier acrobatics soothingly spoliators gashes inverter pares gobos reconsecrations parcels adhesions unfamiliarity upstroke parroting gratified commitments subpena reconditioning introspectiveness tallyhoing vinous elucidation squiring prophase doornails willfulness wilco reestablishes weirds rained heptoses waggeries imbibitions qualities divisibilities bilateralism inearthed boiling monuments psychosexual mavin horribles reconsolidating quittance bamboozling upsets droppings cochlear reweaved chams slotted nonparametric aerobatics reliquidation substantiae screamer caesarean sawbuck hometown bioflavonoid incompressable mutating centerfold silvers ingloriously subornation machineries auburns outages hinter mayflies intaglios dispossesses goboes permissibility arcades hawkshaw intertwinements idolization frangibility wolfing democratizing disadvantageousness vendees huggers peduncles postfixes italicize", "vendor" : "deviating mc fuddles psychopaths gaited wolfram amalgamator keeps shipwright skalds tutting incineration shallots fruitcakes glassines impugned alcoholized inaptly organizer tennists embroiderers heterotic renowns truthfully imperiousness misguidance cuttages warping connectedly readmission harmonizations unworthy flirtatiousness pronging greenstick checkerboards palmists alienisms hypnotized xylograph lymphosarcomas crabbed overseership hidable injectors confederacies snouting jittering rodeos stomps viewer viler severable cleansed formation coconuts tuques clumpier acrobatics soothingly spoliators gashes inverter pares gobos reconsecrations parcels adhesions unfamiliarity upstroke parroting gratified commitments subpena reconditioning introspectiveness tallyhoing vinous elucidation squiring prophase doornails willfulness wilco reestablishes weirds rained heptoses waggeries imbibitions qualities divisibilities bilateralism inearthed boiling monuments psychosexual mavin horribles reconsolidating quittance bamboozling upsets droppings cochlear reweaved chams slotted nonparametric aerobatics reliquidation substantiae screamer caesarean sawbuck hometown bioflavonoid incompressable mutating centerfold silvers ingloriously subornation machineries auburns outages hinter mayflies intaglios dispossesses goboes permissibility arcades hawkshaw intertwinements idolization frangibility wolfing democratizing disadvantageousness vendees huggers peduncles postfixes italicize", "date" : ISODate("2008-06-10T00:00:00Z"), "price" : "deviating mc fuddles psychopaths gaited wolfram amalgamator keeps shipwright skalds tutting incineration shallots fruitcakes glassines impugned alcoholized inaptly organizer tennists embroiderers heterotic renowns truthfully imperiousness misguidance cuttages warping connectedly readmission harmonizations unworthy flirtatiousness pronging greenstick checkerboards palmists alienisms hypnotized xylograph lymphosarcomas crabbed overseership hidable injectors confederacies snouting jittering rodeos stomps viewer viler severable cleansed formation coconuts tuques clumpier acrobatics soothingly spoliators gashes inverter pares gobos reconsecrations parcels adhesions unfamiliarity upstroke parroting gratified commitments subpena reconditioning introspectiveness tallyhoing vinous elucidation squiring prophase doornails willfulness wilco reestablishes weirds rained heptoses waggeries imbibitions qualities divisibilities bilateralism inearthed boiling monuments psychosexual mavin horribles reconsolidating quittance bamboozling upsets droppings cochlear reweaved chams slotted nonparametric aerobatics reliquidation substantiae screamer caesarean sawbuck hometown bioflavonoid incompressable mutating centerfold silvers ingloriously subornation machineries auburns outages hinter mayflies intaglios dispossesses goboes permissibility arcades hawkshaw intertwinements idolization frangibility wolfing democratizing disadvantageousness vendees huggers peduncles postfixes italicize", "eq" : 1 }
+{ "_id" : "Product1", "label" : "totally annat", "reviewFor" : "ProductFeature44", "product" : "ProductFeature44", "vendor" : "ProductFeature44", "date" : ISODate("2000-11-01T00:00:00Z"), "price" : "ProductFeature44", "eq" : 1 }
+{ "_id" : "Offer3847", "label" : 3, "reviewFor" : 3, "product" : "Product1", "vendor" : "Vendor2", "date" : ISODate("2008-05-23T00:00:00Z"), "price" : 6198.7, "eq" : 1 }
+{ "_id" : "Review17768", "label" : "Review", "reviewFor" : "Product1", "product" : "Review", "vendor" : "Review", "date" : ISODate("2008-06-13T00:00:00Z"), "price" : "Review", "eq" : 1 }
+> 
+> 
+> 
+> 
+> 
+> db.sub.aggregate([ {$match:{Subject:/^Review/,$comment:"ISWC_SUB_ONEMil_Query8"}} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$project:{language: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "language"]}]} ,   title: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "title"]}]}  ,    text: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "text"]}]}, reviewDate: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]} , reviewer: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewer"]}]} ,  reviewFor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewFor"]}]} }},{$match:{reviewFor:"Product1",language:"zh"}},{$lookup:{from:"sub", localField:"reviewer", foreignField:"Subject", as:"reviewer"  }},{$sort:{reviewDate:-1}},{$limit:20} ],{allowDiskUse: true})
+
+> 
+> 
+> db.sub.aggregate([ {$match:{Subject:/^Review/,$comment:"ISWC_SUB_ONEMil_Query9" }} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$project:{  date: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]} ,  reviewFor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewFor"]}]}  ,   title: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "title"]}]}  ,  reviewer: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewer"]}]} }},{$lookup:{from:"sub", localField:"reviewer", foreignField:"Subject", as:"reviewer"  }} ,{$group:{ _id:"$reviewer",Reviews:{$push:{_id:"$_id",title:"$title",product:"$reviewFor",date:"$date"  }} } },{$match:{'_id.Subject':"Reviewer1089"  }} ],{allowDiskUse: true})
+> 
+> 
+> 
+> 
+> 
+> db.sub.aggregate([ {$match:{Subject:/^Offer/,$comment:"ISWC_SUB_ONEMil_Query10"}} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$project:{deliveryDays: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "deliveryDays"]}]}   ,  vendor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "vendor"]}]}   ,date: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]}   ,   price: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "price"]}]}           } },{$match:{ deliveryDays:{$lte:4},  date:{$gt:new Date("2005-04-03T00:00:00Z")}   }} ,{$lookup:{from:"sub", localField:"vendor",foreignField:"Subject", as:"vendor"  }},{$project:{_id:1,deliveryDays:1,vendorPre:'$vendor.Predicate',vendorObj:'$vendor.Object',date:1,price:1}},{$project:{_id:1,deliveryDays:1,vendorPre:1,vendorObj:1,date:1,    vendorcountry: {"$arrayElemAt": ["$vendorObj", {"$indexOfArray": ["$vendorPre", "country"]}]} ,price:1}},{$match:{vendorcountry:"US"}},{$sort:{price:1}},{$limit:10}  ],{allowDiskUse: true})
+{ "_id" : "Offer32646", "deliveryDays" : 4, "date" : ISODate("2008-05-26T00:00:00Z"), "price" : 5.25, "vendorPre" : [ "country", "date", "publisher", "homepage", "label", "type", "comment" ], "vendorObj" : [ "US", ISODate("2008-05-27T00:00:00Z"), "Vendor17", "http://www.vendor17.com", "cantos physiological", "Vendor", "deoxidation outgoing tabers robotization retying oviduct partway wades cockleshells wisped neglector amoeboid insulants cadences abandoners faultfinders absolved beanie quailed animadverts disaffections disburdened intersectional" ], "vendorcountry" : "US" }
+{ "_id" : "Offer3236", "deliveryDays" : 3, "date" : ISODate("2008-03-23T00:00:00Z"), "price" : 6.32, "vendorPre" : [ "publisher", "country", "date", "homepage", "label", "type", "comment" ], "vendorObj" : [ "Vendor2", "US", ISODate("2008-06-18T00:00:00Z"), "http://www.vendor2.com", "protracting", "Vendor", "comforts gazetting napless venation hamsters portraying commonalties readd engilding sidestroke intertwines boasts casing naughtily repealable pollees antidisestablishmentarianism misreading triskaidekaphobia fierily signoras grogshop" ], "vendorcountry" : "US" }
+{ "_id" : "Offer4680", "deliveryDays" : 2, "date" : ISODate("2008-03-23T00:00:00Z"), "price" : 8.04, "vendorPre" : [ "publisher", "country", "date", "homepage", "label", "type", "comment" ], "vendorObj" : [ "Vendor2", "US", ISODate("2008-06-18T00:00:00Z"), "http://www.vendor2.com", "protracting", "Vendor", "comforts gazetting napless venation hamsters portraying commonalties readd engilding sidestroke intertwines boasts casing naughtily repealable pollees antidisestablishmentarianism misreading triskaidekaphobia fierily signoras grogshop" ], "vendorcountry" : "US" }
+{ "_id" : "Offer7250", "deliveryDays" : 3, "date" : ISODate("2008-04-10T00:00:00Z"), "price" : 10.61, "vendorPre" : [ "publisher", "date", "country", "homepage", "label", "type", "comment" ], "vendorObj" : [ "Vendor4", ISODate("2008-05-09T00:00:00Z"), "US", "http://www.vendor4.com", "disfranchiser", "Vendor", "klystrons yuletides chisels detriments wittily chillness photocomposes gibbering cognitional franchisers frills cree resumers frightens nonpunishable insheathe genealogists reengage thicker cracking parleyed gen jocosities sherlocks wreckers biotechnological victimizing carmaker succoring" ], "vendorcountry" : "US" }
+{ "_id" : "Offer13435", "deliveryDays" : 4, "date" : ISODate("2008-04-30T00:00:00Z"), "price" : 12.74, "vendorPre" : [ "publisher", "country", "homepage", "date", "label", "type", "comment" ], "vendorObj" : [ "Vendor7", "US", "http://www.vendor7.com", ISODate("2008-05-13T00:00:00Z"), "marshalling", "Vendor", "cayugas chipped rearmost selected rechartered elucidators riles fluoridated rebuses undergoes sclera rosinous unprintable reenjoyed characterizing billers nicker starker apologias warehousemen scintillation locks photovoltaic ferneries moneyed bourgeon cheaters weightless bunters disbars abandoners raptured hirsuteness" ], "vendorcountry" : "US" }
+{ "_id" : "Offer12463", "deliveryDays" : 4, "date" : ISODate("2008-05-11T00:00:00Z"), "price" : 12.89, "vendorPre" : [ "publisher", "country", "homepage", "date", "label", "type", "comment" ], "vendorObj" : [ "Vendor7", "US", "http://www.vendor7.com", ISODate("2008-05-13T00:00:00Z"), "marshalling", "Vendor", "cayugas chipped rearmost selected rechartered elucidators riles fluoridated rebuses undergoes sclera rosinous unprintable reenjoyed characterizing billers nicker starker apologias warehousemen scintillation locks photovoltaic ferneries moneyed bourgeon cheaters weightless bunters disbars abandoners raptured hirsuteness" ], "vendorcountry" : "US" }
+{ "_id" : "Offer20382", "deliveryDays" : 2, "date" : ISODate("2008-03-31T00:00:00Z"), "price" : 13.09, "vendorPre" : [ "date", "country", "homepage", "publisher", "comment", "type", "label" ], "vendorObj" : [ ISODate("2008-04-08T00:00:00Z"), "US", "http://www.vendor12.com", "Vendor12", "variegates gibers honkies trammelling subtitles toweling monodists countrywomen inspirational peccadillos gipsies fencers fluoridations kills wondering detoxifier cowskins circulative pinpricks ruck retardate transports taximen consolingly mooned jargoned skates reinvests hacklers", "Vendor", "opacify negotiating" ], "vendorcountry" : "US" }
+{ "_id" : "Offer3424", "deliveryDays" : 3, "date" : ISODate("2008-03-22T00:00:00Z"), "price" : 13.66, "vendorPre" : [ "publisher", "country", "date", "homepage", "label", "type", "comment" ], "vendorObj" : [ "Vendor2", "US", ISODate("2008-06-18T00:00:00Z"), "http://www.vendor2.com", "protracting", "Vendor", "comforts gazetting napless venation hamsters portraying commonalties readd engilding sidestroke intertwines boasts casing naughtily repealable pollees antidisestablishmentarianism misreading triskaidekaphobia fierily signoras grogshop" ], "vendorcountry" : "US" }
+{ "_id" : "Offer2499", "deliveryDays" : 3, "date" : ISODate("2008-06-01T00:00:00Z"), "price" : 14.85, "vendorPre" : [ "publisher", "country", "date", "homepage", "label", "type", "comment" ], "vendorObj" : [ "Vendor2", "US", ISODate("2008-06-18T00:00:00Z"), "http://www.vendor2.com", "protracting", "Vendor", "comforts gazetting napless venation hamsters portraying commonalties readd engilding sidestroke intertwines boasts casing naughtily repealable pollees antidisestablishmentarianism misreading triskaidekaphobia fierily signoras grogshop" ], "vendorcountry" : "US" }
+{ "_id" : "Offer12571", "deliveryDays" : 2, "date" : ISODate("2008-04-22T00:00:00Z"), "price" : 16.78, "vendorPre" : [ "publisher", "country", "homepage", "date", "label", "type", "comment" ], "vendorObj" : [ "Vendor7", "US", "http://www.vendor7.com", ISODate("2008-05-13T00:00:00Z"), "marshalling", "Vendor", "cayugas chipped rearmost selected rechartered elucidators riles fluoridated rebuses undergoes sclera rosinous unprintable reenjoyed characterizing billers nicker starker apologias warehousemen scintillation locks photovoltaic ferneries moneyed bourgeon cheaters weightless bunters disbars abandoners raptured hirsuteness" ], "vendorcountry" : "US" }
+> 
+> 
+> 
+> db.sub.aggregate([ {$match:{Subject:"Offer1",$comment:"ISWC_SUB_ONEMil_Query11"}} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$project:{Predicates:"$Predicates",Objects:"$Objects", product: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "product"]}]} } },{$lookup:{from:"sub", localField:"product",foreignField:"Subject", as:"product"  }}   ],{allowDiskUse: true})
+{ "_id" : "Offer1", "Predicates" : [ "date", "offerWebpage", "publisher", "deliveryDays", "validTo", "vendor", "validFrom", "price", "product", "type" ], "Objects" : [ ISODate("2008-06-17T00:00:00Z"), "Offer1", "Vendor1", 5, ISODate("2008-09-11T00:00:00Z"), "Vendor1", ISODate("2008-03-20T00:00:00Z"), 7683.53, "Product1385", "Offer" ], "product" : [ { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd1d"), "Subject" : "Product1385", "Predicate" : "date", "Object" : ISODate("2001-10-07T00:00:00Z") }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd1f"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2569" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd20"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2567" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd21"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2566" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd22"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2562" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd23"), "Subject" : "Product1385", "Predicate" : "productPropertyTextual5", "Object" : "digitalize brassies impenitent" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd24"), "Subject" : "Product1385", "Predicate" : "productPropertyTextual6", "Object" : "pearlier pewterers bullfighter starry stinkards gavelling clogs comprized branched destructible overdeveloped unitizes" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd26"), "Subject" : "Product1385", "Predicate" : "productPropertyTextual1", "Object" : "outline unswerving decolonizes toolbox synagog humanizes armory delivering draggiest" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd27"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature30" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd28"), "Subject" : "Product1385", "Predicate" : "productPropertyNumeric5", "Object" : 246 }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd29"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature518" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd2a"), "Subject" : "Product1385", "Predicate" : "productPropertyNumeric3", "Object" : 1667 }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd2b"), "Subject" : "Product1385", "Predicate" : "productPropertyNumeric2", "Object" : 551 }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd2c"), "Subject" : "Product1385", "Predicate" : "producer", "Object" : "Producer31" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd2d"), "Subject" : "Product1385", "Predicate" : "productPropertyNumeric1", "Object" : 882 }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd2e"), "Subject" : "Product1385", "Predicate" : "type", "Object" : "ProductType84" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd2f"), "Subject" : "Product1385", "Predicate" : "label", "Object" : "vouchee" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd30"), "Subject" : "Product1385", "Predicate" : "type", "Object" : "Product" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd31"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature27" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd32"), "Subject" : "Product1385", "Predicate" : "comment", "Object" : "disputations tweeter peatiest quibbling deathlessly tunneller bellying bries sumpter antineutrinos dockets cords nosed modulation galvanizations deadfall stows fulness truelove seconded mumbo accordance resembling sensibles trumpeter microgram veterans locking tritone mildewy wriggliest maritally engineering degenerations deviltry unperfected jukebox cyans forecasted remittent sadomasochists mistaker requisitioners beautifiers unserved insoles fluorinating gravitic aunts montanans iffier callusing autumns chandlers procuress leakiest gnotobiotics gawkier masher" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd33"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2578" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd34"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature26" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd35"), "Subject" : "Product1385", "Predicate" : "publisher", "Object" : "Producer31" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd36"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature36" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd37"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature516" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd38"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature529" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd39"), "Subject" : "Product1385", "Predicate" : "productPropertyNumeric6", "Object" : 118 }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd3a"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2584" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd3b"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2586" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd3c"), "Subject" : "Product1385", "Predicate" : "productPropertyTextual3", "Object" : "erythema winterkill travelable medalists webers muddiest dissembler" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd3d"), "Subject" : "Product1385", "Predicate" : "productFeature", "Object" : "ProductFeature2573" }, { "_id" : ObjectId("5c6129ccdfd9498f6a1ebd3e"), "Subject" : "Product1385", "Predicate" : "productPropertyTextual2", "Object" : "sarcasms traitors macros admitters cherubic putrefying underclothes metamers retrench hadji packing immix cymes outfitting boxed" } ] }
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> db.system.profile.find().sort( { ts : 1 } ).pretty()
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /Product/,
+					"$comment" : "Triple_SUB_ONEMil_Query1"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature14",
+							"ProductFeature10",
+							"ProductType64"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"num1" : {
+						"$gt" : 1
+					}
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 676834,
+	"docsExamined" : 90456,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 5287,
+	"nreturned" : 2,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(5296)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(5296)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(5296)
+			}
+		}
+	},
+	"responseLength" : 4540,
+	"protocol" : "op_msg",
+	"millis" : 1617,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T07:58:12.385Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : "Product123",
+					"$comment" : "ISWC_SUB_ONEMil_Query2"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 35,
+	"docsExamined" : 35,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		}
+	},
+	"responseLength" : 3606,
+	"protocol" : "op_msg",
+	"millis" : 1,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T07:58:19.432Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query3"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature48",
+							"ProductType91"
+						],
+						"$nin" : [
+							"ProductFeature51"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num3" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric3"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"num1" : {
+						"$gt" : 25
+					},
+					"num3" : {
+						"$lt" : 250
+					}
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 676834,
+	"docsExamined" : 90456,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 5287,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(5296)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(5296)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(5296)
+			}
+		}
+	},
+	"responseLength" : 2538,
+	"protocol" : "op_msg",
+	"millis" : 1454,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T07:58:28.928Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query4"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature51",
+							"ProductFeature45",
+							"ProductType91"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"num1" : {
+								"$gt" : 20
+							},
+							"num2" : {
+								"$gt" : 25
+							}
+						}
+					]
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			},
+			{
+				"$skip" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 90457,
+	"docsExamined" : 90456,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 706,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		}
+	},
+	"responseLength" : 99,
+	"protocol" : "op_msg",
+	"millis" : 526,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T07:58:36.948Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productFeature"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query5_PArt1",
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 13,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 1516,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productFeature"
+			}
+		},
+		"nReturned" : 13,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 13,
+		"needTime" : 17,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.486Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query5_PArt2",
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 198,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 1,
+		"needTime" : 29,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.494Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric2"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query5_PArt3",
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 198,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric2"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 1,
+		"needTime" : 29,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.502Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productFeature"
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 13,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 1516,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productFeature"
+			}
+		},
+		"nReturned" : 13,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 13,
+		"needTime" : 17,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.569Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 198,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 1,
+		"needTime" : 29,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.571Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 198,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 1,
+		"needTime" : 29,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.572Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric2"
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 198,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric2"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 1,
+		"needTime" : 29,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.573Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 30,
+	"docsExamined" : 30,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 198,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 31,
+		"advanced" : 1,
+		"needTime" : 29,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 30,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 30,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 31,
+			"advanced" : 30,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 30,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:58:46.574Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query5_PArt4"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature109",
+							"ProductFeature102",
+							"ProductFeature107",
+							"ProductFeature1604",
+							"ProductFeature1605",
+							"ProductFeature1595",
+							"ProductFeature1606",
+							"ProductFeature1594",
+							"ProductFeature1580",
+							"ProductFeature4669",
+							"ProductFeature4670",
+							"ProductFeature4652",
+							"ProductFeature4640"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"label" : "$label",
+					"cond1" : {
+						"$and" : [
+							{
+								"$lt" : [
+									"$num1",
+									"993170"
+								]
+							},
+							{
+								"$gt" : [
+									"$num1",
+									873
+								]
+							}
+						]
+					},
+					"cond2" : {
+						"$and" : [
+							{
+								"$lt" : [
+									"$num2",
+									"412170"
+								]
+							},
+							{
+								"$gt" : [
+									"$num2",
+									823
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"cond1" : true,
+					"cond2" : true
+				}
+			},
+			{
+				"$project" : {
+					"cond1" : 0,
+					"cond2" : 0
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 5
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 90457,
+	"docsExamined" : 90456,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 706,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		}
+	},
+	"responseLength" : 99,
+	"protocol" : "op_msg",
+	"millis" : 569,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T07:58:47.145Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query6"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"label" : /is/
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"cursorid" : NumberLong("9168009573712647742"),
+	"keysExamined" : 90457,
+	"docsExamined" : 90456,
+	"numYield" : 706,
+	"nreturned" : 101,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(715)
+			}
+		}
+	},
+	"responseLength" : 7299,
+	"protocol" : "op_msg",
+	"millis" : 488,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T07:59:47.588Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : /^Vendor/,
+			"Predicate" : "country",
+			"Object" : "US"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query7_PArt1",
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 147,
+	"docsExamined" : 147,
+	"cursorExhausted" : true,
+	"numYield" : 1,
+	"nreturned" : 7,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		}
+	},
+	"responseLength" : 690,
+	"protocol" : "op_msg",
+	"millis" : 1,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"$and" : [
+				{
+					"Object" : {
+						"$eq" : "US"
+					}
+				},
+				{
+					"Predicate" : {
+						"$eq" : "country"
+					}
+				}
+			]
+		},
+		"nReturned" : 7,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 148,
+		"advanced" : 7,
+		"needTime" : 140,
+		"needYield" : 0,
+		"saveState" : 1,
+		"restoreState" : 1,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 147,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 147,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 148,
+			"advanced" : 147,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 1,
+			"restoreState" : 1,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Vendor\", \"Vendos\")",
+					"[/^Vendor/, /^Vendor/]"
+				]
+			},
+			"keysExamined" : 147,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-11T07:59:56.842Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"Subject" : /^Offer/
+						},
+						{
+							"Subject" : /^Review/
+						},
+						{
+							"Subject" : "Product1"
+						}
+					],
+					"$comment" : "ISWC_SUB_ONEMil_Query7_PArt2"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					},
+					"product" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"product"
+								]
+							}
+						]
+					},
+					"vendor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"vendor"
+								]
+							}
+						]
+					},
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"price" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"price"
+								]
+							}
+						]
+					},
+					"eq" : {
+						"$cond" : [
+							{
+								"$gt" : [
+									{
+										"$arrayElemAt" : [
+											"$Objects",
+											{
+												"$indexOfArray" : [
+													"$Predicates",
+													"date"
+												]
+											}
+										]
+									},
+									ISODate("2000-10-01T00:00:00Z")
+								]
+							},
+							1,
+							0
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"reviewFor" : "Product1"
+						},
+						{
+							"_id" : "Product1"
+						},
+						{
+							"$and" : [
+								{
+									"product" : "Product1"
+								},
+								{
+									"vendor" : {
+										"$in" : [
+											"Vendor12",
+											"Vendor17",
+											"Vendor2",
+											"Vendor21",
+											"Vendor4",
+											"Vendor7",
+											"Vendor9"
+										]
+									}
+								},
+								{
+									"eq" : 1
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 585992,
+	"docsExamined" : 585989,
+	"cursorExhausted" : true,
+	"numYield" : 4579,
+	"nreturned" : 7,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(4621)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(4621)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(4621)
+			}
+		}
+	},
+	"responseLength" : 16530,
+	"protocol" : "op_msg",
+	"millis" : 3330,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T08:00:00.219Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Review/,
+					"$comment" : "ISWC_SUB_ONEMil_Query8"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"language" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"language"
+								]
+							}
+						]
+					},
+					"title" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"title"
+								]
+							}
+						]
+					},
+					"text" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"text"
+								]
+							}
+						]
+					},
+					"reviewDate" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"reviewer" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewer"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"reviewFor" : "Product1",
+					"language" : "zh"
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "Subject",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$sort" : {
+					"reviewDate" : -1
+				}
+			},
+			{
+				"$limit" : 20
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 220952,
+	"docsExamined" : 220951,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 1726,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1747)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1747)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1746)
+			}
+		}
+	},
+	"responseLength" : 99,
+	"protocol" : "op_msg",
+	"millis" : 1264,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T08:00:07.817Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Review/,
+					"$comment" : "ISWC_SUB_ONEMil_Query9"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					},
+					"title" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"title"
+								]
+							}
+						]
+					},
+					"reviewer" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewer"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "Subject",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$reviewer",
+					"Reviews" : {
+						"$push" : {
+							"_id" : "$_id",
+							"title" : "$title",
+							"product" : "$reviewFor",
+							"date" : "$date"
+						}
+					}
+				}
+			},
+			{
+				"$match" : {
+					"_id.Subject" : "Reviewer1089"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 220952,
+	"docsExamined" : 220951,
+	"cursorExhausted" : true,
+	"numYield" : 1726,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(40105)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(40105)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(40104)
+			}
+		}
+	},
+	"responseLength" : 99,
+	"protocol" : "op_msg",
+	"millis" : 3126,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T08:00:19.069Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Offer/,
+					"$comment" : "ISWC_SUB_ONEMil_Query10"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"deliveryDays" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"deliveryDays"
+								]
+							}
+						]
+					},
+					"vendor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"vendor"
+								]
+							}
+						]
+					},
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"price" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"price"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"deliveryDays" : {
+						"$lte" : 4
+					},
+					"date" : {
+						"$gt" : ISODate("2005-04-03T00:00:00Z")
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "vendor",
+					"foreignField" : "Subject",
+					"as" : "vendor"
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"deliveryDays" : 1,
+					"vendorPre" : "$vendor.Predicate",
+					"vendorObj" : "$vendor.Object",
+					"date" : 1,
+					"price" : 1
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"deliveryDays" : 1,
+					"vendorPre" : 1,
+					"vendorObj" : 1,
+					"date" : 1,
+					"vendorcountry" : {
+						"$arrayElemAt" : [
+							"$vendorObj",
+							{
+								"$indexOfArray" : [
+									"$vendorPre",
+									"country"
+								]
+							}
+						]
+					},
+					"price" : 1
+				}
+			},
+			{
+				"$match" : {
+					"vendorcountry" : "US"
+				}
+			},
+			{
+				"$sort" : {
+					"price" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 365001,
+	"docsExamined" : 365000,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 2854,
+	"nreturned" : 10,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(57788)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(57788)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(57787)
+			}
+		}
+	},
+	"responseLength" : 6172,
+	"protocol" : "op_msg",
+	"millis" : 5080,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T08:00:28.844Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "trONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : "Offer1",
+					"$comment" : "ISWC_SUB_ONEMil_Query11"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Predicates" : "$Predicates",
+					"Objects" : "$Objects",
+					"product" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"product"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "product",
+					"foreignField" : "Subject",
+					"as" : "product"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("41f80230-8520-4aea-b4aa-cc8780ec2739")
+		},
+		"$db" : "trONEK"
+	},
+	"keysExamined" : 10,
+	"docsExamined" : 10,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(4)
+			}
+		}
+	},
+	"responseLength" : 4779,
+	"protocol" : "op_msg",
+	"millis" : 1,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-11T08:00:34.336Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+> 
+> 
+
+
+
+
+
+
+
+
+

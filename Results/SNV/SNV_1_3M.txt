@@ -1,0 +1,2166 @@
+
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : /Product/,
+			"productPropertyNumeric1" : {
+				"$gt" : 1
+			},
+			"type" : "ProductType64",
+			"productFeature" : {
+				"$all" : [
+					"ProductFeature10",
+					"ProductFeature14"
+				]
+			}
+		},
+		"limit" : 10,
+		"singleBatch" : false,
+		"sort" : {
+			"label" : 1
+		},
+		"comment" : "JsonSUB_Query1",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 124899,
+	"docsExamined" : 10366,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 980,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(981)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(981)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(981)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 596,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "SORT",
+		"nReturned" : 0,
+		"executionTimeMillisEstimate" : 568,
+		"works" : 124902,
+		"advanced" : 0,
+		"needTime" : 124901,
+		"needYield" : 0,
+		"saveState" : 980,
+		"restoreState" : 980,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"sortPattern" : {
+			"label" : 1
+		},
+		"memUsage" : 0,
+		"memLimit" : 33554432,
+		"limitAmount" : 10,
+		"inputStage" : {
+			"stage" : "SORT_KEY_GENERATOR",
+			"nReturned" : 0,
+			"executionTimeMillisEstimate" : 558,
+			"works" : 124901,
+			"advanced" : 0,
+			"needTime" : 124900,
+			"needYield" : 0,
+			"saveState" : 980,
+			"restoreState" : 980,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"inputStage" : {
+				"stage" : "FETCH",
+				"filter" : {
+					"$and" : [
+						{
+							"productFeature" : {
+								"$eq" : "ProductFeature10"
+							}
+						},
+						{
+							"productFeature" : {
+								"$eq" : "ProductFeature14"
+							}
+						},
+						{
+							"type" : {
+								"$eq" : "ProductType64"
+							}
+						},
+						{
+							"productPropertyNumeric1" : {
+								"$gt" : 1
+							}
+						}
+					]
+				},
+				"nReturned" : 0,
+				"executionTimeMillisEstimate" : 558,
+				"works" : 124900,
+				"advanced" : 0,
+				"needTime" : 124899,
+				"needYield" : 0,
+				"saveState" : 980,
+				"restoreState" : 980,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"docsExamined" : 10366,
+				"alreadyHasObj" : 0,
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"filter" : {
+						"_id" : {
+							"$regex" : "Product"
+						}
+					},
+					"nReturned" : 10366,
+					"executionTimeMillisEstimate" : 238,
+					"works" : 124900,
+					"advanced" : 10366,
+					"needTime" : 114533,
+					"needYield" : 0,
+					"saveState" : 980,
+					"restoreState" : 980,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"keyPattern" : {
+						"_id" : 1
+					},
+					"indexName" : "_id_",
+					"isMultiKey" : false,
+					"multiKeyPaths" : {
+						"_id" : [ ]
+					},
+					"isUnique" : true,
+					"isSparse" : false,
+					"isPartial" : false,
+					"indexVersion" : 2,
+					"direction" : "forward",
+					"indexBounds" : {
+						"_id" : [
+							"[\"\", {})",
+							"[/Product/, /Product/]"
+						]
+					},
+					"keysExamined" : 124899,
+					"seeks" : 1,
+					"dupsTested" : 0,
+					"dupsDropped" : 0,
+					"seenInvalidated" : 0
+				}
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:19.801Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : "Product123"
+		},
+		"comment" : "JsonSUB_ONEmil_Query2",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 2365,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IDHACK",
+	"execStats" : {
+		"stage" : "IDHACK",
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 2,
+		"advanced" : 1,
+		"needTime" : 0,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"keysExamined" : 1,
+		"docsExamined" : 1
+	},
+	"ts" : ISODate("2019-02-12T06:21:19.807Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : /Product/,
+			"type" : "ProductType91",
+			"productPropertyNumeric1" : {
+				"$gt" : 25
+			},
+			"productPropertyNumeric3" : {
+				"$lt" : 250
+			},
+			"productFeature" : {
+				"$all" : [
+					"ProductFeature48"
+				],
+				"$nin" : [
+					"ProductFeature51"
+				]
+			}
+		},
+		"limit" : 10,
+		"singleBatch" : false,
+		"sort" : {
+			"label" : 1
+		},
+		"comment" : "JsonSUB_ONEmil_Query3",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 124899,
+	"docsExamined" : 10366,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 975,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(976)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(976)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(976)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 241,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "SORT",
+		"nReturned" : 0,
+		"executionTimeMillisEstimate" : 230,
+		"works" : 124902,
+		"advanced" : 0,
+		"needTime" : 124901,
+		"needYield" : 0,
+		"saveState" : 975,
+		"restoreState" : 975,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"sortPattern" : {
+			"label" : 1
+		},
+		"memUsage" : 0,
+		"memLimit" : 33554432,
+		"limitAmount" : 10,
+		"inputStage" : {
+			"stage" : "SORT_KEY_GENERATOR",
+			"nReturned" : 0,
+			"executionTimeMillisEstimate" : 210,
+			"works" : 124901,
+			"advanced" : 0,
+			"needTime" : 124900,
+			"needYield" : 0,
+			"saveState" : 975,
+			"restoreState" : 975,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"inputStage" : {
+				"stage" : "FETCH",
+				"filter" : {
+					"$and" : [
+						{
+							"productFeature" : {
+								"$eq" : "ProductFeature48"
+							}
+						},
+						{
+							"type" : {
+								"$eq" : "ProductType91"
+							}
+						},
+						{
+							"productPropertyNumeric3" : {
+								"$lt" : 250
+							}
+						},
+						{
+							"productPropertyNumeric1" : {
+								"$gt" : 25
+							}
+						},
+						{
+							"$nor" : [
+								{
+									"productFeature" : {
+										"$eq" : "ProductFeature51"
+									}
+								}
+							]
+						}
+					]
+				},
+				"nReturned" : 0,
+				"executionTimeMillisEstimate" : 200,
+				"works" : 124900,
+				"advanced" : 0,
+				"needTime" : 124899,
+				"needYield" : 0,
+				"saveState" : 975,
+				"restoreState" : 975,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"docsExamined" : 10366,
+				"alreadyHasObj" : 0,
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"filter" : {
+						"_id" : {
+							"$regex" : "Product"
+						}
+					},
+					"nReturned" : 10366,
+					"executionTimeMillisEstimate" : 180,
+					"works" : 124900,
+					"advanced" : 10366,
+					"needTime" : 114533,
+					"needYield" : 0,
+					"saveState" : 975,
+					"restoreState" : 975,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"keyPattern" : {
+						"_id" : 1
+					},
+					"indexName" : "_id_",
+					"isMultiKey" : false,
+					"multiKeyPaths" : {
+						"_id" : [ ]
+					},
+					"isUnique" : true,
+					"isSparse" : false,
+					"isPartial" : false,
+					"indexVersion" : 2,
+					"direction" : "forward",
+					"indexBounds" : {
+						"_id" : [
+							"[\"\", {})",
+							"[/Product/, /Product/]"
+						]
+					},
+					"keysExamined" : 124899,
+					"seeks" : 1,
+					"dupsTested" : 0,
+					"dupsDropped" : 0,
+					"seenInvalidated" : 0
+				}
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.063Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"$or" : [
+				{
+					"_id" : /Product/,
+					"type" : "ProductType91",
+					"productPropertyNumeric1" : {
+						"$gt" : 20
+					},
+					"productFeature" : {
+						"$all" : [
+							"ProductFeature51",
+							"ProductFeature45"
+						]
+					}
+				},
+				{
+					"_id" : /Product/,
+					"type" : "ProductType91",
+					"productPropertyNumeric2" : {
+						"$gt" : 25
+					},
+					"productFeature" : {
+						"$all" : [
+							"ProductFeature51",
+							"ProductFeature48"
+						]
+					}
+				}
+			]
+		},
+		"skip" : 10,
+		"limit" : 10,
+		"singleBatch" : false,
+		"sort" : {
+			"label" : 1
+		},
+		"comment" : "JsonSUB_ONEmil_Query4",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 124899,
+	"docsExamined" : 10366,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 975,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(976)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(976)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(976)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 279,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "SUBPLAN",
+		"nReturned" : 0,
+		"executionTimeMillisEstimate" : 270,
+		"works" : 124902,
+		"advanced" : 0,
+		"needTime" : 124901,
+		"needYield" : 0,
+		"saveState" : 975,
+		"restoreState" : 975,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"inputStage" : {
+			"stage" : "SKIP",
+			"nReturned" : 0,
+			"executionTimeMillisEstimate" : 240,
+			"works" : 124901,
+			"advanced" : 0,
+			"needTime" : 124901,
+			"needYield" : 0,
+			"saveState" : 975,
+			"restoreState" : 975,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"skipAmount" : 10,
+			"inputStage" : {
+				"stage" : "SORT",
+				"nReturned" : 0,
+				"executionTimeMillisEstimate" : 230,
+				"works" : 124901,
+				"advanced" : 0,
+				"needTime" : 124901,
+				"needYield" : 0,
+				"saveState" : 975,
+				"restoreState" : 975,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"sortPattern" : {
+					"label" : 1
+				},
+				"memUsage" : 0,
+				"memLimit" : 33554432,
+				"limitAmount" : 20,
+				"inputStage" : {
+					"stage" : "SORT_KEY_GENERATOR",
+					"nReturned" : 0,
+					"executionTimeMillisEstimate" : 210,
+					"works" : 124901,
+					"advanced" : 0,
+					"needTime" : 124900,
+					"needYield" : 0,
+					"saveState" : 975,
+					"restoreState" : 975,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"inputStage" : {
+						"stage" : "FETCH",
+						"filter" : {
+							"$or" : [
+								{
+									"$and" : [
+										{
+											"productFeature" : {
+												"$eq" : "ProductFeature51"
+											}
+										},
+										{
+											"productFeature" : {
+												"$eq" : "ProductFeature48"
+											}
+										},
+										{
+											"type" : {
+												"$eq" : "ProductType91"
+											}
+										},
+										{
+											"productPropertyNumeric2" : {
+												"$gt" : 25
+											}
+										}
+									]
+								},
+								{
+									"$and" : [
+										{
+											"productFeature" : {
+												"$eq" : "ProductFeature51"
+											}
+										},
+										{
+											"productFeature" : {
+												"$eq" : "ProductFeature45"
+											}
+										},
+										{
+											"type" : {
+												"$eq" : "ProductType91"
+											}
+										},
+										{
+											"productPropertyNumeric1" : {
+												"$gt" : 20
+											}
+										}
+									]
+								}
+							]
+						},
+						"nReturned" : 0,
+						"executionTimeMillisEstimate" : 210,
+						"works" : 124900,
+						"advanced" : 0,
+						"needTime" : 124899,
+						"needYield" : 0,
+						"saveState" : 975,
+						"restoreState" : 975,
+						"isEOF" : 1,
+						"invalidates" : 0,
+						"docsExamined" : 10366,
+						"alreadyHasObj" : 0,
+						"inputStage" : {
+							"stage" : "IXSCAN",
+							"filter" : {
+								"_id" : {
+									"$regex" : "Product"
+								}
+							},
+							"nReturned" : 10366,
+							"executionTimeMillisEstimate" : 130,
+							"works" : 124900,
+							"advanced" : 10366,
+							"needTime" : 114533,
+							"needYield" : 0,
+							"saveState" : 975,
+							"restoreState" : 975,
+							"isEOF" : 1,
+							"invalidates" : 0,
+							"keyPattern" : {
+								"_id" : 1
+							},
+							"indexName" : "_id_",
+							"isMultiKey" : false,
+							"multiKeyPaths" : {
+								"_id" : [ ]
+							},
+							"isUnique" : true,
+							"isSparse" : false,
+							"isPartial" : false,
+							"indexVersion" : 2,
+							"direction" : "forward",
+							"indexBounds" : {
+								"_id" : [
+									"[\"\", {})",
+									"[/Product/, /Product/]"
+								]
+							},
+							"keysExamined" : 124899,
+							"seeks" : 1,
+							"dupsTested" : 0,
+							"dupsDropped" : 0,
+							"seenInvalidated" : 0
+						}
+					}
+				}
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.356Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : "Product17"
+		},
+		"projection" : {
+			"productFeature" : 1,
+			"productPropertyNumeric1" : 1,
+			"productPropertyNumeric2" : 1,
+			"_id" : 0
+		},
+		"comment" : "JsonSUB_ONEmil_Query5_PArt1",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 851,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IDHACK",
+	"execStats" : {
+		"stage" : "PROJECTION",
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 2,
+		"advanced" : 1,
+		"needTime" : 0,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"transformBy" : {
+			"productFeature" : 1,
+			"productPropertyNumeric1" : 1,
+			"productPropertyNumeric2" : 1,
+			"_id" : 0
+		},
+		"inputStage" : {
+			"stage" : "IDHACK",
+			"nReturned" : 1,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 2,
+			"advanced" : 1,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keysExamined" : 1,
+			"docsExamined" : 1
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.367Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"$and" : [
+				{
+					"_id" : /^Product/,
+					"productPropertyNumeric2" : {
+						"$lt" : 305
+					}
+				},
+				{
+					"_id" : /^Product/,
+					"productPropertyNumeric2" : {
+						"$gt" : 616
+					}
+				}
+			],
+			"productFeature" : {
+				"$in" : [
+					"ProductFeature153",
+					"ProductFeature152",
+					"ProductFeature150",
+					"ProductFeature149",
+					"ProductFeature146",
+					"ProductFeature2211",
+					"ProductFeature2210",
+					"ProductFeature2208",
+					"ProductFeature2206",
+					"ProductFeature2204",
+					"ProductFeature2202",
+					"ProductFeature2193",
+					"ProductFeature2192",
+					"ProductFeature2189",
+					"ProductFeature2180",
+					"ProductFeature2178",
+					"ProductFeature2171",
+					"ProductFeature2169",
+					"ProductFeature6307",
+					"ProductFeature6296",
+					"ProductFeature6294",
+					"ProductFeature6289",
+					"ProductFeature6284",
+					"ProductFeature6283",
+					"ProductFeature6282"
+				]
+			}
+		},
+		"limit" : 5,
+		"singleBatch" : false,
+		"sort" : {
+			"label" : 1
+		},
+		"comment" : "JsonSUB_ONEmil_Query5_PArt2",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 10367,
+	"docsExamined" : 10366,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 81,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(82)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(82)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(82)
+			}
+		}
+	},
+	"responseLength" : 104,
+	"protocol" : "op_msg",
+	"millis" : 46,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "SORT",
+		"nReturned" : 0,
+		"executionTimeMillisEstimate" : 40,
+		"works" : 10370,
+		"advanced" : 0,
+		"needTime" : 10369,
+		"needYield" : 0,
+		"saveState" : 81,
+		"restoreState" : 81,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"sortPattern" : {
+			"label" : 1
+		},
+		"memUsage" : 0,
+		"memLimit" : 33554432,
+		"limitAmount" : 5,
+		"inputStage" : {
+			"stage" : "SORT_KEY_GENERATOR",
+			"nReturned" : 0,
+			"executionTimeMillisEstimate" : 40,
+			"works" : 10369,
+			"advanced" : 0,
+			"needTime" : 10368,
+			"needYield" : 0,
+			"saveState" : 81,
+			"restoreState" : 81,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"inputStage" : {
+				"stage" : "FETCH",
+				"filter" : {
+					"$and" : [
+						{
+							"productPropertyNumeric2" : {
+								"$lt" : 305
+							}
+						},
+						{
+							"productPropertyNumeric2" : {
+								"$gt" : 616
+							}
+						},
+						{
+							"productFeature" : {
+								"$in" : [
+									"ProductFeature146",
+									"ProductFeature149",
+									"ProductFeature150",
+									"ProductFeature152",
+									"ProductFeature153",
+									"ProductFeature2169",
+									"ProductFeature2171",
+									"ProductFeature2178",
+									"ProductFeature2180",
+									"ProductFeature2189",
+									"ProductFeature2192",
+									"ProductFeature2193",
+									"ProductFeature2202",
+									"ProductFeature2204",
+									"ProductFeature2206",
+									"ProductFeature2208",
+									"ProductFeature2210",
+									"ProductFeature2211",
+									"ProductFeature6282",
+									"ProductFeature6283",
+									"ProductFeature6284",
+									"ProductFeature6289",
+									"ProductFeature6294",
+									"ProductFeature6296",
+									"ProductFeature6307"
+								]
+							}
+						}
+					]
+				},
+				"nReturned" : 0,
+				"executionTimeMillisEstimate" : 30,
+				"works" : 10368,
+				"advanced" : 0,
+				"needTime" : 10367,
+				"needYield" : 0,
+				"saveState" : 81,
+				"restoreState" : 81,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"docsExamined" : 10366,
+				"alreadyHasObj" : 0,
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"nReturned" : 10366,
+					"executionTimeMillisEstimate" : 20,
+					"works" : 10368,
+					"advanced" : 10366,
+					"needTime" : 1,
+					"needYield" : 0,
+					"saveState" : 81,
+					"restoreState" : 81,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"keyPattern" : {
+						"_id" : 1
+					},
+					"indexName" : "_id_",
+					"isMultiKey" : false,
+					"multiKeyPaths" : {
+						"_id" : [ ]
+					},
+					"isUnique" : true,
+					"isSparse" : false,
+					"isPartial" : false,
+					"indexVersion" : 2,
+					"direction" : "forward",
+					"indexBounds" : {
+						"_id" : [
+							"[\"Product\", \"Producu\")",
+							"[/^Product/, /^Product/]"
+						]
+					},
+					"keysExamined" : 10367,
+					"seeks" : 2,
+					"dupsTested" : 0,
+					"dupsDropped" : 0,
+					"seenInvalidated" : 0
+				}
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.445Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : /^Product/,
+			"label" : /is/
+		},
+		"projection" : {
+			"label" : 1
+		},
+		"comment" : "JsonSUB_ONEmil_Query6",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"cursorid" : 17166103506,
+	"keysExamined" : 694,
+	"docsExamined" : 694,
+	"numYield" : 5,
+	"nreturned" : 101,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(6)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(6)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(6)
+			}
+		}
+	},
+	"responseLength" : 6666,
+	"protocol" : "op_msg",
+	"millis" : 4,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "PROJECTION",
+		"nReturned" : 101,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 694,
+		"advanced" : 101,
+		"needTime" : 593,
+		"needYield" : 0,
+		"saveState" : 6,
+		"restoreState" : 5,
+		"isEOF" : 0,
+		"invalidates" : 0,
+		"transformBy" : {
+			"label" : 1
+		},
+		"inputStage" : {
+			"stage" : "FETCH",
+			"filter" : {
+				"label" : {
+					"$regex" : "is"
+				}
+			},
+			"nReturned" : 101,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 694,
+			"advanced" : 101,
+			"needTime" : 593,
+			"needYield" : 0,
+			"saveState" : 6,
+			"restoreState" : 5,
+			"isEOF" : 0,
+			"invalidates" : 0,
+			"docsExamined" : 694,
+			"alreadyHasObj" : 0,
+			"inputStage" : {
+				"stage" : "IXSCAN",
+				"nReturned" : 694,
+				"executionTimeMillisEstimate" : 0,
+				"works" : 694,
+				"advanced" : 694,
+				"needTime" : 0,
+				"needYield" : 0,
+				"saveState" : 6,
+				"restoreState" : 5,
+				"isEOF" : 0,
+				"invalidates" : 0,
+				"keyPattern" : {
+					"_id" : 1
+				},
+				"indexName" : "_id_",
+				"isMultiKey" : false,
+				"multiKeyPaths" : {
+					"_id" : [ ]
+				},
+				"isUnique" : true,
+				"isSparse" : false,
+				"isPartial" : false,
+				"indexVersion" : 2,
+				"direction" : "forward",
+				"indexBounds" : {
+					"_id" : [
+						"[\"Product\", \"Producu\")",
+						"[/^Product/, /^Product/]"
+					]
+				},
+				"keysExamined" : 694,
+				"seeks" : 1,
+				"dupsTested" : 0,
+				"dupsDropped" : 0,
+				"seenInvalidated" : 0
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.456Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : "Product1"
+		},
+		"comment" : "JsonSUB_ONEmil_Query7_PArt1",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 2040,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IDHACK",
+	"execStats" : {
+		"stage" : "IDHACK",
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 2,
+		"advanced" : 1,
+		"needTime" : 0,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"keysExamined" : 1,
+		"docsExamined" : 1
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.465Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : /^Vendor/,
+			"country" : "US"
+		},
+		"comment" : "JsonSUB_ONEmil_Query7_PArt2",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 39,
+	"docsExamined" : 39,
+	"cursorExhausted" : true,
+	"numYield" : 6,
+	"nreturned" : 15,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(7)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(7)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(7)
+			}
+		}
+	},
+	"responseLength" : 7109,
+	"protocol" : "op_msg",
+	"millis" : 140,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"country" : {
+				"$eq" : "US"
+			}
+		},
+		"nReturned" : 15,
+		"executionTimeMillisEstimate" : 139,
+		"works" : 40,
+		"advanced" : 15,
+		"needTime" : 24,
+		"needYield" : 0,
+		"saveState" : 6,
+		"restoreState" : 6,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 39,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 39,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 40,
+			"advanced" : 39,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 6,
+			"restoreState" : 6,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"_id" : 1
+			},
+			"indexName" : "_id_",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"_id" : [ ]
+			},
+			"isUnique" : true,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"_id" : [
+					"[\"Vendor\", \"Vendos\")",
+					"[/^Vendor/, /^Vendor/]"
+				]
+			},
+			"keysExamined" : 39,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:20.610Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"$or" : [
+				{
+					"$and" : [
+						{
+							"_id" : /^Offer/
+						},
+						{
+							"product" : "Product1"
+						}
+					],
+					"vendor" : {
+						"$in" : [
+							"Vendor12",
+							"Vendor17",
+							"Vendor2",
+							"Vendor21",
+							"Vendor22",
+							"Vendor26",
+							"Vendor27",
+							"Vendor28",
+							"Vendor30",
+							"Vendor31",
+							"Vendor37",
+							"Vendor39",
+							"Vendor4",
+							"Vendor7",
+							"Vendor9"
+						]
+					},
+					"date" : {
+						"$gt" : ISODate("2000-10-01T00:00:00Z")
+					}
+				},
+				{
+					"_id" : /^Review/,
+					"reviewFor" : "Product1"
+				}
+			]
+		},
+		"comment" : "JsonSUB_ONEmil_Query7_LAST_OPtional",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 114416,
+	"docsExamined" : 114414,
+	"cursorExhausted" : true,
+	"numYield" : 899,
+	"nreturned" : 5,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(900)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(900)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(900)
+			}
+		}
+	},
+	"responseLength" : 4453,
+	"protocol" : "op_msg",
+	"millis" : 1180,
+	"planSummary" : "IXSCAN { _id: 1 }, IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "SUBPLAN",
+		"nReturned" : 5,
+		"executionTimeMillisEstimate" : 1148,
+		"works" : 114418,
+		"advanced" : 5,
+		"needTime" : 114412,
+		"needYield" : 0,
+		"saveState" : 899,
+		"restoreState" : 899,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"inputStage" : {
+			"stage" : "OR",
+			"nReturned" : 5,
+			"executionTimeMillisEstimate" : 1138,
+			"works" : 114418,
+			"advanced" : 5,
+			"needTime" : 114412,
+			"needYield" : 0,
+			"saveState" : 899,
+			"restoreState" : 899,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"dupsTested" : 5,
+			"dupsDropped" : 0,
+			"recordIdsForgotten" : 0,
+			"inputStages" : [
+				{
+					"stage" : "FETCH",
+					"filter" : {
+						"$and" : [
+							{
+								"product" : {
+									"$eq" : "Product1"
+								}
+							},
+							{
+								"date" : {
+									"$gt" : ISODate("2000-10-01T00:00:00Z")
+								}
+							},
+							{
+								"vendor" : {
+									"$in" : [
+										"Vendor12",
+										"Vendor17",
+										"Vendor2",
+										"Vendor21",
+										"Vendor22",
+										"Vendor26",
+										"Vendor27",
+										"Vendor28",
+										"Vendor30",
+										"Vendor31",
+										"Vendor37",
+										"Vendor39",
+										"Vendor4",
+										"Vendor7",
+										"Vendor9"
+									]
+								}
+							}
+						]
+					},
+					"nReturned" : 2,
+					"executionTimeMillisEstimate" : 340,
+					"works" : 75002,
+					"advanced" : 2,
+					"needTime" : 74999,
+					"needYield" : 0,
+					"saveState" : 899,
+					"restoreState" : 899,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"docsExamined" : 75000,
+					"alreadyHasObj" : 0,
+					"inputStage" : {
+						"stage" : "IXSCAN",
+						"nReturned" : 75000,
+						"executionTimeMillisEstimate" : 40,
+						"works" : 75002,
+						"advanced" : 75000,
+						"needTime" : 1,
+						"needYield" : 0,
+						"saveState" : 899,
+						"restoreState" : 899,
+						"isEOF" : 1,
+						"invalidates" : 0,
+						"keyPattern" : {
+							"_id" : 1
+						},
+						"indexName" : "_id_",
+						"isMultiKey" : false,
+						"multiKeyPaths" : {
+							"_id" : [ ]
+						},
+						"isUnique" : true,
+						"isSparse" : false,
+						"isPartial" : false,
+						"indexVersion" : 2,
+						"direction" : "forward",
+						"indexBounds" : {
+							"_id" : [
+								"[\"Offer\", \"Offes\")",
+								"[/^Offer/, /^Offer/]"
+							]
+						},
+						"keysExamined" : 75001,
+						"seeks" : 2,
+						"dupsTested" : 0,
+						"dupsDropped" : 0,
+						"seenInvalidated" : 0
+					}
+				},
+				{
+					"stage" : "FETCH",
+					"filter" : {
+						"reviewFor" : {
+							"$eq" : "Product1"
+						}
+					},
+					"nReturned" : 3,
+					"executionTimeMillisEstimate" : 778,
+					"works" : 39416,
+					"advanced" : 3,
+					"needTime" : 39412,
+					"needYield" : 0,
+					"saveState" : 899,
+					"restoreState" : 899,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"docsExamined" : 39414,
+					"alreadyHasObj" : 0,
+					"inputStage" : {
+						"stage" : "IXSCAN",
+						"nReturned" : 39414,
+						"executionTimeMillisEstimate" : 50,
+						"works" : 39416,
+						"advanced" : 39414,
+						"needTime" : 1,
+						"needYield" : 0,
+						"saveState" : 899,
+						"restoreState" : 899,
+						"isEOF" : 1,
+						"invalidates" : 0,
+						"keyPattern" : {
+							"_id" : 1
+						},
+						"indexName" : "_id_",
+						"isMultiKey" : false,
+						"multiKeyPaths" : {
+							"_id" : [ ]
+						},
+						"isUnique" : true,
+						"isSparse" : false,
+						"isPartial" : false,
+						"indexVersion" : 2,
+						"direction" : "forward",
+						"indexBounds" : {
+							"_id" : [
+								"[\"Review\", \"Reviex\")",
+								"[/^Review/, /^Review/]"
+							]
+						},
+						"keysExamined" : 39415,
+						"seeks" : 2,
+						"dupsTested" : 0,
+						"dupsDropped" : 0,
+						"seenInvalidated" : 0
+					}
+				}
+			]
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:21.804Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : "Product1"
+		},
+		"comment" : "JsonSUB_ONEmil_Query8_PArt1",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 2040,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IDHACK",
+	"execStats" : {
+		"stage" : "IDHACK",
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 2,
+		"advanced" : 1,
+		"needTime" : 0,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"keysExamined" : 1,
+		"docsExamined" : 1
+	},
+	"ts" : ISODate("2019-02-12T06:21:21.848Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"$and" : [
+						{
+							"_id" : /^Review/
+						},
+						{
+							"language" : "zh"
+						},
+						{
+							"reviewFor" : "Product1"
+						}
+					],
+					"$comment" : "JsonSUB_ONEmil_Query8_PArt2_WITHOUT_Error"
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "_id",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$sort" : {
+					"date" : -1
+				}
+			},
+			{
+				"$limit" : 20
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 39415,
+	"docsExamined" : 39414,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 307,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(312)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(312)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(311)
+			}
+		}
+	},
+	"responseLength" : 1668,
+	"protocol" : "op_msg",
+	"millis" : 170,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-12T06:21:22.034Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"killCursors" : "sub",
+		"cursors" : [
+			NumberLong("17166103506")
+		],
+		"$db" : "jsonsubONEK"
+	},
+	"numYield" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 0,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"ts" : ISODate("2019-02-12T06:21:22.076Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : /^Review/,
+					"reviewer" : "Reviewer1089",
+					"$comment" : "JsonSUB_ONEmil_Query9"
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "_id",
+					"as" : "tttt"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$tttt",
+					"Reviews" : {
+						"$push" : {
+							"_id" : "$_id",
+							"title" : "$title",
+							"product" : "$reviewFor",
+							"date" : "$date"
+						}
+					}
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 39415,
+	"docsExamined" : 39414,
+	"cursorExhausted" : true,
+	"numYield" : 307,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(340)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(340)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(339)
+			}
+		}
+	},
+	"responseLength" : 2946,
+	"protocol" : "op_msg",
+	"millis" : 160,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-12T06:21:22.267Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"_id" : /^Vendor/,
+			"country" : "US"
+		},
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 39,
+	"docsExamined" : 39,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 15,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 7109,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"country" : {
+				"$eq" : "US"
+			}
+		},
+		"nReturned" : 15,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 40,
+		"advanced" : 15,
+		"needTime" : 24,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 39,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 39,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 40,
+			"advanced" : 39,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"_id" : 1
+			},
+			"indexName" : "_id_",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"_id" : [ ]
+			},
+			"isUnique" : true,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"_id" : [
+					"[\"Vendor\", \"Vendos\")",
+					"[/^Vendor/, /^Vendor/]"
+				]
+			},
+			"keysExamined" : 39,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:22.302Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"$and" : [
+				{
+					"_id" : /^Offer/
+				},
+				{
+					"date" : {
+						"$gt" : ISODate("2005-04-03T00:00:00Z")
+					}
+				},
+				{
+					"deliveryDays" : {
+						"$lte" : 4
+					}
+				},
+				{
+					"product" : "Product1"
+				},
+				{
+					"vendor" : {
+						"$in" : [
+							"Vendor12",
+							"Vendor17",
+							"Vendor2",
+							"Vendor21",
+							"Vendor22",
+							"Vendor26",
+							"Vendor27",
+							"Vendor28",
+							"Vendor30",
+							"Vendor31",
+							"Vendor37",
+							"Vendor39",
+							"Vendor4",
+							"Vendor7",
+							"Vendor9"
+						]
+					}
+				}
+			]
+		},
+		"limit" : 10,
+		"singleBatch" : false,
+		"sort" : {
+			"price" : 1
+		},
+		"comment" : "JsonSUB_ONEmil_Query10",
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 75001,
+	"docsExamined" : 75000,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 585,
+	"nreturned" : 2,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(586)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(586)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(586)
+			}
+		}
+	},
+	"responseLength" : 550,
+	"protocol" : "op_msg",
+	"millis" : 327,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"execStats" : {
+		"stage" : "SORT",
+		"nReturned" : 2,
+		"executionTimeMillisEstimate" : 320,
+		"works" : 75006,
+		"advanced" : 2,
+		"needTime" : 75003,
+		"needYield" : 0,
+		"saveState" : 585,
+		"restoreState" : 585,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"sortPattern" : {
+			"price" : 1
+		},
+		"memUsage" : 456,
+		"memLimit" : 33554432,
+		"limitAmount" : 10,
+		"inputStage" : {
+			"stage" : "SORT_KEY_GENERATOR",
+			"nReturned" : 2,
+			"executionTimeMillisEstimate" : 320,
+			"works" : 75003,
+			"advanced" : 2,
+			"needTime" : 75000,
+			"needYield" : 0,
+			"saveState" : 585,
+			"restoreState" : 585,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"inputStage" : {
+				"stage" : "FETCH",
+				"filter" : {
+					"$and" : [
+						{
+							"product" : {
+								"$eq" : "Product1"
+							}
+						},
+						{
+							"deliveryDays" : {
+								"$lte" : 4
+							}
+						},
+						{
+							"date" : {
+								"$gt" : ISODate("2005-04-03T00:00:00Z")
+							}
+						},
+						{
+							"vendor" : {
+								"$in" : [
+									"Vendor12",
+									"Vendor17",
+									"Vendor2",
+									"Vendor21",
+									"Vendor22",
+									"Vendor26",
+									"Vendor27",
+									"Vendor28",
+									"Vendor30",
+									"Vendor31",
+									"Vendor37",
+									"Vendor39",
+									"Vendor4",
+									"Vendor7",
+									"Vendor9"
+								]
+							}
+						}
+					]
+				},
+				"nReturned" : 2,
+				"executionTimeMillisEstimate" : 320,
+				"works" : 75002,
+				"advanced" : 2,
+				"needTime" : 74999,
+				"needYield" : 0,
+				"saveState" : 585,
+				"restoreState" : 585,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"docsExamined" : 75000,
+				"alreadyHasObj" : 0,
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"nReturned" : 75000,
+					"executionTimeMillisEstimate" : 90,
+					"works" : 75002,
+					"advanced" : 75000,
+					"needTime" : 1,
+					"needYield" : 0,
+					"saveState" : 585,
+					"restoreState" : 585,
+					"isEOF" : 1,
+					"invalidates" : 0,
+					"keyPattern" : {
+						"_id" : 1
+					},
+					"indexName" : "_id_",
+					"isMultiKey" : false,
+					"multiKeyPaths" : {
+						"_id" : [ ]
+					},
+					"isUnique" : true,
+					"isSparse" : false,
+					"isPartial" : false,
+					"indexVersion" : 2,
+					"direction" : "forward",
+					"indexBounds" : {
+						"_id" : [
+							"[\"Offer\", \"Offes\")",
+							"[/^Offer/, /^Offer/]"
+						]
+					},
+					"keysExamined" : 75001,
+					"seeks" : 2,
+					"dupsTested" : 0,
+					"dupsDropped" : 0,
+					"seenInvalidated" : 0
+				}
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-12T06:21:22.631Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "jsonsubONEK.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"_id" : "Offer1",
+					"$comment" : "JsonSUB_ONEmil_Query11"
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "product",
+					"foreignField" : "_id",
+					"as" : "product"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("81319fa1-433e-4f83-b655-76c0ad30f76e")
+		},
+		"$db" : "jsonsubONEK"
+	},
+	"keysExamined" : 1,
+	"docsExamined" : 1,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(4)
+			}
+		}
+	},
+	"responseLength" : 2562,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { _id: 1 }",
+	"ts" : ISODate("2019-02-12T06:21:22.646Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+> 
+
+

@@ -1,0 +1,479 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+PL
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+/*
+**
+**#######################################################################
+**#	Query 1: Find products for a given set of generic features 	#
+**#######################################################################
+*/
+
+
+var t64 = db.sub.aggregate([{$match:{_id:"type" , $comment :"ISWCPRE_ONEk_Q1_1" }},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:"ProductType64"}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment :"ISWCPRE_ONEk_Q1_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:{$gt:1}}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+var f10 = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q1_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Objects:"ProductFeature10"} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+var features = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q1_4"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Subjects:{$in:f10}}}, {$match:{Objects:"ProductFeature14"} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment :"ISWCPRE_ONEk_Q1_5"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{$and:[{Subjects:{$in:features}},{Subjects:{$in:num1}},{Subjects:{$in:t64}}]  }},{$sort:{Objects:1}},{$limit:10} ],{allowDiskUse:true} )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+/*
+**
+**###############################################################################################
+**#	Query 2: Retrieve basic information about a specific product for display purposes	#
+**###############################################################################################
+*/
+
+
+db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]}, $comment :"ISWCPRE_ONEk_Q2_1" }},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", "Product123"]} ]  }  }}])
+
+db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q2_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0, Subjects:"Product123" }} ],{allowDiskUse:true} )
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 3: Find products having some specific features and not having one feature 	#
+**###############################################################################################
+*/
+
+
+var t91 = db.sub.aggregate([{$match:{_id:"type", $comment :"ISWCPRE_ONEk_Q3_1"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:"ProductType91"}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment :"ISWCPRE_ONEk_Q3_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:{$gt:25}}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var num3 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric3", $comment :"ISWCPRE_ONEk_Q3_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:{$lt:250}}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+
+
+
+
+
+
+var f48 = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q3_4"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Objects:"ProductFeature48"} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+var features = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q3_5"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Subjects:{$in:f48}}}, {$match:{Objects:{$nin:["ProductFeature51"]}} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment :"ISWCPRE_ONEk_Q3_6"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{$and:[{Subjects:{$in:features}},{Subjects:{$in:num3}},{Subjects:{$in:num1}},{Subjects:{$in:t91}}]  }},{$sort:{Objects:1}},{$limit:10} ],{allowDiskUse:true} )
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 4: Find products matching two different sets of features				#
+**###############################################################################################
+*/
+
+
+
+
+var t91 = db.sub.aggregate([{$match:{_id:"type", $comment :"ISWCPRE_ONEk_Q4_1"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:"ProductType91"}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment :"ISWCPRE_ONEk_Q4_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:{$gt:20}}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var num2 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric2", $comment :"ISWCPRE_ONEk_Q4_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{Objects:{$lt:25}}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var f51 = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q4_4"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Objects:"ProductFeature51"} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+var f48 = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q4_5"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Objects:"ProductFeature48"} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+var f45 = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q4_6"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Objects:"ProductFeature45"} } ] ,{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment :"ISWCPRE_ONEk_Q4_7"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}}, {$match:{ Subjects:{$in:t91}  }}, {$match:{ $and:[{Subjects:{$in:t91}}, {Subjects:{$in:f51}},  {$or:[{Subjects:{$in:f48}},{Subjects:{$in:f45}}]}]}}, {$addFields:{ f1:{$cond:{if:{$and:[ {$in:["$Subjects",f45 ] }, {$in:["$Subjects",num2 ] } ] },then:1,else:0 } }   }} ,{$addFields: {f2:{$cond:{if:{ $and:[ {$in:["$Subjects",f48 ] }, {$in:["$Subjects",num1 ] } ] },then:1,else:0 } } ,f1:1   }  }, {$match:{$or: [{f1:1},{f2:1}] }}, {$limit:10},{$sort:{Objects:1}}])
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 5: Find product that are similar to a given product				#
+**###############################################################################################
+*/
+
+var ProductXYZF = db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]} , $comment :"ISWCPRE_ONEk_Q5_1"}},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", "Product17"]} ]  }  }}]).map(function(x){return x})
+
+
+var ProductXYZFS = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q5_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0, Subjects:"Product17" }} ],{allowDiskUse:true} ).map(function(x){return x.Objects})
+
+
+
+var SimProductXYZFS = db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q5_3" }},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } }, {$match:{compare:0}},{$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}},{$match:{Objects:{$all:ProductXYZFS}}}],{allowDiskUse:true} ).map(function(x){return x._id})
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment :"ISWCPRE_ONEk_Q5_4"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{$and:[  { Objects:{$lt: (ProductXYZF[13]["value"] + 170 )  }  },{ Objects:{$gt: (ProductXYZF[13]["value"] - 120 )  }  }   ] }},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+var num2 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric2", $comment :"ISWCPRE_ONEk_Q5_5"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0,_id:0}},{$match:{$and:[  { Objects:{$lt: (ProductXYZF[14]["value"] + 170 )  }  },{ Objects:{$gt: (ProductXYZF[13]["value"] - 170 )  }  }   ] }},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment :"ISWCPRE_ONEk_Q5_6"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$match:{$and:[{Subjects:{$in:SimProductXYZFS}},{Subjects:{$in:num1}},{Subjects:{$in:num2}}]  }},{$sort:{Objects:1}},{$limit:5} ],{allowDiskUse:true} )
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 6: Find products having a label that contains a specific string			#
+**###############################################################################################
+*/
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment :"ISWCPRE_ONEk_Q6"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:/^Product/, Objects:/is/}} ],{allowDiskUse:true} )
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**####################################################################################################
+**#	Query 7: Retrieve in-depth information about a specific product including offers and reviews #
+**####################################################################################################
+*/
+
+
+
+
+var label = db.sub.aggregate([{$match:{_id:"label", $comment :"ISWCPRE_ONEk_Q7_1"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:"Product1"}} ],{allowDiskUse:true} ).map(function(x){return x.Objects})
+
+
+
+
+var offers = db.sub.aggregate([{$match:{_id:"product", $comment :"ISWCPRE_ONEk_Q7_2"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Objects:"Product1" }},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x) {return x.Subjects})
+
+
+
+
+var country = db.sub.aggregate([{$match:{_id:"country", $comment :"ISWCPRE_ONEk_Q7_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:/^Vendor/, Objects:"US"}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var offer = db.sub.aggregate([{$match:{_id:"vendor", $comment :"ISWCPRE_ONEk_Q7_4"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{ Objects:{$in:country}}},{$match:{Subjects:{$in:offers}}} ],{allowDiskUse:true} ).map(function(x){return x})
+
+
+
+
+var reviews = db.sub.aggregate([{$match:{_id:"reviewFor", $comment :"ISWCPRE_ONEk_Q7_5"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Objects:"Product1"}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+var tmpOffer = offer[0]["Subjects"]
+var price = db.sub.aggregate([{$match:{_id:"price", $comment :"ISWCPRE_ONEk_Q7_6"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects:tmpOffer }} ],{allowDiskUse:true} ).map(function(x){return x})
+
+
+
+
+var title = db.sub.aggregate([{$match:{_id:"title", $comment :"ISWCPRE_ONEk_Q7_7"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:{$in:reviews}}} ],{allowDiskUse:true} ).map(function(x){return x}) 
+
+
+var reviewers = db.sub.aggregate([{$match:{_id:"reviewer", $comment :"ISWCPRE_ONEk_Q7_8"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects:{$in:reviews}}} ],{allowDiskUse:true} ).map(function(x){return x.Objects})
+
+var names = db.sub.aggregate([{$match:{_id:"name", $comment :"ISWCPRE_ONEk_Q7_9"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects:{$in:reviewers}}} ],{allowDiskUse:true} ).map(function(x){return x})
+
+
+db.sub.aggregate([{$match:{_id:"validTo", $comment :"ISWCPRE_ONEk_Q7_10"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Subjects:offer_us}},{$addFields:{Info:{$mergeObjects:{label, tmpOffer, reviews, price , title, names}}}} ],{allowDiskUse:true} )
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 8: Give me recent reviews in English for a specific product				#
+**#######################################################################################################
+*/
+
+
+
+
+var reviews = db.sub.aggregate([{$match:{_id:"reviewFor", $comment :"ISWCPRE_ONEk_Q8_1"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Objects:"Product1"}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var review_lang = db.sub.aggregate([{$match:{_id:"language", $comment :"ISWCPRE_ONEk_Q8_2"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects:{$in:reviews},Objects:"zh"}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+
+var title = db.sub.aggregate([{$match:{_id:"title", $comment :"ISWCPRE_ONEk_Q8_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:{$in:review_lang}}} ],{allowDiskUse:true} ).map(function(x){return x}) 
+
+
+
+
+var reviewers = db.sub.aggregate([{$match:{_id:"reviewer", $comment :"ISWCPRE_ONEk_Q8_4"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects:{$in:review_lang}}} ],{allowDiskUse:true} ).map(function(x){return x.Objects})
+
+
+
+var names = db.sub.aggregate([{$match:{_id:"name", $comment :"ISWCPRE_ONEk_Q8_5"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects:{$in:reviewers}}} ],{allowDiskUse:true} ).map(function(x){return x})
+
+
+
+
+
+db.sub.aggregate([{$match:{_id:"date", $comment :"ISWCPRE_ONEk_Q8_6"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Subjects:{$in:review_lang}}},{$addFields:{reviewFor:"Product1", language:"zh", Info:{$mergeObjects:{review_lang, title, names,reviewers}}}},{$sort:{Objects:-1}},{$limit:20} ],{allowDiskUse:true} )
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 9: Get information about a reviewer							#
+**#######################################################################################################
+*/
+
+
+
+
+var reviews = db.sub.aggregate([{$match:{_id:"reviewer", $comment :"ISWCPRE_ONEk_Q9_1"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Objects:"Reviewer1089"}},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+var title = db.sub.aggregate([{$match:{_id:"title", $comment :"ISWCPRE_ONEk_Q9_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:{$in:reviews}}} ],{allowDiskUse:true} ).map(function(x){return x}) 
+
+
+var date = db.sub.aggregate([{$match:{_id:"date", $comment :"ISWCPRE_ONEk_Q_9_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:{$in:reviews}}} ],{allowDiskUse:true} ).map(function(x){return x}) 
+
+
+
+var product = db.sub.aggregate([{$match:{_id:"product", $comment :"ISWCPRE_ONEk_Q9_4"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:"Reviewer1089"}} ],{allowDiskUse:true} ).map(function(x){return x}) 
+
+
+
+
+
+db.sub.aggregate([{$match:{_id:"name", $comment :"ISWCPRE_ONEk_Q9_5"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Subjects:"Review1089"}},{$addFields:{Info:{$mergeObjects:{reviews, title, date,product}}}},{$sort:{Objects:-1}},{$limit:20} ],{allowDiskUse:true} )
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 10: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+
+
+
+
+
+
+var offers = db.sub.aggregate([{$match:{_id:"product", $comment :"ISWCPRE_ONEk_Q10_1"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Objects:"Product1" }},{$project:{Objects:0}} ],{allowDiskUse:true} ).map(function(x) {return x.Subjects})
+
+
+
+
+
+var country = db.sub.aggregate([{$match:{_id:"country", $comment :"ISWCPRE_ONEk_Q10_2"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}}, {$match:{Subjects:/^Vendor/, Objects:"US"}} ],{allowDiskUse:true} ).map(function(x){return x.Subjects})
+
+
+
+
+var offer = db.sub.aggregate([{$match:{_id:"vendor", $comment :"ISWCPRE_ONEk_Q10_3"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{ Objects:{$in:country}}},{$match:{Subjects:{$in:offers}}} ],{allowDiskUse:true} ).map(function(x){return x})
+var tmpOffer = offer[0]["Subjects"]
+var tmpVendor = offer[0]["Objects"]
+
+
+var offer_dd = db.sub.aggregate([{$match:{_id:"deliverDays", $comment :"ISWCPRE_ONEk_Q10_4"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}},{$match:{Subjects:tmpOffer}},{$match:{ Objects:{$gt:3}}} ],{allowDiskUse:true} ).map(function(x){return x})
+
+var tmpOffer = offer_dd["Objects"]
+var tmpVendor = offer[0]["Objects"]
+
+
+
+
+var price = db.sub.aggregate([{$match:{_id:"price", $comment :"ISWCPRE_ONEk_Q10_5"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$match:{Subjects: tmpOffer}},{$addFields:{Info:{$mergeObjects:{tmpOffer,offer_dd, tmp_vendor}}}},{$sort:{Objects:1}},{$limit:20} ],{allowDiskUse:true} ).map(function(x){return x})
+
+
+
+var price = db.sub.aggregate([{$match:{_id:"price", $comment :"FINAL_ISWCPRE_ONEk_Q10_5"}},{$project:{_id:0}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0}},{$project:{compare:0}} ,{$sort:{Objects:1}},{$limit:20} ],{allowDiskUse:true} ).map(function(x){return x})
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 11: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+var tmpOffer = db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]} , $comment :"ISWCPRE_ONEk_Q11_1"}},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", "Offer1"]} ]  }  }},{$match:{$or:[ {_id:"date"},{_id:"publisher"},{_id:"offerWebpage"},{_id:"deliveryDays"},{_id:"validTo"},{_id:"validFrom"},{_id:"price"},{_id:"vendor"},{_id:"product"},{_id:"type"} ]}}]).toArray()
+
+
+var tmpproduct = "\"" + tmpOffer.map(function(x){return x.value})[8] + "\""
+
+var pproduct = db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]}, $comment :"ISWCPRE_ONEk_Q11_2"}},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", tmpproduct]} ]  }  }},{$match:{$or:[ {_id:"date"},{_id:"publisher"},{_id:/produ/},{_id:"validFrom"},{_id:"label"},{_id:"comment"},{_id:"type"} ] }}]).toArray()
+
+
+
+
+db.sub.aggregate([{$match:{_id:"productFeature", $comment :"ISWCPRE_ONEk_Q11_3"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0, Subjects:tmpproduct }} ],{allowDiskUse:true} )
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 12: Export information about an offer into another schemata				#
+**#######################################################################################################
+*/
+
+
+
+var tmpvendor = db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]}}},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", "Vendor1"]} ]  }  }},{$match:{$or:[ {_id:"date"},{_id:"publisher"},{_id:"country"},{_id:"homepage"},{_id:"comment"},{_id:"label"},{_id:"type"} ]}}]).toArray()
+
+
+
+var tmpOffer = db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]}}},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", "Offer1"]} ]  }  }},{$match:{$or:[ {_id:"date"},{_id:"publisher"},{_id:"offerWebpage"},{_id:"deliveryDays"},{_id:"validTo"},{_id:"validFrom"},{_id:"price"},{_id:"vendor"},{_id:"product"},{_id:"type"} ]}}]).toArray()
+
+
+var tmpproduct = "\"" + tmpOffer.map(function(x){return x.value})[8] + "\""
+
+var pproduct = db.sub.aggregate([{$match:{_id:{$nin:["productFeature"]}}},{$project:{ value: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Subjects", tmpproduct]} ]  }  }},{$match:{$or:[ {_id:"date"},{_id:"publisher"},{_id:/produ/},{_id:"validFrom"},{_id:"label"},{_id:"comment"},{_id:"type"} ] }}]).toArray()
+
+
+
+
+db.sub.aggregate([{$match:{_id:"productFeature"}},{$unwind:{path: "$Objects", includeArrayIndex:'objx' }},{$unwind:{path: "$Subjects" , includeArrayIndex:'subx' }},{$project:{Objects:1, Subjects:1, compare:{$cmp: ['$subx', '$objx']  }  } },{$match:{compare:0, Subjects:tmpproduct }}],{allowDiskUse:true} )
+
+
+
+
+
+

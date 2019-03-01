@@ -1,0 +1,259 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+DT
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+/*
+**
+**#######################################################################
+**#	Query 1: Find products for a given set of generic features 	#
+**#######################################################################
+*/
+
+
+db.sub.aggregate([{$match:{Subject:/Product/ , $comment:"Triple_SUB_ONEMil_Query1" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$match:{Objects:{$all:["ProductFeature14","ProductFeature10","ProductType64"]}}},{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  }    ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }}, {$match:{num1:{$gt:1}}},{$sort:{label:1}},{$limit:10}],{allowDiskUse: true})
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+/*
+**
+**###############################################################################################
+**#	Query 2: Retrieve basic information about a specific product for display purposes	#
+**###############################################################################################
+*/
+
+
+
+
+db.sub.aggregate([{$match:{Subject:"Product123" , $comment:"ISWC_SUB_ONEMil_Query2" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}],{allowDiskUse: true})
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 3: Find products having some specific features and not having one feature 	#
+**###############################################################################################
+*/
+
+
+
+
+db.sub.aggregate([{$match:{Subject:/Product/, $comment:"ISWC_SUB_ONEMil_Query3" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$match:{Objects:{$all:["ProductFeature48","ProductType91"], $nin:["ProductFeature51"] }}},{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  } , num3: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric3"]} ]  }   ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }}, {$match:{   num1:{$gt:25}, num3:{$lt:250}  }},{$sort:{label:1}},{$limit:10}],{allowDiskUse: true})
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 4: Find products matching two different sets of features				#
+**###############################################################################################
+*/
+
+
+
+
+
+
+db.sub.aggregate([{$match:{Subject:/^Product/, $comment:"ISWC_SUB_ONEMil_Query4" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$match:{Objects:{$all:["ProductFeature51","ProductFeature45","ProductType91"] }} },{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  } , num2: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric2"]} ]  }   ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }}, {$match:{ $or: [{  num1:{$gt:20}, num2:{$gt:25} } ]}},{$sort:{label:1}},{$limit:10},{$skip:10}],{allowDiskUse: true})
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 5: Find product that are similar to a given product				#
+**###############################################################################################
+*/
+
+
+
+var ProductXYZFeatures = db.sub.find({Subject:"Product17",Predicate:"productFeature"}).comment("ISWC_SUB_ONEMil_Query5_PArt1").map(function(x) {return x.Object } )
+
+var ProductXYZnum1 = db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).comment("ISWC_SUB_ONEMil_Query5_PArt2").map(function(x) {return x.Object } )
+
+var ProductXYZnum2 = db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric2"}).comment("ISWC_SUB_ONEMil_Query5_PArt3").map(function(x) {return x.Object } )
+
+
+db.sub.aggregate([{$match:{Subject:/^Product/ , $comment:"ISWC_SUB_ONEMil_Query5_PArt4" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$match:{Objects:{$all:(db.sub.find({Subject:"Product17",Predicate:"productFeature"}).map(function(x) {return x.Object } ))}}},{$project:{Objects:"$Objects", num1: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric1"]} ]  } , num2: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "productPropertyNumeric2"]} ]  }   ,label: {  "$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]} ]  }  }},{$project:{label:"$label", cond1: {$and:[ {$lt:["$num1",    ((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).map(function(x) {return x.Object } )) + 170 )    ] }, {$gt: ["$num1",((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).map(function(x) {return x.Object } )) - 120 )] } ]} , cond2: {$and:[ {$lt:["$num2",    ((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric2"}).map(function(x) {return x.Object } )) + 170 )    ] }, {$gt: ["$num2",((db.sub.find({Subject:"Product17",Predicate:"productPropertyNumeric1"}).map(function(x) {return x.Object } )) - 170 )] } ]}}},{$match:{cond1:true,cond2:true } },{$project:{cond1:0,cond2:0}},{$sort:{label:1}},{$limit:5}],{allowDiskUse: true})
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 6: Find products having a label that contains a specific string			#
+**###############################################################################################
+*/
+
+
+
+db.sub.aggregate([{$match:{Subject:/^Product/ , $comment:"ISWC_SUB_ONEMil_Query6" }}, {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$project:{label: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]}]}}} , {$match:{ label:/is/} } ],{allowDiskUse: true})
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**####################################################################################################
+**#	Query 7: Retrieve in-depth information about a specific product including offers and reviews #
+**####################################################################################################
+*/
+
+
+var ProductXYZCountry = db.sub.find({Subject:/^Vendor/,Predicate:"country",Object:"US"}).comment("ISWC_SUB_ONEMil_Query7_PArt1").map(function(x) {return x.Subject } )
+
+
+
+
+
+db.sub.aggregate([ {$match:{$or: [{Subject:/^Offer/},{Subject:/^Review/},{Subject:"Product1"}] ,$comment:"ISWC_SUB_ONEMil_Query7_PArt2" }} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} , {$project:{label : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "label"]}]} , reviewFor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewFor"]}]}  ,                    product: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "product"]}]} , vendor : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "vendor"]}]} , date : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]} , price : {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "price"]}]} , eq: {$cond:[{$gt: [  {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]}  ,ISODate("2000-10-01")]},1,0 ] }  }  } , {$match:{$or: [ {reviewFor:"Product1"} ,{_id:"Product1"} ,{$and:[ {product:"Product1"} , {vendor :{$in: ProductXYZCountry }} ,{eq:1}]}]  }   } ],{allowDiskUse: true})
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 8: Give me recent reviews in English for a specific product				#
+**#######################################################################################################
+*/
+
+
+
+
+
+
+
+
+
+db.sub.aggregate([ {$match:{Subject:/^Review/,$comment:"ISWC_SUB_ONEMil_Query8"}} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}}, {$project:{language: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "language"]}]} ,   title: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "title"]}]}  ,    text: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "text"]}]}, reviewDate: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]} , reviewer: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewer"]}]} ,  reviewFor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewFor"]}]} }},{$match:{reviewFor:"Product1",language:"zh"}},{$lookup:{from:"sub", localField:"reviewer", foreignField:"Subject", as:"reviewer"  }},{$sort:{reviewDate:-1}},{$limit:20} ],{allowDiskUse: true})
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 9: Get information about a reviewer							#
+**#######################################################################################################
+*/
+
+
+
+
+db.sub.aggregate([ {$match:{Subject:/^Review/,$comment:"ISWC_SUB_ONEMil_Query9" }} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$project:{  date: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]} ,  reviewFor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewFor"]}]}  ,   title: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "title"]}]}  ,  reviewer: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "reviewer"]}]} }},{$lookup:{from:"sub", localField:"reviewer", foreignField:"Subject", as:"reviewer"  }} ,{$group:{ _id:"$reviewer",Reviews:{$push:{_id:"$_id",title:"$title",product:"$reviewFor",date:"$date"  }} } },{$match:{'_id.Subject':"Reviewer1089"  }} ],{allowDiskUse: true})
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 10: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+
+
+
+
+
+
+
+db.sub.aggregate([ {$match:{Subject:/^Offer/,$comment:"ISWC_SUB_ONEMil_Query10"}} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$project:{deliveryDays: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "deliveryDays"]}]}   ,  vendor: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "vendor"]}]}   ,date: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "date"]}]}   ,   price: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "price"]}]}           } },{$match:{ deliveryDays:{$lte:4},  date:{$gt:new Date("2005-04-03T00:00:00Z")}   }} ,{$lookup:{from:"sub", localField:"vendor",foreignField:"Subject", as:"vendor"  }},{$project:{_id:1,deliveryDays:1,vendorPre:'$vendor.Predicate',vendorObj:'$vendor.Object',date:1,price:1}},{$project:{_id:1,deliveryDays:1,vendorPre:1,vendorObj:1,date:1,    vendorcountry: {"$arrayElemAt": ["$vendorObj", {"$indexOfArray": ["$vendorPre", "country"]}]} ,price:1}},{$match:{vendorcountry:"US"}},{$sort:{price:1}},{$limit:10}  ],{allowDiskUse: true})
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 11: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+
+
+
+
+db.sub.aggregate([ {$match:{Subject:"Offer1",$comment:"ISWC_SUB_ONEMil_Query11"}} , {$group:{_id:"$Subject", Predicates:{$push: "$Predicate"}, Objects:{$push:"$Object"}}} ,{$project:{Predicates:"$Predicates",Objects:"$Objects", product: {"$arrayElemAt": ["$Objects", {"$indexOfArray": ["$Predicates", "product"]}]} } },{$lookup:{from:"sub", localField:"product",foreignField:"Subject", as:"product"  }}   ],{allowDiskUse: true})
+
+
+
+
+
+
+
+
+
+
+

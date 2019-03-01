@@ -1,0 +1,351 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+PNV
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+/*
+**
+**#######################################################################
+**#	Query 1: Find products for a given set of generic features 	#
+**#######################################################################
+*/
+
+var t64 = db.sub.aggregate([{$match:{_id:"type" , $comment:"JSONLD_PRE_OneMil_Q1_p1" }},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':"ProductType64" }},{$unwind:"$kv" },{$match:{'kv.v':"ProductType64" }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment:"JSONLD_PRE_OneMil_Q1_p2"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$gt:1} }},{$unwind:"$kv" },{$match:{'kv.v':{$gt:1} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+var features = db.sub.aggregate([{$match:{_id:"productFeature", $comment:"JSONLD_PRE_OneMil_Q1_p3"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v':"ProductFeature10"},{'kv.v':"ProductFeature14"} ]} },{$unwind:"$kv" },{$match:{$and:[{'kv.v':"ProductFeature10"},{'kv.v':"ProductFeature14"} ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+db.sub.aggregate([{$match:{_id:"label", $comment:"JSONLD_PRE_OneMil_Q1_p4"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",label:{$push:{t: '$kv.v'}} }},{$match:{_id:{$in: features}  } },{$match:{_id:{$in: t64}  } },{$match:{_id:{$in: num1}  } },{$sort:{'label.t':1}},{$limit:10}   ],{allowDiskUse: true} )
+
+
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/, $comment:"JSONLD_PRE_OneMil_Q1_p4" }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",tr:{$push:{pre:'$_id' , obj: '$kv.v'}} }},{$match:{_id:{$in: features}  } },{$match:{_id:{$in: t64}  } },{$match:{_id:{$in: num1}  } },{$addFields:{label:{"$arrayElemAt": ["$tr.obj", 0]}}},{$sort:{label:1}},{$limit:10}   ],{allowDiskUse: true} ).pretty()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+/*
+**
+**###############################################################################################
+**#	Query 2: Retrieve basic information about a specific product for display purposes	#
+**###############################################################################################
+*/
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':"Product123" }},{$unwind:"$kv" },{$match:{'kv.k':"Product123", $comment:"JSON_Q2" }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }},   ],{allowDiskUse: true} )
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 3: Find products having some specific features and not having one feature 	#
+**###############################################################################################
+*/
+
+
+var t91 = db.sub.aggregate([{$match:{_id:"type", $comment:"JSON_Q3_1"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':"ProductType91" }},{$unwind:"$kv" },{$match:{'kv.v':"ProductType91" }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment:"JSON_Q3_2"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$gt:25} }},{$unwind:"$kv" },{$match:{'kv.v':{$gt:1} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+var num3 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric3", $comment:"JSON_Q3_3"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$lt:250} }},{$unwind:"$kv" },{$match:{'kv.v':{$lt:250} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+var features = db.sub.aggregate([{$match:{_id:"productFeature", $comment:"JSON_Q3_4"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':"ProductFeature48"} },{$match:{'kv.v':{$ne:["ProductFeature51"]} }},{$unwind:"$kv" },{$match:{'kv.v':"ProductFeature48"  }},{$match:{'kv.v':{$ne:["ProductFeature51"]} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment:"JSON_Q3_5"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",label:{$push:{t: '$kv.v'}} }},{$match:{ _id:{$in: features}  } },{$match:{_id:{$in: t91}  } },{$match:{_id:{$in: num1}  } },{$match:{_id:{$in: num3}  } },{$sort:{'label.t':1}},{$limit:10}   ],{allowDiskUse: true} )
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 4: Find products matching two different sets of features				#
+**###############################################################################################
+*/
+
+
+
+
+var t91 = db.sub.aggregate([{$match:{_id:"type", $comment:"JSON_Q4_1"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':"ProductType91" }},{$unwind:"$kv" },{$match:{'kv.v':"ProductType91" }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1", $comment:"JSON_Q4_2"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$gt:20} }},{$unwind:"$kv" },{$match:{'kv.v':{$gt:20} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+var num2 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric2", $comment:"JSON_Q4_3"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$gt:25} }},{$unwind:"$kv" },{$match:{'kv.v':{$gt:25} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+var feature1 = db.sub.aggregate([{$match:{_id:"productFeature", $comment:"JSON_Q4_4"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature45"} ]} },{$unwind:"$kv" },{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature45"} ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+var feature2 = db.sub.aggregate([{$match:{_id:"productFeature", $comment:"JSON_Q4_5"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature48"} ]} },{$unwind:"$kv" },{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature48"} ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment:"JSON_Q4_6"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",tr:{$push:{pre:'$_id' , obj: '$kv.v'}} } },{$match:{$or:[{$and:[{_id:{$in:feature1}}, {_id:{$in:num1}},{_id:{$in:t91}}]},{$and:[{_id:{$in:feature2}}, {_id:{$in:num2}},{_id:{$in:t91}}]}]}},{$addFields:{label:{"$arrayElemAt": ["$tr.obj", 0]}}},{$sort:{label:1}},{$limit:10},{$skip:10}   ],{allowDiskUse: true} )
+
+
+
+
+
+
+
+
+AllTogether:
+
+db.sub.aggregate([{$match:{_id:"label"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",label:{$push:{t: '$kv.v'}} }},{$match:{$or:[{$and:[{_id:{$in:db.sub.aggregate([{$match:{_id:"productFeature"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature45"} ]} },{$unwind:"$kv" },{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature45"} ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})}}, {_id:{$in:db.sub.aggregate([{$match:{_id:"productPropertyNumeric1"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$gt:20} }},{$unwind:"$kv" },{$match:{'kv.v':{$gt:20} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})}},{_id:{$in:db.sub.aggregate([{$match:{_id:"type"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':"ProductType91" }},{$unwind:"$kv" },{$match:{'kv.v':"ProductType91" }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})}}]},{$and:[{_id:{$in:db.sub.aggregate([{$match:{_id:"productFeature"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature48"} ]} },{$unwind:"$kv" },{$match:{$and:[{'kv.v':"ProductFeature51"},{'kv.v':"ProductFeature48"} ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})}}, {_id:{$in:db.sub.aggregate([{$match:{_id:"productPropertyNumeric2"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':{$gt:25} }},{$unwind:"$kv" },{$match:{'kv.v':{$gt:25} }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})}},{_id:{$in:db.sub.aggregate([{$match:{_id:"type"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.v':"ProductType91" }},{$unwind:"$kv" },{$match:{'kv.v':"ProductType91" }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id}) }}]}]}},{$sort:{'label.t':1}},{$limit:10},{$skip:10}   ],{allowDiskUse: true} )
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 5: Find product that are similar to a given product				#
+**###############################################################################################
+*/
+
+
+
+var ProductXYZ = db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':"Product123" , $comment:"O_JSON_Q5_1"}},{$unwind:"$kv" },{$match:{'kv.k':"Product17" }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }},   ],{allowDiskUse: true} ).map(function(x){return [x.Triples[3].Object,x.Triples[5].Object,x.Triples[6].Object] })
+
+
+
+var num1 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric1" , $comment:"O_JSON_Q5_2"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v': {$lt: (ProductXYZ[0][1] + 170 )  }   },{'kv.v': {$gt: (ProductXYZ[0][1] - 120 )  }   }] }},{$unwind:"$kv" },{$match:{$and:[{'kv.v': {$lt: (ProductXYZ[0][1] + 170 )  }   },{'kv.v': {$gt: (ProductXYZ[0][1] - 120 )  }   }]}},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+var num2 = db.sub.aggregate([{$match:{_id:"productPropertyNumeric2" , $comment:"O_JSON_Q5_3"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$and:[{'kv.v': {$lt: (ProductXYZ[0][2] + 170 )  }   },{'kv.v': {$gt: (ProductXYZ[0][1] - 170 )  }   }] }},{$unwind:"$kv" },{$match:{$and:[{'kv.v': {$lt: (ProductXYZ[0][2] + 170 )  }   },{'kv.v': {$gt: (ProductXYZ[0][1] - 170 )  }   }]}},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+
+
+db.sub.aggregate([{$match:{_id:"label" , $comment:"O_JSON_Q5_4"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",label:{$push:{t: '$kv.v'}} }},{$match:{$and:[{_id:{$in:ProductXYZ[0][0]}}, {_id:{$in:num1}},{_id:{$in:num2}}  ]}} ,{$sort:{'label.t':1}},{$limit:5} ],{allowDiskUse: true} )
+
+
+
+
+
+db.sub.aggregate([{$match:{_id:"label" , $comment:"FINAL_JSON_Q5_4"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/ }},{$group:{_id:"$kv.k",label:{$push:{t: '$kv.v'}} }},{$match:{$and:[{_id:{$in:num1}}, {_id:{$in:num1}},{_id:{$in:num1}}  ]}} ,{$sort:{'label.t':1}},{$limit:5} ],{allowDiskUse: true} )
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 6: Find products having a label that contains a specific string			#
+**###############################################################################################
+*/
+
+
+
+db.sub.aggregate([{$match:{_id:"label", $comment:"FINAL_JSON_Q6"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/^Product/,'kv.v':/is/ }},{$unwind:"$kv" },{$match:{'kv.k':/^Product/,'kv.v':/is/ }},{$group:{_id:"$kv.k",label:{$push:{t: '$kv.v'}} }} ],{allowDiskUse: true} )
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**####################################################################################################
+**#	Query 7: Retrieve in-depth information about a specific product including offers and reviews #
+**####################################################################################################
+*/
+
+var country = db.sub.aggregate([{$match:{_id:"country", $comment:"FINAL_JSON_Q7_1"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{ $and:[ {'kv.v':"US" }  , {'kv.k': /Vendor/ } ] }},{$unwind:"$kv" },{$match:{ $and:[ {'kv.v':"US" }  , {'kv.k': /^Vendor/ } ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{$or:[ {'kv.k':/Offer/},{'kv.k':/Review/}] , $comment:"FINAL_JSON_Q7_2"}},{$unwind:"$kv" },{$match:{$or:[ {'kv.k':/Offer/},{'kv.k':/Review/}] }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }},{$match:{'Triples.Object':"Product1"}},{$match:{$or:[ {$and: [ {'Triples.Predicate':"vendor"},{'Triples.Object':{$in:country}}  ]} , {$and: [ {'Triples.Predicate':"reviewFor"},{'Triples.Object':"Product1"}  ]}]}} ,{$match:{$and:[ {'Triples.Predicate':"date"},{'Triples.Object':{$gt: new Date("2000-10-01T00:00:00.000Z") }}       ]  }} ],{allowDiskUse: true} )
+
+
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/Offer/ $comment:"FINAL_JSON_Q7_3"}},{$unwind:"$kv" },{$match:{ 'kv.k':/Offer/}},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }},{$match:{'Triples.Object':{$in:country}}},{$match:{'Triples.Object':"Product1"}}   ],{allowDiskUse: true} ).pretty()
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 8: Give me recent reviews in English for a specific product				#
+**#######################################################################################################
+*/
+
+
+
+var reviewers = db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/Review/    }},{$unwind:"$kv" },{$match:{'kv.k':/Review/ , $comment:"FINAL_JSON_Q8_1"}},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }}, {$match:{$and:[ {$and: [ {'Triples.Predicate':"language"},{'Triples.Object':"zh"}  ]} , {$and: [ {'Triples.Predicate':"reviewFor"},{'Triples.Object':"Product1"}  ]}]    }},{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "reviewer"]}]}}} ] ,{allowDiskUse: true} ).pretty().map(function(x) {return x.reviewer} )
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/Review/ }},{$unwind:"$kv" },{$match:{'kv.k':/Review/, $comment:"FINAL_JSON_Q8_2" }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }}, {$match:{$or:[{_id:{$in:reviewers} },{$and:[ {$and: [ {'Triples.Predicate':"language"},{'Triples.Object':"zh"}  ]} , {$and: [ {'Triples.Predicate':"reviewFor"},{'Triples.Object':"Product1"}  ]}]}]}},{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "publisher"]}]} ,reviewdate: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "reviewDate"]}]}}},{$group:{_id:"$reviewer",  Triples:{$push:{id:"$_id", reviewdate:"$reviewdate", Predicate: "$Triples.Predicate",Object:'$Triples.Object'}}  }},{$sort:{reviewdate:1 }},{$limit:20}  ] ,{allowDiskUse: true} )
+
+
+
+
+
+{All together}
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/Review/ }},{$unwind:"$kv" },{$match:{'kv.k':/Review/ }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }}, {$match:{$or:[{_id:{$in:db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/Review/    }},{$unwind:"$kv" },{$match:{'kv.k':/Review/ }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }}, {$match:{$and:[ {$and: [ {'Triples.Predicate':"language"},{'Triples.Object':"zh"}  ]} , {$and: [ {'Triples.Predicate':"reviewFor"},{'Triples.Object':"Product1"}  ]}]    }},{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "reviewer"]}]}}} ] ,{allowDiskUse: true} ).pretty().map(function(x) {return x.reviewer} )
+} },{$and:[ {$and: [ {'Triples.Predicate':"language"},{'Triples.Object':"zh"}  ]} , {$and: [ {'Triples.Predicate':"reviewFor"},{'Triples.Object':"Product1"}  ]}]}]}},{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "publisher"]}]} ,reviewdate: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "reviewDate"]}]}}},{$group:{_id:"$reviewer",  Triples:{$push:{id:"$_id", reviewdate:"$reviewdate", Predicate: "$Triples.Predicate",Object:'$Triples.Object'}}  }},{$sort:{reviewdate:1 }},{$limit:20}  ] ,{allowDiskUse: true} ).pretty()
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 9: Get information about a reviewer							#
+**#######################################################################################################
+*/
+
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':/Review/, $comment:"FINAL_JSON_Q9_1" }},{$unwind:"$kv" },{$match:{'kv.k':/Review/ }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }}, {$match:{$or:[{_id:"Reviewer1089"},{$and: [ {'Triples.Predicate':"reviewer"},{'Triples.Object':"Reviewer1089"} ] } ] }},{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "publisher"]}]}}},{$group:{_id:"$reviewer",  Triples:{$push:{id:"$_id" , Predicate: "$Triples.Predicate",Object:'$Triples.Object'}}  }}] ,{allowDiskUse: true} )
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 10: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+
+var country = db.sub.aggregate([{$match:{_id:"country", $comment:"FINAL_JSON_Q10_1"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{ $and:[ {'kv.v':"US" }  , {'kv.k': /Vendor/ } ] }},{$unwind:"$kv" },{$match:{ $and:[ {'kv.v':"US" }  , {'kv.k': /^Vendor/ } ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+
+var date = db.sub.aggregate([{$match:{_id:"date", $comment:"FINAL_JSON_Q10-2"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{ $and:[ {'kv.v':{$gt:new Date("2005-04-03T00:00:00Z")} }  , {'kv.k': /Offer/ } ] }},{$unwind:"$kv" },{$match:{ $and:[ {'kv.v':{$gt:new Date("2005-04-03T00:00:00Z")} }  , {'kv.k': /Offer/ } ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+var deliveryDays = db.sub.aggregate([{$match:{_id:"deliveryDays", $comment:"FINAL_JSON_Q10_3"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{ $and:[ {'kv.v':{$lte:4} }  , {'kv.k': /Offer/ } ] }},{$unwind:"$kv" },{$match:{ $and:[ {'kv.v':{$lte:4} }  , {'kv.k': /Offer/ } ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+var product = db.sub.aggregate([{$match:{_id:"product", $comment:"FINAL_JSON_Q10_4"}},{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{ $and:[ {'kv.v':"Product1" }  , {'kv.k': /Offer/ } ] }},{$unwind:"$kv" },{$match:{ $and:[ {'kv.v':"Product1" }  , {'kv.k': /Offer/ } ] }},{$group:{_id:"$kv.k"}}   ],{allowDiskUse: true}).map(function(x){return x._id})
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }}},{$match:{$or:[  {'kv.k':/^Offer/},{'kv.k':/^Vendor/}], $comment:"FINAL_JSON_Q10_5"}},{$unwind:"$kv" },{$match:{$or:[  {'kv.k':/^Offer/},{'kv.k':/^Vendor/}   ]}},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }} , {$match:{$or:[ {_id:{$in:country} },{$and:[ {_id:{$in: product}  },{_id:{$in: date}  } , {_id:{$in: deliveryDays}  } ] } ] }}     ,{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "publisher"]}]} , price: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "price"]}]} }},{$group:{_id:"$reviewer",  Triples:{$push:{id:"$_id", price:"$price" , Predicate: "$Triples.Predicate",Object:'$Triples.Object'}}  }},{$sort:{'Triples.price':1}}, {$limit:10}  ] ,{allowDiskUse: true} )
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 11: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+
+
+var product = db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }   }},{$match:{'kv.k':"Offer1" , $comment:"FINAL_JSON_Q11_1"   }},{$unwind:"$kv" },{$match:{'kv.k':"Offer1" }},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }},{$addFields:{ reviewer: {"$arrayElemAt": ["$Triples.Object", {"$indexOfArray": ["$Triples.Predicate", "product"]}]}}} ] ,{allowDiskUse: true} ).pretty().map(function(x) {return x.reviewer} )
+
+
+
+
+db.sub.aggregate([{"$addFields": {"kv": { "$objectToArray": "$$ROOT" }}},{$match:{$or:[  {'kv.k':"Offer1"},{'kv.k':/^Product/}]}},{$unwind:"$kv" },{$match:{$or:[  {'kv.k':"Offer1"},{'kv.k':/^Product/}   ], $comment:"FINAL_JSON_Q11_2"}},{$group:{_id:"$kv.k",Triples:{$push:{Predicate: "$_id",Object:'$kv.v'}} }},{$match:{$or:[  {_id:"Offer1"},{_id:{$in:product}}  ]  }}  ] ,{allowDiskUse: true} )
+
+
+
+
+
+
+
+
+
+
+

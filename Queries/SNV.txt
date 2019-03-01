@@ -1,0 +1,189 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+SNV
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+/*
+**
+**#######################################################################
+**#	Query 1: Find products for a given set of generic features 	#
+**#######################################################################
+*/
+
+
+db.sub.find({_id:/Product/,"productPropertyNumeric1" : {$gt:1}, type: "ProductType64" , productFeature: {$all:["ProductFeature10","ProductFeature14"]}}).sort({label:1}).limit(10).comment("JsonSUB_Query1")
+
+-------------------------------------------------------------------------------------------------
+
+/*
+**
+**###############################################################################################
+**#	Query 2: Retrieve basic information about a specific product for display purposes	#
+**###############################################################################################
+*/
+
+db.sub.find({_id:"Product123"}).comment("JsonSUB_ONEmil_Query2")
+
+-------------------------------------------------------------------------------------------------
+
+/*
+**
+**###############################################################################################
+**#	Query 3: Find products having some specific features and not having one feature 	#
+**###############################################################################################
+*/
+
+db.sub.find({_id:/Product/, type: "ProductType91" , productPropertyNumeric1: {$gt: 25} , productPropertyNumeric3: {$lt: 250}, productFeature: {$all:["ProductFeature48"] , $nin:["ProductFeature51"]} }).sort({label:1}).limit(10).comment("JsonSUB_ONEmil_Query3")
+
+-------------------------------------------------------------------------------------------------
+/*
+**
+**###############################################################################################
+**#	Query 4: Find products matching two different sets of features				#
+**###############################################################################################
+*/
+
+db.sub.find( { $or:  [ {_id:/Product/, type: "ProductType91",productPropertyNumeric1:{$gt:20} , productFeature:{$all:["ProductFeature51","ProductFeature45"]}}    ,  {_id:/Product/, type: "ProductType91", productPropertyNumeric2:{$gt:25} , productFeature:{$all:["ProductFeature51","ProductFeature48"]}}  ]} ).sort({label:1}).limit(10).skip(10).comment("JsonSUB_ONEmil_Query4")
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 5: Find product that are similar to a given product				#
+**###############################################################################################
+*/
+
+
+
+var ProductXYZ = db.sub.find({_id:"Product17"},{productFeature:1,productPropertyNumeric1:1,productPropertyNumeric2:1, _id:0}).comment("JsonSUB_ONEmil_Query5_PArt1").toArray()
+
+db.sub.find( {$and:[{_id:/^Product/,productPropertyNumeric1: {$lt: (ProductXYZ[0].productPropertyNumeric1 + 170 )  }   },{_id:/^Product/, productPropertyNumeric1: {$gt: (ProductXYZ[0].productPropertyNumeric1 - 120 )  }   }  ],productFeature: {$in:ProductXYZ[0].productFeature},  $and:[{_id:/^Product/, productPropertyNumeric2: {$lt: (ProductXYZ[0].productPropertyNumeric2 + 170 )  }   },{_id:/^Product/, productPropertyNumeric2: {$gt: (ProductXYZ[0].productPropertyNumeric1 - 170 )  }   }  ]         }  ).sort({label:1}).limit(5).comment("JsonSUB_ONEmil_Query5_PArt2")
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**###############################################################################################
+**#	Query 6: Find products having a label that contains a specific string			#
+**###############################################################################################
+*/
+
+
+	
+db.sub.find({_id:/^Product/, label:/is/ },{label:1}).comment("JsonSUB_ONEmil_Query6")
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**####################################################################################################
+**#	Query 7: Retrieve in-depth information about a specific product including offers and reviews #
+**####################################################################################################
+*/
+
+
+
+var ProductXYZ = db.sub.find({_id:"Product1"}).comment("JsonSUB_ONEmil_Query7_PArt1").toArray()
+
+//This can be entered as a parameter by a user
+
+var country_vendor = db.sub.find({ _id:/^Vendor/, country:"US"}).comment("JsonSUB_ONEmil_Query7_PArt2").toArray()
+
+var vendor_country = country_vendor.map(function(x){return x._id})
+
+
+
+total:
+
+db.sub.find({$or: [{ $and:[{_id: /^Offer/},{product: ProductXYZ[0]._id}], vendor :{$in:vendor_country },date:{$gt: new Date("2000-10-01T00:00:00.000Z") }  },{_id:/^Review/,reviewFor:ProductXYZ[0]._id}] }  ).comment("JsonSUB_ONEmil_Query7_LAST_OPtional")
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 8: Give me recent reviews in English for a specific product				#
+**#######################################################################################################
+*/
+
+Main:
+
+var ProductXYZ     = db.sub.find({_id:"Product1"}).comment("JsonSUB_ONEmil_Query8_PArt1").toArray() 
+
+db.sub.aggregate([{$match: { $and: [{_id:/^Review/,},{language:"zh"},{reviewFor:ProductXYZ[0]._id} ] , $comment :"JsonSUB_ONEmil_Query8_PArt2_WITHOUT_Error" }  },  {$lookup:{from:"sub", localField:"reviewer",foreignField:"_id", as:"reviewer"  }},{$sort:{date:-1}},{$limit:20} ],{allowDiskUse: true})
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 9: Get information about a reviewer							#
+**#######################################################################################################
+*/
+
+
+db.sub.aggregate([{$match: {_id:/^Review/,  reviewer:"Reviewer1089", $comment :"JsonSUB_ONEmil_Query9" }  },  {$lookup:{from:"sub", localField:"reviewer",foreignField:"_id", as:"tttt"  }},{$group:{ _id:"$tttt",Reviews:{$push:{_id:"$_id",title:"$title",product:"$reviewFor",date:"$date"  }}     } }],{allowDiskUse: true})
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 10: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+db.sub.find( { $and:[{_id: /^Offer/},{date:{$gt:new Date("2005-04-03T00:00:00Z")}},{deliveryDays:{$lte:4}}, {product:"Product1" }, {vendor :{$in: db.sub.find({ _id:/^Vendor/, country:"US"}).map(function(x){return x._id}) }}]  }  ).sort({price:1}).limit(10).comment("JsonSUB_ONEmil_Query10")
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+/*
+**
+**#######################################################################################################
+**#	Query 11: Get offers for a given product which fulfill specific requirements			#
+**#######################################################################################################
+*/
+
+
+db.sub.aggregate([{$match: {_id:"Offer1"  , $comment :"JsonSUB_ONEmil_Query11"}  },  {$lookup:{from:"sub", localField:"product",foreignField:"_id", as:"product"  }} ],{allowDiskUse: true})
+
+
+
+
+

@@ -1,0 +1,2617 @@
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /Product/,
+					"$comment" : "Triple_SUB_ONEMil_Query1"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature14",
+							"ProductFeature10",
+							"ProductType64"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"num1" : {
+						"$gt" : 1
+					}
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 1033406629,
+	"docsExamined" : 101699577,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 8074738,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(8083618)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(8083618)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(8083618)
+			}
+		}
+	},
+	"responseLength" : 100,
+	"protocol" : "op_msg",
+	"millis" : 2605809,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T04:30:27.303Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : "Product123",
+					"$comment" : "ISWC_SUB_ONEMil_Query2"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 42,
+	"docsExamined" : 42,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(2)
+			}
+		}
+	},
+	"responseLength" : 3053,
+	"protocol" : "op_msg",
+	"millis" : 2,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T04:30:27.314Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query3"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature48",
+							"ProductType91"
+						],
+						"$nin" : [
+							"ProductFeature51"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num3" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric3"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"num1" : {
+						"$gt" : 25
+					},
+					"num3" : {
+						"$lt" : 250
+					}
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 1033406629,
+	"docsExamined" : 101699577,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 8074701,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(8083581)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(8083581)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(8083581)
+			}
+		}
+	},
+	"responseLength" : 100,
+	"protocol" : "op_msg",
+	"millis" : 2641737,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T05:14:29.076Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query4"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature51",
+							"ProductFeature45",
+							"ProductType91"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"$or" : [
+						{
+							"num1" : {
+								"$gt" : 20
+							},
+							"num2" : {
+								"$gt" : 25
+							}
+						}
+					]
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			},
+			{
+				"$skip" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 101699578,
+	"docsExamined" : 101699577,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 795533,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(804413)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(804413)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(804413)
+			}
+		}
+	},
+	"responseLength" : 100,
+	"protocol" : "op_msg",
+	"millis" : 906558,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T05:29:35.672Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productFeature"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query5_PArt1",
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 16,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 1865,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productFeature"
+			}
+		},
+		"nReturned" : 16,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 16,
+		"needTime" : 17,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.684Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query5_PArt2",
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 199,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 1,
+		"needTime" : 32,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.690Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric2"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query5_PArt3",
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 199,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric2"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 1,
+		"needTime" : 32,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.700Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productFeature"
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 16,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 1865,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productFeature"
+			}
+		},
+		"nReturned" : 16,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 16,
+		"needTime" : 17,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.783Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 199,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 1,
+		"needTime" : 32,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.785Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 199,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 1,
+		"needTime" : 32,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.787Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric2"
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 199,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric2"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 1,
+		"needTime" : 32,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.788Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : "Product17",
+			"Predicate" : "productPropertyNumeric1"
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 33,
+	"docsExamined" : 33,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 199,
+	"protocol" : "op_msg",
+	"millis" : 0,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"Predicate" : {
+				"$eq" : "productPropertyNumeric1"
+			}
+		},
+		"nReturned" : 1,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 34,
+		"advanced" : 1,
+		"needTime" : 32,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 33,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 33,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 34,
+			"advanced" : 33,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Product17\", \"Product17\"]"
+				]
+			},
+			"keysExamined" : 33,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:29:35.789Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query5_PArt4"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$match" : {
+					"Objects" : {
+						"$all" : [
+							"ProductFeature127",
+							"ProductFeature1778",
+							"ProductFeature1780",
+							"ProductFeature1777",
+							"ProductFeature1784",
+							"ProductFeature19826",
+							"ProductFeature19821",
+							"ProductFeature19820",
+							"ProductFeature19815",
+							"ProductFeature19814",
+							"ProductFeature19812",
+							"ProductFeature163926",
+							"ProductFeature163930",
+							"ProductFeature163932",
+							"ProductFeature163925",
+							"ProductFeature163912"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Objects" : "$Objects",
+					"num1" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric1"
+								]
+							}
+						]
+					},
+					"num2" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"productPropertyNumeric2"
+								]
+							}
+						]
+					},
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"label" : "$label",
+					"cond1" : {
+						"$and" : [
+							{
+								"$lt" : [
+									"$num1",
+									"35170"
+								]
+							},
+							{
+								"$gt" : [
+									"$num1",
+									-85
+								]
+							}
+						]
+					},
+					"cond2" : {
+						"$and" : [
+							{
+								"$lt" : [
+									"$num2",
+									"641170"
+								]
+							},
+							{
+								"$gt" : [
+									"$num2",
+									-135
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"cond1" : true,
+					"cond2" : true
+				}
+			},
+			{
+				"$project" : {
+					"cond1" : 0,
+					"cond2" : 0
+				}
+			},
+			{
+				"$sort" : {
+					"label" : 1
+				}
+			},
+			{
+				"$limit" : 5
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 101699578,
+	"docsExamined" : 101699577,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 795636,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(804516)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(804516)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(804516)
+			}
+		}
+	},
+	"responseLength" : 144,
+	"protocol" : "op_msg",
+	"millis" : 902966,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T05:44:38.758Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Product/,
+					"$comment" : "ISWC_SUB_ONEMil_Query6"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"label" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"label"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"label" : /is/
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"cursorid" : NumberLong("8475111178339364260"),
+	"keysExamined" : 101699578,
+	"docsExamined" : 101699577,
+	"numYield" : 795720,
+	"nreturned" : 101,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(804600)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(804600)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(804600)
+			}
+		}
+	},
+	"responseLength" : 6986,
+	"protocol" : "op_msg",
+	"millis" : 766766,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T05:57:25.537Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : /^Vendor/,
+			"Predicate" : "country",
+			"Object" : "US"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query7_PArt1",
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"cursorid" : 7847153857,
+	"keysExamined" : 1800,
+	"docsExamined" : 1800,
+	"numYield" : 65,
+	"nreturned" : 101,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(66)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(66)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(66)
+			}
+		}
+	},
+	"responseLength" : 9071,
+	"protocol" : "op_msg",
+	"millis" : 1706,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"$and" : [
+				{
+					"Object" : {
+						"$eq" : "US"
+					}
+				},
+				{
+					"Predicate" : {
+						"$eq" : "country"
+					}
+				}
+			]
+		},
+		"nReturned" : 101,
+		"executionTimeMillisEstimate" : 1706,
+		"works" : 1800,
+		"advanced" : 101,
+		"needTime" : 1699,
+		"needYield" : 0,
+		"saveState" : 66,
+		"restoreState" : 65,
+		"isEOF" : 0,
+		"invalidates" : 0,
+		"docsExamined" : 1800,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 1800,
+			"executionTimeMillisEstimate" : 20,
+			"works" : 1800,
+			"advanced" : 1800,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 66,
+			"restoreState" : 65,
+			"isEOF" : 0,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Vendor\", \"Vendos\")",
+					"[/^Vendor/, /^Vendor/]"
+				]
+			},
+			"keysExamined" : 1800,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T05:57:27.256Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "getmore",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"getMore" : NumberLong("7847153857"),
+		"collection" : "sub",
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"originatingCommand" : {
+		"find" : "sub",
+		"filter" : {
+			"Subject" : /^Vendor/,
+			"Predicate" : "country",
+			"Object" : "US"
+		},
+		"comment" : "ISWC_SUB_ONEMil_Query7_PArt1",
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"cursorid" : 7847153857,
+	"keysExamined" : 200892,
+	"docsExamined" : 200892,
+	"cursorExhausted" : true,
+	"numYield" : 6424,
+	"nreturned" : 11527,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(6425)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(6425)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(6425)
+			}
+		}
+	},
+	"responseLength" : 1045028,
+	"protocol" : "op_msg",
+	"millis" : 159270,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"execStats" : {
+		"stage" : "FETCH",
+		"filter" : {
+			"$and" : [
+				{
+					"Object" : {
+						"$eq" : "US"
+					}
+				},
+				{
+					"Predicate" : {
+						"$eq" : "country"
+					}
+				}
+			]
+		},
+		"nReturned" : 11628,
+		"executionTimeMillisEstimate" : 160750,
+		"works" : 202693,
+		"advanced" : 11628,
+		"needTime" : 191064,
+		"needYield" : 0,
+		"saveState" : 6490,
+		"restoreState" : 6490,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"docsExamined" : 202692,
+		"alreadyHasObj" : 0,
+		"inputStage" : {
+			"stage" : "IXSCAN",
+			"nReturned" : 202692,
+			"executionTimeMillisEstimate" : 700,
+			"works" : 202693,
+			"advanced" : 202692,
+			"needTime" : 0,
+			"needYield" : 0,
+			"saveState" : 6490,
+			"restoreState" : 6490,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"keyPattern" : {
+				"Subject" : 1
+			},
+			"indexName" : "Subject_1",
+			"isMultiKey" : false,
+			"multiKeyPaths" : {
+				"Subject" : [ ]
+			},
+			"isUnique" : false,
+			"isSparse" : false,
+			"isPartial" : false,
+			"indexVersion" : 2,
+			"direction" : "forward",
+			"indexBounds" : {
+				"Subject" : [
+					"[\"Vendor\", \"Vendos\")",
+					"[/^Vendor/, /^Vendor/]"
+				]
+			},
+			"keysExamined" : 202692,
+			"seeks" : 1,
+			"dupsTested" : 0,
+			"dupsDropped" : 0,
+			"seenInvalidated" : 0
+		}
+	},
+	"ts" : ISODate("2019-02-16T06:00:06.532Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"$truncated" : "{ aggregate: \"sub\", pipeline: [ { $match: { $or: [ { Subject: /^Offer/ }, { Subject: /^Review/ }, { Subject: \"Product1\" } ], $comment: \"ISWC_SUB_ONEMil_Query7_PArt2\" } }, { $group: { _id: \"$Subject\", Predicates: { $push: \"$Predicate\" }, Objects: { $push: \"$Object\" } } }, { $project: { label: { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"label\" ] } ] }, reviewFor: { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"reviewFor\" ] } ] }, product: { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"product\" ] } ] }, vendor: { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"vendor\" ] } ] }, date: { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"date\" ] } ] }, price: { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"price\" ] } ] }, eq: { $cond: [ { $gt: [ { $arrayElemAt: [ \"$Objects\", { $indexOfArray: [ \"$Predicates\", \"date\" ] } ] }, new Date(970358400000) ] }, 1.0, 0.0 ] } } }, { $match: { $or: [ { reviewFor: \"Product1\" }, { _id: \"Product1\" }, { $and: [ { product: \"Product1\" }, { vendor: { $in: [ \"Vendor10000\", \"Vendor10001\", \"Vendor10005\", \"Vendor10006\", \"Vendor10010\", \"Vendor10011\", \"Vendor10012\", \"Vendor10017\", \"Vendor10018\", \"Vendor10019\", \"Vendor1002\", \"Vendor10020\", \"Vendor10021\", \"Vendor10022\", \"Vendor10025\", \"Vendor10031\", \"Vendor10032\", \"Vendor10034\", \"Vendor10035\", \"Vendor10037\", \"Vendor10038\", \"Vendor1004\", \"Vendor10040\", \"Vendor10041\", \"Vendor10043\", \"Vendor10044\", \"Vendor10047\", \"Vendor10048\", \"Vendor10049\", \"Vendor10051\", \"Vendor10052\", \"Vendor10060\", \"Vendor10061\", \"Vendor10062\", \"Vendor10065\", \"Vendor10067\", \"Vendor10069\", \"Vendor10075\", \"Vendor10079\", \"Vendor10080\", \"Vendor10086\", \"Vendor10087\", \"Vendor10088\", \"Vendor10089\", \"Vendor1009\", \"Vendor10099\", \"Vendor10100\", \"Vendor10102\", \"Vendor10105\", \"Vendor10106\", \"Vendor10109\", \"Vendor1011\", \"Vendor10110\", \"Vendor10117\", \"Vendor10118\", \"Vendor10119\", \"Vendor10122\", \"Vendor10123\", \"Vendor10126\", \"Vendor10127\", \"Vendor10139\", \"Vendor10147\", \"Vendor10148\", \"Vendor1015\", \"Vendor10150\", \"Vendor10151\", \"Vendor10152\", \"Vendor10158\", \"Vendor10160\", \"Vendor10163\", \"Vendor10166\", \"Vendor10171\", \"Vendor10172\", \"Vendor10174\", \"Vendor10175\", \"Vendor10177\", \"Vendor10178\", \"Vendor10179\", \"Vendor10180\", \"Vendor10182\", \"Vendor10184\", \"Vendor10186\", \"Vendor10188\", \"Vendor10189\", \"Vendor1019\", \"Vendor10191\", \"Vendor10193\", \"Vendor10195\", \"Vendor10198\", \"Vendor102\", \"Vendor10202\", \"Vendor10203\", \"Vendor10208\", \"Vendor10209\", \"Vendor1021\", \"Vendor10212\", \"Vendor10215\", \"Vendor10220\", \"Vendor10224\", \"Vendor10226\", \"Vendor10229\", \"Vendor10230\", \"Vendor10231\", \"Vendor10232\", \"Vendor10238\", \"Vendor1024\", \"Vendor10241\", \"Vendor10243\", \"Vendor10245\", \"Vendor1025\", \"Vendor10251\", \"Vendor10254\", \"Vendor10256\", \"Vendor10257\", \"Vendor10259\", \"Vendor1026\", \"Vendor10263\", \"Vendor10264\", \"Vendor10265\", \"Vendor10267\", \"Vendor1027\", \"Vendor10272\", \"Vendor10276\", \"Vendor1028\", \"Vendor10282\", \"Vendor10284\", \"Vendor10285\", \"Vendor10287\", \"Vendor10289\", \"Vendor10292\", \"Vendor10295\", \"Vendor10297\", \"Vendor10298\", \"Vendor1030\", \"Vendor10300\", \"Vendor10308\", \"Vendor10313\", \"Vendor10314\", \"Vendor1032\", \"Vendor10321\", \"Vendor10322\", \"Vendor10324\", \"Vendor10325\", \"Vendor10326\", \"Vendor10327\", \"Vendor10329\", \"Vendor1033\", \"Vendor10332\", \"Vendor10333\", \"Vendor10335\", \"Vendor10337\", \"Vendor10338\", \"Vendor10339\", \"Vendor1034\", \"Vendor10340\", \"Vendor10345\", \"Vendor10347\", \"Vendor10349\", \"Vendor10351\", \"Vendor10353\", \"Vendor10356\", \"Vendor10357\", \"Vendor10359\", \"Vendor1036\", \"Vendor10365\", \"Vendor10366\", \"Vendor10367\", \"Vendor10371\", \"Vendor10373\", \"Vendor10375\", \"Vendor10377\", \"Vendor10378\", \"Vendor10381\", \"Vendor10382\", \"Vendor10384\", \"Vendor10386\", \"Vendor10390\", \"Vendor10391\", \"Vendor10395\", \"Vendor10398\", \"Vendor10399\", \"Vendor10402\", \"Vendor10405\", \"Vendor10406\", \"Vendor10410\", \"Vendor10412\", \"Vendor10417\", \"Vendor10419\", \"Vendor10420\", \"Vendor10421\", \"Vendor10422\", \"Vendor10424\", \"Vendor10426\", \"Vendor10427\", \"Vendor10429\", \"Vendor1043\", \"Vendor10430\", \"Vendor10432\", \"Vendor10433\", \"Vendor10434\", \"Vendor10435\", \"Vendor10438\", \"Vendor10442\", \"Vendor10449\", \"Vendor10452\", \"Vendor10453\", \"Vendor10454\", \"Vendor10455\", \"Vendor10456\", \"Vendor1046\", \"Vendor10461\", \"Vendor10462\", \"Vendor10468\", \"Vendor1047\", \"Vendor10470\", \"Vendor10472\", \"Vendor10478\", \"Vendor1048\", \"Vendor10482\", \"Vendor10485\", \"Vendor10486\", \"Vendor1049\", \"Vendor10492\", \"Vendor10498\", \"Vendor10499\", \"Vendor10507\", \"Vendor10509\", \"Vendor10512\", \"Vendor10513\", \"Vendor10517\", \"Vendor10521\", \"Vendor10522\", \"Vendor10525\", \"Vendor1053\", \"Vendor10532\", \"Vendor10541\", \"Vendor10543\", \"Vendor10545\", \"Vendor10547\", \"Vendor10549\", \"Vendor1055\", \"Vendor10551\", \"Vendor10552\", \"Vendor10554\", \"Vendor10556\", \"Vendor10559\", \"Vendor10561\", \"Vendor10562\", \"Vendor10563\", \"Vendor10564\", \"Vendor10567\", \"Vendor10568\", \"Vendor1057\", \"Vendor10571\", \"Vendor10573\", \"Vendor10574\", \"Vendor10575\", \"Vendor10577\", \"Vendor10582\", \"Vendor1059\", \"Vendor10592\", \"Vendor10594\", \"Vendor10595\", \"Vendor10597\", \"Vendor10598\", \"Vendor1060\", \"Vendor10603\", \"Vendor10606\", \"Vendor10607\", \"Vendor10610\", \"Vendor10615\", \"Vendor10616\", \"Vendor10617\", \"Vendor1062\", \"Vendor10621\", \"Vendor10624\", \"Vendor10625\", \"Vendor1063\", \"Vendor10636\", \"Vendor10639\", \"Vendor10640\", \"Vendor10644\", \"Vendor10645\", \"Vendor10647\", \"Vendor10649\", \"Vendor1065\", \"Vendor10651\", \"Vendor10653\", \"Vendor10654\", \"Vendor10655\", \"Vendor10657\", \"Vendor10658\", \"Vendor10659\", \"Vendor1066\", \"Vendor10660\", \"Vendor10661\", \"Vendor10663\", \"Vendor10667\", \"Vendor10668\", \"Vendor10669\", \"Vendor1067\", \"Vendor10670\", \"Vendor10673\", \"Vendor10675\", \"Vendor10677\", \"Vendor10678\", \"Vendor10685\", \"Vendor10686\", \"Vendor10688\", \"Vendor1069\", \"Vendor10691\", \"Vendor10695\", \"Vendor10696\", \"Vendor10698\", \"Vendor107\", \"Vendor1070\", \"Vendor10700\", \"Vendor10704\", \"Vendor10708\", \"Vendor10709\", \"Vendor1071\", \"Vendor10713\", \"Vendor10714\", \"Vendor10718\", \"Vendor1072\", \"Vendor10720\", \"Vendor10723\", \"Vendor10724\", \"Vendor10727\", \"Vendor10729\", \"Vendor1073\", \"Vendor10731\", \"Vendor10734\", \"Vendor10735\", \"Vendor10738\", \"Vendor1074\", \"Vendor10743\", \"Vendor10748\", \"Vendor10751\", \"Vendor10752\", \"Vendor1076\", \"Vendor10760\", \"Vendor10767\", \"Vendor10769\", \"Vendor10777\", \"Vendor10779\", \"Vendor1078\", \"Vendor10780\", \"Vendor10783\", \"Vendor10786\", \"Vendor10788\", \"Vendor10789\", \"Vendor1079\", \"Vendor10791\", \"Vendor10798\", \"Vendor10802\", \"Vendor10804\", \"Vendor10809\", \"Vendor1081\", \"Vendor10812\", \"Vendor10815\", \"Vendor10817\", \"Vendor10818\", \"Vendor10820\", \"Vendor10824\", \"Vendor10833\", \"Vendor10836\", \"Vendor10838\", \"Vendor10839\", \"Vendor10842\", \"Vendor10845\", \"Vendor10846\", \"Vendor10847\", \"Vendor10848\", \"Vendor10849\", \"Vendor10851\", \"Vendor10859\", \"Vendor10861\", \"Vendor10864\", \"Vendor10869\", \"Vendor10872\", \"Vendor10874\", \"Vendor10877\", \"Vendor10880\", \"Vendor10882\", \"Vendor10884\", \"Vendor10887\", \"Vendor10888\", \"Vendor10889\", \"Vendor10894\", \"Vendor10895\", \"Vendor10896\", \"Vendor10898\", \"Vendor10902\", \"Vendor10904\", \"Vendor10906\", \"Vendor10912\", \"Vendor10913\", \"Vendor10921\", \"Vendor10922\", \"Vendor10923\", \"Vendor10926\", \"Vendor10929\", \"Vendor1093\", \"Vendor10931\", \"Vendor10933\", \"Vendor10934\", \"Vendor10936\", \"Vendor10937\", \"Vendor10938\", \"Vendor10940\", \"Vendor10941\", \"Vendor10942\", \"Vendor10945\", \"Vendor10946\", \"Vendor10949\", \"Vendor10950\", \"Vendor10951\", \"Vendor10954\", \"Vendor10956\", \"Vendor10957\", \"Vendor10959\", \"Vendor10961\", \"Vendor10962\", \"Vendor10963\", \"Vendor10969\", \"Vendor1097\", \"Vendor10970\", \"Vendor10972\", \"Vendor10974\", \"Vendor10976\", \"Vendor10981\", \"Vendor10982\", \"Vendor10983\", \"Vendor10984\", \"Vendor10987\", \"Vendor1099\", \"Vendor10992\", \"Vendor10994\", \"Vendor10995\", \"Vendor1100\", \"Vendor11000\", \"Vendor11001\", \"Vendor11002\", \"Vendor11011\", \"Vendor11012\", \"Vendor11018\", \"Vendor11019\", \"Vendor1102\", \"Vendor11021\", \"Vendor11022\", \"Vendor11023\", \"Vendor11026\", \"Vendor1103\", \"Vendor11031\", \"Vendor11033\", \"Vendor11035\", \"Vendor11040\", \"Vendor11041\", \"Vendor11042\", \"Vendor11046\", \"Vendor11047\", \"Vendor11048\", \"Vendor1105\", \"Vendor11050\", \"Vendor11053\", \"Vendor11054\", \"Vendor11055\", \"Vendor11060\", \"Vendor11064\", \"Vendor11065\", \"Vendor11066\", \"Vendor11067\", \"Vendor11070\", \"Vendor11073\", \"Vendor11081\", \"Vendor11083\", \"Vendor11084\", \"Vendor11089\", \"Vendor11091\", \"Vendor11092\", \"Vendor11093\", \"Vendor11094\", \"Vendor11097\", \"Vendor11101\", \"Vendor11102\", \"Vendor11103\", \"Vendor11111\", \"Vendor11114\", \"Vendor1112\", \"Vendor11120\", \"Vendor11123\", \"Vendor11128\", \"Vendor11130\", \"Vendor11134\", \"Vendor11136\", \"Vendor11137\", \"Vendor11138\", \"Vendor11140\", \"Vendor11145\", \"Vendor11147\", \"Vendor11148\", \"Vendor1115\", \"Vendor11151\", \"Vendor11153\", \"Vendor11159\", \"Vendor1116\", \"Vendor11165\", \"Vendor11170\", \"Vendor11172\", \"Vendor11173\", \"Vendor11174\", \"Vendor11176\", \"Vendor11177\", \"Vendor1118\", \"Vendor11181\", \"Vendor11182\", \"Vendor11183\", \"Vendor11185\", \"Vendor11187\", \"Vendor11188\", \"Vendor11191\", \"Vendor11192\", \"Vendor11193\", \"Vendor11195\", \"Vendor11197\", \"Vendor11201\", \"Vendor11203\", \"Vendor11205\", \"Vendor11206\", \"Vendor1121\", \"Vendor11211\", \"Vendor11214\", \"Vendor11215\", \"Vendor11219\", \"Vendor1122\", \"Vendor11225\", \"Vendor11227\", \"Vendor11230\", \"Vendor11231\", \"Vendor11233\", \"Vendor11234\", \"Vendor11237\", \"Vendor11239\", \"Vendor11243\", \"Vendor11245\", \"Vendor11246\", \"Vendor11249\", \"Vendor1125\", \"Vendor11252\", \"Vendor11254\", \"Vendor11255\", \"Vendor11256\", \"Vendor11257\", \"Vendor11259\", \"Vendor1126\", \"Vendor11262\", \"Vendor11264\", \"Vendor11270\", \"Vendor11272\", \"Vendor11278\", \"Vendor11279\", \"Vendor11282\", \"Vendor11284\", \"Vendor11285\", \"Vendor11287\", \"Vendor11290\", \"Vendor11300\", \"Vendor11304\", \"Vendor11308\", \"Vendor1131\", \"Vendor11310\", \"Vendor11311\", \"Vendor11314\", \"Vendor11317\", \"Vendor11323\", \"Vendor11324\", \"Vendor11327\", \"Vendor11328\", \"Vendor11337\", \"Vendor11340\", \"Vendor11342\", \"Vendor11343\", \"Vendor11344\", \"Vendor11346\", \"Vendor11347\", \"Vendor11348\", \"Vendor11351\", \"Vendor11352\", \"Vendor11356\", \"Vendor11357\", \"Vendor11358\", \"Vendor11361\", \"Vendor11362\", \"Vendor11370\", \"Vendor11374\", \"Vendor11377\", \"Vendor11380\", \"Vendor11386\", \"Vendor11387\", \"Vendor11388\", \"Vendor11391\", \"Vendor11394\", \"Vendor11401\", \"Vendor11405\", \"Vendor11407\", \"Vendor11408\", \"Vendor1141\", \"Vendor11410\", \"Vendor11411\", \"Vendor11412\", \"Vendor11418\", \"Vendor11419\", \"Vendor11421\", \"Vendor11425\", \"Vendor11427\", \"Vendor11429\", \"Vendor11430\", \"Vendor11434\", \"Vendor11435\", \"Vendor11438\", \"Vendor11439\", \"Vendor11440\", \"Vendor11442\", \"Vendor1145\", \"Vendor11456\", \"Vendor11458\", \"Vendor11459\", \"Vendor11460\", \"Vendor11463\", \"Vendor11465\", \"Vendor11468\", \"Vendor11477\", \"Vendor11479\", \"Vendor11481\", \"Vendor1149\", \"Vendor11491\", \"Vendor11492\", \"Vendor11497\", \"Vendor11499\", \"Vendor115\", \"Vendor11501\", \"Vendor11502\", \"Vendor11506\", \"Vendor11507\", \"Vendor11508\", \"Vendor11509\", \"Vendor11513\", \"Vendor11515\", \"Vendor11528\", \"Vendor1153\", \"Vendor11533\", \"Vendor11534\", \"Vendor11539\", \"Vendor11542\", \"Vendor11544\", \"Vendor11545\", \"Vendor11547\", \"Vendor11549\", \"Vendor11550\", \"Vendor11559\", \"Vendor11561\", \"Vendor11564\", \"Vendor11565\", \"Vendor11567\", \"Vendor11571\", \"Vendor11572\", \"Vendor11574\", \"Vendor11576\", \"Vendor11577\", \"Vendor11578\", \"Vendor11580\", \"Vendor11581\", \"Vendor11582\", \"Vendor11584\", \"Vendor11585\", \"Vendor11586\", \"Vendor11587\", \"Vendor1159\", \"Vendor11592\", \"Vendor11593\", \"Vendor11594\", \"Vendor11599\", \"Vendor11601\", \"Vendor11603\", \"Vendor11604\", \"Vendor11606\", \"Vendor11608\", \"Vendor11612\", \"Vendor11613\", \"Vendor11616\", \"Vendor11617\", \"Vendor11619\", \"Vendor1162\", \"Vendor11620\", \"Vendor11621\", \"Vendor11626\", \"Vendor1163\", \"Vendor11630\", \"Vendor11635\", \"Vendor11637\", \"Vendor11638\", \"Vendor1164\", \"Vendor11641\", \"Vendor11648\", \"Vendor11649\", \"Vendor11652\", \"Vendor11655\", \"Vendor11666\", \"Vendor11668\", \"Vendor1167\", \"Vendor11672\", \"Vendor11673\", \"Vendor11679\", \"Vendor1168\", \"Vendor11683\", \"Vendor11684\", \"Vendor11685\", \"Vendor1169\", \"Vendor11692\", \"Vendor11693\", \"Vendor11695\", \"Vendor11698\", \"Vendor11699\", \"Vendor11707\", \"Vendor11711\", \"Vendor11714\", \"Vendor11715\", \"Vendor11717\", \"Vendor11718\", \"Vendor11719\", \"Vendor11724\", \"Vendor11726\", \"Vendor11727\", \"Vendor11730\", \"Vendor11739\", \"Vendor11740\", \"Vendor11743\", \"Vendor11744\", \"Vendor11749\", \"Vendor11752\", \"Vendor11753\", \"Vendor11754\", \"Vendor11757\", \"Vendor1176\", \"Vendor11760\", \"Vendor11764\", \"Vendor11767\", \"Vendor11768\", \"Vendor11769\", \"Vendor11770\", \"Vendor11772\", \"Vendor11773\", \"Vendor11775\", \"Vendor11777\", \"Vendor11778\", \"Vendor11779\", \"Vendor11780\", \"Vendor11785\", \"Vendor11787\", \"Vendor1179\", \"Vendor11790\", \"Vendor11792\", \"Vendor11794\", \"Vendor11796\", \"Vendor11797\", \"Vendor11798\", \"Vendor11799\", \"Vendor1180\", \"Vendor11807\", \"Vendor11808\", \"Vendor11811\", \"Vendor11812\", \"Vendor11814\", \"Vendor11815\", \"Vendor11821\", \"Vendor11822\", \"Vendor11825\", \"Vendor11828\", \"Vendor11829\", \"Vendor1183\", \"Vendor11832\", \"Vendor11833\", \"Vendor11836\", \"Vendor11839\", \"Vendor1184\", \"Vendor11842\", \"Vendor11847\", \"Vendor1185\", \"Vendor11854\", \"Vendor11860\", \"Vendor11861\", \"Vendor11862\", \"Vendor11867\", \"Vendor11870\", \"Vendor11871\", \"Vendor11872\", \"Vendor11873\", \"Vendor1188\", \"Vendor11887\", \"Vendor11888\", \"Vendor11890\", \"Vendor11891\", \"Vendor11895\", \"Vendor119\", \"Vendor1190\", \"Vendor11901\", \"Vendor11902\", \"Vendor11905\", \"Vendor1191\", \"Vendor11910\", \"Vendor11911\", \"Vendor11917\", \"Vendor11919\", \"Vendor11928\", \"Vendor11931\", \"Vendor11932\", \"Vendor11934\", \"Vendor11936\", \"Vendor11941\", \"Vendor11942\", \"Vendor11947\", \"Vendor11950\", \"Vendor11954\", \"Vendor11955\", \"Vendor11956\", \"Vendor11959\", \"Vendor11972\", \"Vendor11976\", \"Vendor11977\", \"Vendor11979\", \"Vendor11981\", \"Vendor11984\", \"Vendor11985\", \"Vendor11989\", \"Vendor11990\", \"Vendor11991\", \"Vendor11992\", \"Vendor11993\", \"Vendor11995\", \"Vendor11996\", \"Vendor12\", \"Vendor12000\", \"Vendor12004\", \"Vendor12006\", \"Vendor12008\", \"Vendor12010\", \"Vendor12011\", \"Vendor12015\", \"Vendor12022\", \"Vendor12023\", \"Vendor12024\", \"Vendor12029\", \"Vendor1203\", \"Vendor12030\", \"Vendor12033\", \"Vendor12034\", \"Vendor12037\", \"Vendor12038\", \"Vendor12042\", \"Vendor12043\", \"Vendor12049\", \"Vendor1205\", \"Vendor12052\", \"Vendor12053\", \"Vendor12054\", \"Vendor12055\", \"Vendor12057\", \"Vendor12061\", \"Vendor12071\", \"Vendor12072\", \"Vendor12076\", \"Vendor12080\", \"Vendor12084\", \"Vendor12092\", \"Vendor121\", \"Vendor1210\", \"Vendor12103\", \"Vendor12104\", \"Vendor12108\", \"Vendor12111\", \"Vendor12113\", \"Vendor12114\", \"Vendor12119\", \"Vendor12120\", \"Vendor12137\", \"Vendor12138\", \"Vendor12141\", \"Vendor12142\", \"Vendor12143\", \"Vendor12147\", \"Vendor12148\", \"Vendor12150\", \"Vendor12151\", \"Vendor12152\", \"Vendor12154\", \"Vendor12157\", \"Vendor12159\", \"Vendor12162\", \"Vendor12163\", \"Vendor12166\", \"Vendor12167\", \"Vendor1217\", \"Vendor12170\", \"Vendor12171\", \"Vendor12173\", \"Vendor12174\", \"Vendor12175\", \"Vendor12179\", \"Vendor12180\", \"Vendor12189\", \"Vendor1219\", \"Vendor12190\", \"Vendor12195\", \"Vendor12199\", \"Vendor1220\", \"Vendor12200\", \"Vendor12201\", \"Vendor12202\", \"Vendor12203\", \"Vendor12205\", \"Vendor12211\", \"Vendor12212\", \"Vendor12213\", \"Vendor12215\", \"Vendor12216\", \"Vendor12217\", \"Vendor12218\", \"Vendor12219\", \"Vendor12220\", \"Vendor12226\", \"Vendor12228\", \"Vendor1223\", \"Vendor12230\", \"Vendor12233\", \"Vendor12235\", \"Vendor12238\", \"Vendor12239\", \"Vendor1224\", \"Vendor12240\", \"Vendor12241\", \"Vendor12242\", \"Vendor12243\", \"Vendor12246\", \"Vendor12247\", \"Vendor12249\", \"Vendor1225\", \"Vendor12252\", \"Vendor12253\", \"Vendor12254\", \"Vendor12255\", \"Vendor12257\", \"Vendor12258\", \"Vendor1226\", \"Vendor12260\", \"Vendor12262\", \"Vendor12263\", \"Vendor12264\", \"Vendor12265\", \"Vendor12267\", \"Vendor12268\", \"Vendor12270\", \"Vendor12271\", \"Vendor12274\", \"Vendor12275\", \"Vendor12276\", \"Vendor12279\", \"Vendor1228\", \"Vendor12281\", \"Vendor12283\", \"Vendor12285\", \"Vendor12287\", \"Vendor1229\", \"Vendor12290\", \"Vendor12294\", \"Vendor12295\", \"Vendor12296\", \"Vendor12297\", \"Vendor12298\", \"Vendor123\", \"Vendor1230\", \"Vendor12300\", \"Vendor12301\", \"Vendor12302\", \"Vendor12304\", \"Vendor12308\", \"Vendor12309\", \"Vendor1231\", \"Vendor12310\", \"Vendor12311\", \"Vendor12314\", \"Vendor12315\", \"Vendor12316\", \"Vendor12317\", \"Vendor12318\", \"Vendor1232\", \"Vendor12321\", \"Vendor12322\", \"Vendor12324\", \"Vendor12327\", \"Vendor12331\", \"Vendor12337\", \"Vendor12339\", \"Vendor1234\", \"Vendor12341\", \"Vendor12343\", \"Vendor12345\", \"Vendor12347\", \"Vendor12350\", \"Vendor12351\", \"Vendor12352\", \"Vendor12353\", \"Vendor1236\", \"Vendor12361\", \"Vendor12362\", \"Vendor12367\", \"Vendor12368\", \"Vendor12369\", \"Vendor12370\", \"Vendor12371\", \"Vendor12373\", \"Vendor12374\", \"Vendor12379\", \"Vendor1238\", \"Vendor12384\", \"Vendor12385\", \"Vendor12387\", \"Vendor12388\", \"Vendor12390\", \"Vendor12391\", \"Vendor12393\", \"Vendor12394\", \"Vendor12395\", \"Vendor12397\", \"Vendor12398\", \"Vendor124\", \"Vendor1240\", \"Vendor12401\", \"Vendor12403\", \"Vendor12405\", \"Vendor12410\", \"Vendor12411\", \"Vendor12418\", \"Vendor12420\", \"Vendor12424\", \"Vendor12426\", \"Vendor12428\", \"Vendor12429\", \"Vendor12438\", \"Vendor1244\", \"Vendor12444\", \"Vendor12445\", \"Vendor12449\", \"Vendor12450\", \"Vendor12452\", \"Vendor12453\", \"Vendor12457\", \"Vendor12464\", \"Vendor12465\", \"Vendor12467\", \"Vendor12471\", \"Vendor12472\", \"Vendor12473\", \"Vendor12477\", \"Vendor12478\", \"Vendor12479\", \"Vendor1248\", \"Vendor12480\", \"Vendor12481\", \"Vendor12482\", \"Vendor12486\", \"Vendor12487\", \"Vendor12489\", \"Vendor12492\", \"Vendor12495\", \"Vendor12499\", \"Vendor125\", \"Vendor12500\", \"Vendor12504\", \"Vendor12508\", \"Vendor1251\", \"Vendor12510\", \"Vendor12513\", \"Vendor12514\", \"Vendor12516\", \"Vendor12519\", \"Vendor12521\", \"Vendor12525\", \"Vendor12528\", \"Vendor12534\", \"Vendor12540\", \"Vendor12541\", \"Vendor12542\", \"Vendor12543\", \"Vendor12544\", \"Vendor12547\", \"Vendor12548\", \"Vendor12549\", \"Vendor12552\", \"Vendor12554\", \"Vendor12556\", \"Vendor12557\", \"Vendor12558\", \"Vendor12560\", \"Vendor12572\", \"Vendor12573\", \"Vendor12574\", \"Vendor12585\", \"Vendor12586\", \"Vendor12587\", \"Vendor12588\", \"Vendor1259\", \"Vendor12592\", \"Vendor12597\", \"Vendor1260\", \"Vendor12600\", \"Vendor12601\", \"Vendor12602\", \"Vendor12604\", \"Vendor12607\", \"Vendor1261\", \"Vendor12612\", \"Vendor12614\", \"Vendor12615\", \"Vendor1262\", \"Vendor12620\", \"Vendor12621\", \"Vendor12629\", \"Vendor1263\", \"Vendor12630\", \"Vendor12639\", \"Vendor1264\", \"Vendor12644\", \"Vendor12647\", \"Vendor12649\", \"Vendor12656\", \"Vendor12658\", \"Vendor12663\", \"Vendor12668\", \"Vendor12669\", \"Vendor1267\", \"Vendor12670\", \"Vendor12672\", \"Vendor12677\", \"Vendor12680\", \"Vendor12684\", \"Vendor12687\", \"Vendor1269\", \"Vendor12694\", \"Vendor12696\", \"Vendor12698\", \"Vendor1270\", \"Vendor12701\", \"Vendor12702\", \"Vendor12706\", \"Vendor12710\", \"Vendor12712\", \"Vendor12713\", \"Vendor1272\", \"Vendor12722\", \"Vendor12725\", \"Vendor12726\", \"Vendor12727\", \"Vendor12729\", \"Vendor1273\", \"Vendor12730\", \"Vendor12731\", \"Vendor12732\", \"Vendor12737\", \"Vendor12740\", \"Vendor12741\", \"Vendor12743\", \"Vendor12744\", \"Vendor12748\", \"Vendor12749\", \"Vendor1275\", \"Vendor12754\", \"Vendor12764\", \"Vendor12766\", \"Vendor12768\", \"Vendor1277\", \"Vendor12772\", \"Vendor12776\", \"Vendor12779\", \"Vendor12785\", \"Vendor12787\", \"Vendor12789\", \"Vendor1279\", \"Vendor12793\", \"Vendor12797\", \"Vendor128\", \"Vendor1280\", \"Vendor12802\", \"Vendor12803\", \"Vendor12806\", \"Vendor12813\", \"Vendor12815\", \"Vendor12818\", \"Vendor12819\", \"Vendor1282\", \"Vendor12823\", \"Vendor12825\", \"Vendor12829\", \"Vendor12830\", \"Vendor12833\", \"Vendor12835\", \"Vendor12836\", \"Vendor12839\", \"Vendor1284\", \"Vendor12842\", \"Vendor12844\", \"Vendor12845\", \"Vendor12848\", \"Vendor12849\", \"Vendor12850\", \"Vendor12852\", \"Vendor12853\", \"Vendor12854\", \"Vendor12856\", \"Vendor12857\", \"Vendor12862\", \"Vendor12866\", \"Vendor12867\", \"Vendor12870\", \"Vendor12871\", \"Vendor12873\", \"Vendor12877\", \"Vendor12878\", \"Vendor12879\", \"Vendor1288\", \"Vendor12881\", \"Vendor12882\", \"Vendor12885\", \"Vendor12886\", \"Vendor12888\", \"Vendor12889\", \"Vendor1289\", \"Vendor12894\", \"Vendor12895\", \"Vendor12896\", \"Vendor1290\", \"Vendor12901\", \"Vendor12904\", \"Vendor12906\", \"Vendor12907\", \"Vendor1291\", \"Vendor12914\", \"Vendor12915\", \"Vendor12917\", \"Vendor12919\", \"Vendor12920\", \"Vendor12923\", \"Vendor12925\", \"Vendor12926\", \"Vendor12927\", \"Vendor12931\", \"Vendor12933\", \"Vendor12943\", \"Vendor12944\", \"Vendor12947\", \"Vendor12948\", \"Vendor12949\", \"Vendor12952\", \"Vendor12957\", \"Vendor1296\", \"Vendor12965\", \"Vendor12966\", \"Vendor12969\", \"Vendor1297\", \"Vendor12972\", \"Vendor12974\", \"Vendor12975\", \"Vendor1298\", \"Vendor12984\", \"Vendor12985\", \"Vendor12987\", \"Vendor12990\", \"Vendor12991\", \"Vendor12992\", \"Vendor12995\", \"Vendor1300\", \"Vendor13002\", \"Vendor13005\", \"Vendor13008\", \"Vendor1301\", \"Vendor13011\", \"Vendor13013\", \"Vendor13015\", \"Vendor13016\", \"Vendor13018\", \"Vendor1302\", \"Vendor13020\", \"Vendor13022\", \"Vendor13026\", \"Vendor13027\", \"Vendor13029\", \"Vendor13030\", \"Vendor13031\", \"Vendor13034\", \"Vendor13036\", \"Vendor13039\", \"Vendor1304\", \"Vendor13040\", \"Vendor13041\", \"Vendor13042\", \"Vendor13043\", \"Vendor13045\", \"Vendor13047\", \"Vendor13048\", \"Vendor1305\", \"Vendor13056\", \"Vendor13057\", \"Vendor13059\", \"Vendor1306\", \"Vendor13060\", \"Vendor13062\", \"Vendor13065\", \"Vendor13069\", \"Vendor13070\", \"Vendor13073\", \"Vendor13078\", \"Vendor1308\", \"Vendor13081\", \"Vendor13082\", \"Vendor13086\", \"Vendor13088\", \"Vendor13089\", \"Vendor131\", \"Vendor13100\", \"Vendor13104\", \"Vendor13105\", \"Vendor13113\", \"Vendor13117\", \"Vendor1312\", \"Vendor13121\", \"Vendor13123\", \"Vendor13130\", \"Vendor13131\", \"Vendor13132\", \"Vendor13136\", \"Vendor13137\", \"Vendor13139\", \"Vendor13143\", \"Vendor13145\", \"Vendor13148\", \"Vendor13149\", \"Vendor1315\", \"Vendor13153\", \"Vendor13154\", \"Vendor13158\", \"Vendor13159\", \"Vendor1316\", \"Vendor13162\", \"Vendor13163\", \"Vendor13165\", \"Vendor13166\", \"Vendor13169\", \"Vendor1317\", \"Vendor13170\", \"Vendor13171\", \"Vendor13172\", \"Vendor13174\", \"Vendor13178\", \"Vendor13184\", \"Vendor13185\", \"Vendor13189\", \"Vendor13191\", \"Vendor13192\", \"Vendor13197\", \"Vendor1320\", \"Vendor13201\", \"Vendor13208\", \"Vendor13210\", \"Vendor13215\", \"Vendor13221\", \"Vendor13222\", \"Vendor13224\", \"Vendor13226\", \"Vendor13227\", \"Vendor13228\", \"Vendor1323\", \"Vendor13232\", \"Vendor13238\", \"Vendor13239\", \"Vendor1324\", \"Vendor13240\", \"Vendor13242\", \"Vendor13245\", \"Vendor13252\", \"Vendor13253\", \"Vendor13259\", \"Vendor13260\", \"Vendor13261\", \"Vendor13266\", \"Vendor13268\", \"Vendor13270\", \"Vendor13272\", \"Vendor13273\", \"Vendor13274\", \"Vendor13275\", \"Vendor13277\", \"Vendor13279\", \"Vendor13280\", \"Vendor13282\", \"Vendor13284\", \"Vendor13286\", \"Vendor13287\", \"Vendor13288\", \"Vendor13291\", \"Vendor13293\", \"Vendor13297\", \"Vendor13298\", \"Vendor13299\", \"Vendor133\", \"Vendor13302\", \"Vendor13304\", \"Vendor13305\", \"Vendor13307\", \"Vendor13308\", \"Vendor13309\", \"Vendor1331\", \"Vendor13315\", \"Vendor13320\", \"Vendor13321\", \"Vendor13322\", \"Vendor13323\", \"Vendor13326\", \"Vendor13328\", \"Vendor13329\", \"Vendor1333\", \"Vendor13333\", \"Vendor13335\", \"Vendor13338\", \"Vendor13339\", \"Vendor13343\", \"Vendor13345\", \"Vendor13346\", \"Vendor13351\", \"Vendor13353\", \"Vendor13354\", \"Vendor13358\", \"Vendor13359\", \"Vendor13360\", \"Vendor13366\", \"Vendor13368\", \"Vendor13370\", \"Vendor13376\", \"Vendor13381\", \"Vendor13385\", \"Vendor13390\", \"Vendor13392\", \"Vendor13397\", \"Vendor13398\", \"Vendor13400\", \"Vendor13401\", \"Vendor13405\", \"Vendor13408\", \"Vendor13409\", \"Vendor13413\", \"Vendor13415\", \"Vendor13416\", \"Vendor13417\", \"Vendor13418\", \"Vendor13419\", \"Vendor1342\", \"Vendor13422\", \"Vendor13423\", \"Vendor13424\", \"Vendor13427\", \"Vendor13429\", \"Vendor1343\", \"Vendor13431\", \"Vendor13435\", \"Vendor13438\", \"Vendor13439\", \"Vendor13440\", \"Vendor13443\", \"Vendor13444\", \"Vendor13449\", \"Vendor13452\", \"Vendor13456\", \"Vendor13457\", \"Vendor13459\", \"Vendor13463\", \"Vendor13464\", \"Vendor13467\", \"Vendor13468\", \"Vendor1347\", \"Vendor13471\", \"Vendor13472\", \"Vendor13475\", \"Vendor13477\", \"Vendor13481\", \"Vendor13482\", \"Vendor13491\", \"Vendor13493\", \"Vendor13496\", \"Vendor135\", \"Vendor13500\", \"Vendor13501\", \"Vendor13507\", \"Vendor13508\", \"Vendor13512\", \"Vendor13514\", \"Vendor13517\", \"Vendor13518\", \"Vendor1352\", \"Vendor13520\", \"Vendor13521\", \"Vendor13523\", \"Vendor13525\", \"Vendor13529\", \"Vendor13531\", \"Vendor13533\", \"Vendor13534\", \"Vendor13535\", \"Vendor13536\", \"Vendor13539\", \"Vendor1354\", \"Vendor13540\", \"Vendor13547\", \"Vendor13548\", \"Vendor13549\", \"Vendor13551\", \"Vendor13552\", \"Vendor13555\", \"Vendor13556\", \"Vendor13557\", \"Vendor13558\", \"Vendor13559\", \"Vendor13560\", \"Vendor13562\", \"Vendor13565\", \"Vendor13566\", \"Vendor1357\", \"Vendor13572\", \"Vendor13574\", \"Vendor13580\", \"Vendor13583\", \"Vendor13584\", \"Vendor13588\", \"Vendor13591\", \"Vendor13592\", \"Vendor13593\", \"Vendor13597\", \"Vendor13599\", \"Vendor1360\", \"Vendor13604\", \"Vendor13608\", \"Vendor13611\", \"Vendor13613\", \"Vendor13614\", \"Vendor13615\", \"Vendor13617\", \"Vendor1362\", \"Vendor13620\", \"Vendor13623\", \"Vendor13625\", \"Vendor13630\", \"Vendor13632\", \"Vendor13635\", \"Vendor13639\", \"Vendor13641\", \"Vendor13643\", \"Vendor13645\", \"Vendor13647\", \"Vendor13648\", \"Vendor13649\", \"Vendor1365\", \"Vendor13650\", \"Vendor13651\", \"Vendor13658\", \"Vendor1366\", \"Vendor13662\", \"Vendor13669\", \"Vendor13671\", \"Vendor13677\", \"Vendor13681\", \"Vendor13684\", \"Vendor13686\", \"Vendor13689\", \"Vendor13690\", \"Vendor13693\", \"Vendor13695\", \"Vendor13697\", \"Vendor137\", \"Vendor13701\", \"Vendor13702\", \"Vendor13706\", \"Vendor13707\", \"Vendor13715\", \"Vendor13717\", \"Vendor13719\", \"Vendor13721\", \"Vendor13726\", \"Vendor13727\", \"Vendor1373\", \"Vendor13732\", \"Vendor13735\", \"Vendor13736\", \"Vendor13739\", \"Vendor13740\", \"Vendor13749\", \"Vendor13750\", \"Vendor13754\", \"Vendor13757\", \"Vendor13759\", \"Vendor13760\", \"Vendor13763\", \"Vendor13764\", \"Vendor13766\", \"Vendor13768\", \"Vendor1377\", \"Vendor13770\", \"Vendor13771\", \"Vendor13775\", \"Vendor13776\", \"Vendor13780\", \"Vendor13781\", \"Vendor13782\", \"Vendor13783\", \"Vendor13786\", \"Vendor13787\", \"Vendor1379\", \"Vendor13790\", \"Vendor13791\", \"Vendor13794\", \"Vendor13796\", \"Vendor1380\", \"Vendor13801\", \"Vendor13802\", \"Vendor13803\", \"Vendor1381\", \"Vendor13813\", \"Vendor13814\", \"Vendor13815\", \"Vendor13819\", \"Vendor13820\", \"Vendor13822\", \"Vendor13825\", \"Vendor13828\", \"Vendor1383\", \"Vendor13832\", \"Vendor13833\", \"Vendor1384\", \"Vendor13840\", \"Vendor13841\", \"Vendor13846\", \"Vendor13847\", \"Vendor13848\", \"Vendor13849\", \"Vendor13851\", \"Vendor13854\", \"Vendor13856\", \"Vendor13858\", \"Vendor1386\", \"Vendor13860\", \"Vendor13861\", \"Vendor13862\", \"Vendor13863\", \"Vendor13865\", \"Vendor13866\", \"Vendor13868\", \"Vendor13869\", \"Vendor13870\", \"Vendor13871\", \"Vendor13873\", \"Vendor13875\", \"Vendor13877\", \"Vendor13881\", \"Vendor13882\", \"Vendor13885\", \"Vendor13888\", \"Vendor13894\", \"Vendor13898\", \"Vendor13902\", \"Vendor13908\", \"Vendor13909\", \"Vendor1391\", \"Vendor13911\", \"Vendor13912\", \"Vendor13913\", \"Vendor13915\", \"Vendor13920\", \"Vendor13925\", \"Vendor13926\", \"Vendor1393\", \"Vendor13931\", \"Vendor13934\", \"Vendor13939\", \"Vendor1394\", \"Vendor13941\", \"Vendor13942\", \"Vendor13945\", \"Vendor13950\", \"Vendor13953\", \"Vendor13955\", \"Vendor13959\", \"Vendor13961\", \"Vendor13966\", \"Vendor13968\", \"Vendor1397\", \"Vendor13972\", \"Vendor13978\", \"Vendor13979\", \"Vendor1398\", \"Vendor13982\", \"Vendor13985\", \"Vendor1399\", \"Vendor13990\", \"Vendor13991\", \"Vendor13992\", \"Vendor13995\", \"Vendor13996\", \"Vendor13998\", \"Vendor140\", \"Vendor14002\", \"Vendor14013\", \"Vendor14014\", \"Vendor14017\", \"Vendor14019\", \"Vendor14021\", \"Vendor14024\", \"Vendor14027\", \"Vendor14037\", \"Vendor14040\", \"Vendor14041\", \"Vendor14042\", \"Vendor14043\", \"Vendor14045\", \"Vendor14049\", \"Vendor14050\", \"Vendor14051\", \"Vendor14053\", \"Vendor14054\", \"Vendor1406\", \"Vendor14062\", \"Vendor14063\", \"Vendor14065\", \"Vendor14066\", \"Vendor14068\", \"Vendor14070\", \"Vendor14071\", \"Vendor14072\", \"Vendor14073\", \"Vendor14074\", \"Vendor14084\", \"Vendor14090\", \"Vendor14093\", \"Vendor14094\", \"Vendor14099\", \"Vendor14100\", \"Vendor14102\", \"Vendor14107\", \"Vendor14109\", \"Vendor1411\", \"Vendor14110\", \"Vendor14115\", \"Vendor14119\", \"Vendor1412\", \"Vendor14121\", \"Vendor14122\", \"Vendor14124\", \"Vendor14125\", \"Vendor14126\", \"Vendor14127\", \"Vendor14128\", \"Vendor14132\", \"Vendor14146\", \"Vendor14147\", \"Vendor14150\", \"Vendor14154\", \"Vendor14155\", \"Vendor14157\", \"Vendor1416\", \"Vendor14161\", \"Vendor14162\", \"Vendor14165\", \"Vendor1417\", \"Vendor14172\", \"Vendor14173\", \"Vendor14176\", \"Vendor14179\", \"Vendor14180\", \"Vendor14185\", \"Vendor14187\", \"Vendor14188\", \"Vendor1419\", \"Vendor14194\", \"Vendor14196\", \"Vendor14197\", \"Vendor14200\", \"Vendor14201\", \"Vendor14205\", \"Vendor14206\", \"Vendor14207\", \"Vendor14209\", \"Vendor1421\", \"Vendor14210\", \"Vendor14211\", \"Vendor14212\", \"Vendor14215\", \"Vendor14216\", \"Vendor14217\", \"Vendor14218\", \"Vendor14220\", \"Vendor14221\", \"Vendor14223\", \"Vendor14225\", \"Vendor14226\", \"Vendor14227\", \"Vendor14230\", \"Vendor14232\", \"Vendor1424\", \"Vendor14240\", \"Vendor14243\", \"Vendor14245\", \"Vendor14249\", \"Vendor14250\", \"Vendor14253\", \"Vendor14254\", \"Vendor14256\", \"Vendor14257\", \"Vendor14259\", \"Vendor1426\", \"Vendor14260\", \"Vendor14262\", \"Vendor14265\", \"Vendor14266\", \"Vendor14267\", \"Vendor14270\", \"Vendor14276\", \"Vendor14279\", \"Vendor1428\", \"Vendor14283\", \"Vendor14284\", \"Vendor14286\", \"Vendor14287\", \"Vendor14288\", \"Vendor14289\", \"Vendor1429\", \"Vendor14294\", \"Vendor14301\", \"Vendor14302\", \"Vendor14303\", \"Vendor14304\", \"Vendor14305\", \"Vendor14306\", \"Vendor14308\", \"Vendor14309\", \"Vendor1431\", \"Vendor14311\", \"Vendor14312\", \"Vendor14314\", \"Vendor14315\", \"Vendor14316\", \"Vendor14318\", \"Vendor14319\", \"Vendor1432\", \"Vendor14321\", \"Vendor14322\", \"Vendor14323\", \"Vendor14327\", \"Vendor1433\", \"Vendor14331\", \"Vendor14333\", \"Vendor14334\", \"Vendor14335\", \"Vendor14336\", \"Vendor14337\", \"Vendor1434\", \"Vendor14341\", \"Vendor14346\", \"Vendor14347\", \"Vendor14348\", \"Vendor1435\", \"Vendor14353\", \"Vendor14354\", \"Vendor14355\", \"Vendor14359\", \"Vendor1436\", \"Vendor14361\", \"Vendor14364\", \"Vendor14365\", \"Vendor14367\", \"Vendor14372\", \"Vendor14373\", \"Vendor14374\", \"Vendor14375\", \"Vendor14377\", \"Vendor14379\", \"Vendor14383\", \"Vendor14384\", \"Vendor14385\", \"Vendor14388\", \"Vendor14392\", \"Vendor14393\", \"Vendor14395\", \"Vendor14396\", \"Vendor14398\", \"Vendor144\", \"Vendor1440\", \"Vendor14401\", \"Vendor14403\", \"Vendor14405\", \"Vendor14406\", \"Vendor14407\", \"Vendor14408\", \"Vendor14410\", \"Vendor14411\", \"Vendor14412\", \"Vendor14414\", \"Vendor14417\", \"Vendor14419\", \"Vendor1442\", \"Vendor14427\", \"Vendor14428\", \"Vendor14430\", \"Vendor14431\", \"Vendor14432\", \"Vendor14441\", \"Vendor14446\", \"Vendor14447\", \"Vendor14449\", \"Vendor1445\", \"Vendor14457\", \"Vendor1446\", \"Vendor14460\", \"Vendor14462\", \"Vendor14463\", \"Vendor14464\", \"Vendor14466\", \"Vendor14467\", \"Vendor14469\", \"Vendor1447\", \"Vendor14474\", \"Vendor14475\", \"Vendor1448\", \"Vendor14482\", \"Vendor14484\", \"Vendor14485\", \"Vendor1449\", \"Vendor14490\", \"Vendor14494\", \"Vendor145\", \"Vendor14500\", \"Vendor14502\", \"Vendor14503\", \"Vendor14506\", \"Vendor14510\", \"Vendor14519\", \"Vendor14520\", \"Vendor14523\", \"Vendor14524\", \"Vendor1453\", \"Vendor14532\", \"Vendor14533\", \"Vendor14539\", \"Vendor14541\", \"Vendor14542\", \"Vendor14544\", \"Vendor14546\", \"Vendor14548\", \"Vendor14551\", \"Vendor14552\", \"Vendor14555\", \"Vendor14556\", \"Vendor14557\", \"Vendor14560\", \"Vendor14563\", \"Vendor14565\", \"Vendor14568\", \"Vendor14569\", \"Vendor14573\", \"Vendor14578\", \"Vendor14579\", \"Vendor14586\", \"Vendor14587\", \"Vendor14589\", \"Vendor1459\", \"Vendor14595\", \"Vendor14596\", \"Vendor14597\", \"Vendor14598\", \"Vendor1460\", \"Vendor14603\", \"Vendor14604\", \"Vendor14605\", \"Vendor14611\", \"Vendor14612\", \"Vendor14613\", \"Vendor14614\", \"Vendor14615\", \"Vendor14617\", \"Vendor14618\", \"Vendor14622\", \"Vendor14624\", \"Vendor14625\", \"Vendor14627\", \"Vendor14631\", \"Vendor14633\", \"Vendor14636\", \"Vendor1464\", \"Vendor14642\", \"Vendor14644\", \"Vendor14646\", \"Vendor14648\", \"Vendor14649\", \"Vendor1465\", \"Vendor14651\", \"Vendor14657\", \"Vendor14658\", \"Vendor14662\", \"Vendor14665\", \"Vendor14669\", \"Vendor14672\", \"Vendor14679\", \"Vendor14680\", \"Vendor14681\", \"Vendor14683\", \"Vendor14686\", \"Vendor14687\", \"Vendor1469\", \"Vendor14692\", \"Vendor14698\", \"Vendor147\", \"Vendor14702\", \"Vendor14706\", \"Vendor14707\", \"Vendor14710\", \"Vendor14712\", \"Vendor14716\", \"Vendor14722\", \"Vendor14724\", \"Vendor14727\", \"Vendor14730\", \"Vendor14734\", \"Vendor14735\", \"Vendor14740\", \"Vendor14741\", \"Vendor14742\", \"Vendor14744\", \"Vendor14745\", \"Vendor14746\", \"Vendor14747\", \"Vendor14753\", \"Vendor14756\", \"Vendor14759\", \"Vendor14765\", \"Vendor14766\", \"Vendor14769\", \"Vendor14772\", \"Vendor14776\", \"Vendor14779\", \"Vendor14780\", \"Vendor14783\", \"Vendor14786\", \"Vendor1479\", \"Vendor14793\", \"Vendor14795\", \"Vendor14796\", \"Vendor14798\", \"Vendor14800\", \"Vendor14802\", \"Vendor14803\", \"Vendor14804\", \"Vendor14806\", \"Vendor14807\", \"Vendor1481\", \"Vendor14811\", \"Vendor14812\", \"Vendor14814\", \"Vendor14815\", \"Vendor1482\", \"Vendor14822\", \"Vendor14823\", \"Vendor14826\", \"Vendor14828\", \"Vendor14831\", \"Vendor14834\", \"Vendor14835\", \"Vendor14836\", \"Vendor14837\", \"Vendor14838\", \"Vendor1484\", \"Vendor14840\", \"Vendor14842\", \"Vendor14843\", \"Vendor14848\", \"Vendor14850\", \"Vendor14851\", \"Vendor14853\", \"Vendor14855\", \"Vendor14857\", \"Vendor1486\", \"Vendor14860\", \"Vendor14864\", \"Vendor14866\", \"Vendor14875\", \"Vendor14877\", \"Vendor14879\", \"Vendor1488\", \"Vendor14882\", \"Vendor14883\", \"Vendor14884\", \"Vendor14888\", \"Vendor1489\", \"Vendor14891\", \"Vendor14894\", \"Vendor14897\", \"Vendor14898\", \"Vendor14899\", \"Vendor14901\", \"Vendor14903\", \"Vendor14913\", \"Vendor14914\", \"Vendor14915\", \"Vendor14916\", \"Vendor14919\", \"Vendor14923\", \"Vendor14926\", \"Vendor14929\", \"Vendor14935\", \"Vendor14941\", \"Vendor14942\", \"Vendor14943\", \"Vendor14946\", \"Vendor14949\", \"Vendor14950\", \"Vendor14953\", \"Vendor14955\", \"Vendor14957\", \"Vendor14959\", \"Vendor1496\", \"Vendor14962\", \"Vendor14963\", \"Vendor14964\", \"Vendor14967\", \"Vendor14968\", \"Vendor1497\", \"Vendor14971\", \"Vendor14972\", \"Vendor14973\", \"Vendor14974\", \"Vendor14975\", \"Vendor14977\", \"Vendor14983\", \"Vendor14987\", \"Vendor14989\", \"Vendor1499\", \"Vendor14990\", \"Vendor14991\", \"Vendor14992\", \"Vendor14993\", \"Vendor14996\", \"Vendor14997\", \"Vendor14998\", \"Vendor1500\", \"Vendor15005\", \"Vendor15007\", \"Vendor15009\", \"Vendor15011\", \"Vendor15013\", \"Vendor15015\", \"Vendor15019\", \"Vendor15021\", \"Vendor15027\", \"Vendor15028\", \"Vendor1503\", \"Vendor15033\", \"Vendor15037\", \"Vendor15039\", \"Vendor1504\", \"Vendor15042\", \"Vendor15043\", \"Vendor15044\", \"Vendor15045\", \"Vendor15046\", \"Vendor15054\", \"Vendor15061\", \"Vendor15065\", \"Vendor15066\", \"Vendor15069\", \"Vendor15075\", \"Vendor15079\", \"Vendor1508\", \"Vendor15083\", \"Vendor15087\", \"Vendor15089\", \"Vendor15091\", \"Vendor15094\", \"Vendor15096\", \"Vendor15098\", \"Vendor151\", \"Vendor15101\", \"Vendor15108\", \"Vendor1511\", \"Vendor15112\", \"Vendor15115\", \"Vendor15116\", \"Vendor15117\", \"Vendor15118\", \"Vendor15120\", \"Vendor15121\", \"Vendor15122\", \"Vendor15123\", \"Vendor15125\", \"Vendor15126\", \"Vendor15128\", \"Vendor15129\", \"Vendor1513\", \"Vendor15130\", \"Vendor15131\", \"Vendor15132\", \"Vendor15134\", \"Vendor15135\", \"Vendor15140\", \"Vendor15143\", \"Vendor15144\", \"Vendor1515\", \"Vendor15151\", \"Vendor15152\", \"Vendor15157\", \"Vendor15169\", \"Vendor15171\", \"Vendor15173\", \"Vendor15174\", \"Vendor15176\", \"Vendor15177\", \"Vendor15178\", \"Vendor15179\", \"Vendor1518\", \"Vendor15181\", \"Vendor15186\", \"Vendor15187\", \"Vendor15190\", \"Vendor15197\", \"Vendor15198\", \"Vendor15199\", \"Vendor1520\", \"Vendor15202\", \"Vendor15203\", \"Vendor15204\", \"Vendor15207\", \"Vendor1521\", \"Vendor15211\", \"Vendor15212\", \"Vendor1522\", \"Vendor15221\", \"Vendor15222\", \"Vendor15223\", \"Vendor15225\", \"Vendor15226\", \"Vendor15228\", \"Vendor15231\", \"Vendor15232\", \"Vendor15235\", \"Vendor15236\", \"Vendor15241\", \"Vendor15244\", \"Vendor15245\", \"Vendor15247\", \"Vendor15248\", \"Vendor15252\", \"Vendor15254\", \"Vendor15255\", \"Vendor15256\", \"Vendor15257\", \"Vendor15260\", \"Vendor15261\", \"Vendor15262\", \"Vendor15263\", \"Vendor15265\", \"Vendor15267\", \"Vendor15268\", \"Vendor1527\", \"Vendor15274\", \"Vendor15277\", \"Vendor15278\", \"Vendor1528\", \"Vendor15281\", \"Vendor15283\", \"Vendor15287\", \"Vendor15288\", \"Vendor15291\", \"Vendor15293\", \"Vendor15294\", \"Vendor153\", \"Vendor15302\", \"Vendor15306\", \"Vendor15309\", \"Vendor15310\", \"Vendor15313\", \"Vendor15315\", \"Vendor15316\", \"Vendor15318\", \"Vendor1532\", \"Vendor15320\", \"Vendor15321\", \"Vendor15322\", \"Vendor15323\", \"Vendor15325\", \"Vendor15328\", \"Vendor1533\", \"Vendor15330\", \"Vendor15332\", \"Vendor15337\", \"Vendor1534\", \"Vendor15340\", \"Vendor15341\", \"Vendor15344\", \"Vendor15345\", \"Vendor15346\", \"Vendor15347\", \"Vendor15349\", \"Vendor15351\", \"Vendor15352\", \"Vendor15353\", \"Vendor15355\", \"Vendor15356\", \"Vendor15358\", \"Vendor15359\", \"Vendor1536\", \"Vendor15362\", \"Vendor15363\", \"Vendor15366\", \"Vendor15368\", \"Vendor1537\", \"Vendor15370\", \"Vendor15371\", \"Vendor15372\", \"Vendor15373\", \"Vendor15374\", \"Vendor15375\", \"Vendor15376\", \"Vendor15378\", \"Vendor15379\", \"Vendor15382\", \"Vendor15386\", \"Vendor15389\", \"Vendor1539\", \"Vendor15391\", \"Vendor15394\", \"Vendor15398\", \"Vendor154\", \"Vendor1540\", \"Vendor15400\", \"Vendor15401\", \"Vendor15402\", \"Vendor15403\", \"Vendor15404\", \"Vendor15405\", \"Vendor15406\", \"Vendor15407\", \"Vendor15408\", \"Vendor1541\", \"Vendor15411\", \"Vendor15412\", \"Vendor15414\", \"Vendor15415\", \"Vendor15416\", \"Vendor15417\", \"Vendor15418\", \"Vendor15421\", \"Vendor15422\", \"Vendor15424\", \"Vendor15425\", \"Vendor15426\", \"Vendor15428\", \"Vendor15432\", \"Vendor15433\", \"Vendor15435\", \"Vendor15436\", \"Vendor15438\", \"Vendor15440\", \"Vendor15441\", \"Vendor15442\", \"Vendor15444\", \"Vendor15448\", \"Vendor15451\", \"Vendor15452\", \"Vendor15458\", \"Vendor1546\", \"Vendor15463\", \"Vendor15464\", \"Vendor15465\", \"Vendor15466\", \"Vendor15468\", \"Vendor15469\", \"Vendor1547\", \"Vendor15470\", \"Vendor15471\", \"Vendor15472\", \"Vendor15474\", \"Vendor15479\", \"Vendor15480\", \"Vendor15484\", \"Vendor15486\", \"Vendor15488\", \"Vendor15495\", \"Vendor15497\", \"Vendor15499\", \"Vendor1550\", \"Vendor15501\", \"Vendor15504\", \"Vendor15507\", \"Vendor15508\", \"Vendor15509\", \"Vendor1551\", \"Vendor15517\", \"Vendor15523\", \"Vendor15525\", \"Vendor15526\", \"Vendor15527\", \"Vendor15528\", \"Vendor15530\", \"Vendor15531\", \"Vendor15533\", \"Vendor15535\", \"Vendor15537\", \"Vendor15540\", \"Vendor15544\", \"Vendor15545\", \"Vendor15546\", \"Vendor1555\", \"Vendor15555\", \"Vendor15556\", \"Vendor15559\", \"Vendor15560\", \"Vendor15561\", \"Vendor15562\", \"Vendor15566\", \"Vendor15567\", \"Vendor15569\", \"Vendor15570\", \"Vendor15574\", \"Vendor15579\", \"Vendor15580\", \"Vendor15582\", \"Vendor15585\", \"Vendor15587\", \"Vendor15589\", \"Vendor15594\", \"Vendor15598\", \"Vendor15603\", \"Vendor15608\", \"Vendor15609\", \"Vendor15611\", \"Vendor15612\", \"Vendor15614\", \"Vendor15619\", \"Vendor1562\", \"Vendor15625\", \"Vendor15627\", \"Vendor15628\", \"Vendor1563\", \"Vendor15632\", \"Vendor15634\", \"Vendor15636\", \"Vendor15641\", \"Vendor15642\", \"Vendor15643\", \"Vendor15648\", \"Vendor15651\", \"Vendor15656\", \"Vendor15657\", \"Vendor15659\", \"Vendor15660\", \"Vendor15663\", \"Vendor15665\", \"Vendor15667\", \"Vendor15672\", \"Vendor15678\", \"Vendor15679\", \"Vendor1568\", \"Vendor15681\", \"Vendor15682\", \"Vendor15683\", \"Vendor15684\", \"Vendor15686\", \"Vendor15690\", \"Vendor15691\", \"Vendor15694\", \"Vendor15696\", \"Vendor15699\", \"Vendor1570\", \"Vendor15700\", \"Vendor15702\", \"Vendor15707\", \"Vendor15709\", \"Vendor1571\", \"Vendor15710\", \"Vendor15711\", \"Vendor15712\", \"Vendor15718\", \"Vendor15720\", \"Vendor15721\", \"Vendor15722\", \"Vendor15724\", \"Vendor1573\", \"Vendor15730\", \"Vendor15731\", \"Vendor15734\", \"Vendor15735\", \"Vendor15736\", \"Vendor15737\", \"Vendor15738\", \"Vendor15739\", \"Vendor15742\", \"Vendor15743\", \"Vendor15746\", \"Vendor15748\", \"Vendor15750\", \"Vendor15751\", \"Vendor15759\", \"Vendor15760\", \"Vendor15761\", \"Vendor15762\", \"Vendor15764\", \"Vendor15765\", \"Vendor15766\", \"Vendor15767\", \"Vendor15768\", \"Vendor15770\", \"Vendor15771\", \"Vendor15772\", \"Vendor15774\", \"Vendor15779\", \"Vendor15781\", \"Vendor15783\", \"Vendor15784\", \"Vendor15785\", \"Vendor15787\", \"Vendor15788\", \"Vendor15789\", \"Vendor1579\", \"Vendor15792\", \"Vendor158\", \"Vendor15802\", \"Vendor15803\", \"Vendor15805\", \"Vendor15806\", \"Vendor15807\", \"Vendor15808\", \"Vendor15811\", \"Vendor15813\", \"Vendor15815\", \"Vendor15817\", \"Vendor15818\", \"Vendor15819\", \"Vendor1582\", \"Vendor15821\", \"Vendor15822\", \"Vendor15825\", \"Vendor15826\", \"Vendor15828\", \"Vendor15829\", \"Vendor15830\", \"Vendor15831\", \"Vendor15836\", \"Vendor15837\", \"Vendor15839\", \"Vendor15840\", \"Vendor15842\", \"Vendor15852\", \"Vendor15857\", \"Vendor15862\", \"Vendor15863\", \"Vendor15864\", \"Vendor15865\", \"Vendor15867\", \"Vendor1587\", \"Vendor15870\", \"Vendor15874\", \"Vendor15877\", \"Vendor15878\", \"Vendor15880\", \"Vendor15882\", \"Vendor15886\", \"Vendor1589\", \"Vendor15892\", \"Vendor15893\", \"Vendor15897\", \"Vendor15899\", \"Vendor15902\", \"Vendor15904\", \"Vendor15905\", \"Vendor15907\", \"Vendor15909\", \"Vendor15913\", \"Vendor15915\", \"Vendor15917\", \"Vendor15921\", \"Vendor15924\", \"Vendor15925\", \"Vendor15926\", \"Vendor15928\", \"Vendor15929\", \"Vendor1593\", \"Vendor15932\", \"Vendor15934\", \"Vendor15935\", \"Vendor15937\", \"Vendor15941\", \"Vendor15942\", \"Vendor15944\", \"Vendor15946\", \"Vendor15947\", \"Vendor15950\", \"Vendor15956\", \"Vendor15958\", \"Vendor15959\", \"Vendor1596\", \"Vendor15960\", \"Vendor15961\", \"Vendor15963\", \"Vendor15965\", \"Vendor15966\", \"Vendor15970\", \"Vendor15980\", \"Vendor15981\", \"Vendor15982\", \"Vendor15984\", \"Vendor15985\", \"Vendor15998\", \"Vendor15999\", \"Vendor160\", \"Vendor16001\", \"Vendor16007\", \"Vendor16008\", \"Vendor16013\", \"Vendor16014\", \"Vendor16018\", \"Vendor1602\", \"Vendor16021\", \"Vendor16022\", \"Vendor16023\", \"Vendor16024\", \"Vendor16029\", \"Vendor1603\", \"Vendor16031\", \"Vendor16034\", \"Vendor16035\", \"Vendor16037\", \"Vendor16040\", \"Vendor16045\", \"Vendor16047\", \"Vendor16053\", \"Vendor16054\", \"Vendor16055\", \"Vendor16057\", \"Vendor16058\", \"Vendor16059\", \"Vendor16061\", \"Vendor16069\", \"Vendor1607\", \"Vendor16072\", \"Vendor16082\", \"Vendor16088\", \"Vendor16093\", \"Vendor16094\", \"Vendor16095\", \"Vendor16099\", \"Vendor16102\", \"Vendor16105\", \"Vendor16106\", \"Vendor16107\", \"Vendor1611\", \"Vendor16110\", \"Vendor16113\", \"Vendor16115\", \"Vendor16118\", \"Vendor1612\", \"Vendor16124\", \"Vendor16125\", \"Vendor16127\", \"Vendor16132\", \"Vendor16133\", \"Vendor16134\", \"Vendor16135\", \"Vendor16136\", \"Vendor16141\", \"Vendor16144\", \"Vendor16147\", \"Vendor16154\", \"Vendor16159\", \"Vendor16163\", \"Vendor16169\", \"Vendor1618\", \"Vendor16183\", \"Vendor16184\", \"Vendor16185\", \"Vendor16186\", \"Vendor16188\", \"Vendor16189\", \"Vendor1619\", \"Vendor16191\", \"Vendor16193\", \"Vendor16194\", \"Vendor16195\", \"Vendor16198\", \"Vendor16201\", \"Vendor16202\", \"Vendor16205\", \"Vendor16207\", \"Vendor16209\", \"Vendor1621\", \"Vendor16210\", \"Vendor16211\", \"Vendor16213\", \"Vendor16215\", \"Vendor16218\", \"Vendor16219\", \"Vendor16220\", \"Vendor16225\", \"Vendor16227\", \"Vendor1623\", \"Vendor16230\", \"Vendor16233\", \"Vendor16234\", \"Vendor16235\", \"Vendor16240\", \"Vendor16246\", \"Vendor16247\", \"Vendor16252\", \"Vendor16253\", \"Vendor16254\", \"Vendor16255\", \"Vendor1626\", \"Vendor16262\", \"Vendor16264\", \"Vendor16272\", \"Vendor16275\", \"Vendor16276\", \"Vendor16277\", \"Vendor16278\", \"Vendor1628\", \"Vendor16285\", \"Vendor16287\", \"Vendor16288\", \"Vendor16289\", \"Vendor1629\", \"Vendor16291\", \"Vendor16297\", \"Vendor163\", \"Vendor16300\", \"Vendor16302\", \"Vendor16303\", \"Vendor16304\", \"Vendor16307\", \"Vendor16309\", \"Vendor16310\", \"Vendor16314\", \"Vendor16315\", \"Vendor16316\", \"Vendor16318\", \"Vendor16321\", \"Vendor16324\", \"Vendor1633\", \"Vendor16330\", \"Vendor16331\", \"Vendor16336\", \"Vendor16337\", \"Vendor16341\", \"Vendor16342\", \"Vendor16346\", \"Vendor16348\", \"Vendor16351\", \"Vendor16352\", \"Vendor16353\", \"Vendor16354\", \"Vendor16355\", \"Vendor16356\", \"Vendor16358\", \"Vendor16359\", \"Vendor1636\", \"Vendor16360\", \"Vendor16362\", \"Vendor16363\", \"Vendor16364\", \"Vendor16367\", \"Vendor16368\", \"Vendor16375\", \"Vendor16377\", \"Vendor16380\", \"Vendor16382\", \"Vendor16388\", \"Vendor16389\", \"Vendor16391\", \"Vendor16392\", \"Vendor16394\", \"Vendor16396\", \"Vendor16399\", \"Vendor16402\", \"Vendor16404\", \"Vendor16406\", \"Vendor16409\", \"Vendor16415\", \"Vendor16416\", \"Vendor16418\", \"Vendor16421\", \"Vendor16424\", \"Vendor16427\", \"Vendor16428\", \"Vendor16429\", \"Vendor1643\", \"Vendor16430\", \"Vendor16438\", \"Vendor16439\", \"Vendor1644\", \"Vendor16440\", \"Vendor16444\", \"Vendor16445\", \"Vendor16447\", \"Vendor16448\", \"Vendor16449\", \"Vendor16451\", \"Vendor16452\", \"Vendor16457\", \"Vendor1646\", \"Vendor16460\", \"Vendor16464\", \"Vendor16469\", \"Vendor16471\", \"Vendor16472\", \"Vendor16474\", \"Vendor16475\", \"Vendor16476\", \"Vendor16478\", \"Vendor16479\", \"Vendor16484\", \"Vendor16486\", \"Vendor16487\", \"Vendor16489\", \"Vendor16490\", \"Vendor16496\", \"Vendor165\", \"Vendor1650\", \"Vendor16504\", \"Vendor16505\", \"Vendor16508\", \"Vendor16513\", \"Vendor16516\", \"Vendor16518\", \"Vendor16519\", \"Vendor16520\", \"Vendor16525\", \"Vendor16526\", \"Vendor16528\", \"Vendor16529\", \"Vendor1653\", \"Vendor16530\", \"Vendor16532\", \"Vendor16534\", \"Vendor16536\", \"Vendor16538\", \"Vendor16539\", \"Vendor16540\", \"Vendor16544\", \"Vendor16545\", \"Vendor16549\", \"Vendor1655\", \"Vendor16551\", \"Vendor16553\", \"Vendor16554\", \"Vendor16555\", \"Vendor16557\", \"Vendor16559\", \"Vendor1656\", \"Vendor16563\", \"Vendor16564\", \"Vendor16565\", \"Vendor16567\", \"Vendor16569\", \"Vendor16571\", \"Vendor16572\", \"Vendor16573\", \"Vendor16575\", \"Vendor16579\", \"Vendor16580\", \"Vendor16583\", \"Vendor16584\", \"Vendor16585\", \"Vendor16586\", \"Vendor16587\", \"Vendor16591\", \"Vendor16593\", \"Vendor16595\", \"Vendor16596\", \"Vendor16600\", \"Vendor16603\", \"Vendor16604\", \"Vendor16605\", \"Vendor16607\", \"Vendor16611\", \"Vendor16613\", \"Vendor16614\", \"Vendor16615\", \"Vendor16618\", \"Vendor16619\", \"Vendor16620\", \"Vendor16626\", \"Vendor16627\", \"Vendor16628\", \"Vendor16629\", \"Vendor16632\", \"Vendor16633\", \"Vendor16635\", \"Vendor16637\", \"Vendor16638\", \"Vendor16639\", \"Vendor1664\", \"Vendor16640\", \"Vendor16642\", \"Vendor16644\", \"Vendor16648\", \"Vendor16649\", \"Vendor16653\", \"Vendor16654\", \"Vendor16658\", \"Vendor16659\", \"Vendor16661\", \"Vendor16662\", \"Vendor16663\", \"Vendor16665\", \"Vendor16667\", \"Vendor16670\", \"Vendor16671\", \"Vendor16677\", \"Vendor1668\", \"Vendor16687\", \"Vendor16689\", \"Vendor16691\", \"Vendor16692\", \"Vendor16694\", \"Vendor16695\", \"Vendor16697\", \"Vendor167\", \"Vendor1670\", \"Vendor16701\", \"Vendor16703\", \"Vendor16704\", \"Vendor16707\", \"Vendor16709\", \"Vendor1671\", \"Vendor16712\", \"Vendor16713\", \"Vendor16721\", \"Vendor16724\", \"Vendor16727\", \"Vendor16728\", \"Vendor16730\", \"Vendor16734\", \"Vendor16736\", \"Vendor16737\", \"Vendor1674\", \"Vendor16740\", \"Vendor16746\", \"Vendor16748\", \"Vendor16749\", \"Vendor1675\", \"Vendor16750\", \"Vendor16751\", \"Vendor16759\", \"Vendor16760\", \"Vendor16763\", \"Vendor16764\", \"Vendor16765\", \"Vendor16766\", \"Vendor16767\", \"Vendor16773\", \"Vendor16774\", \"Vendor16777\", \"Vendor1678\", \"Vendor16780\", \"Vendor16782\", \"Vendor16784\", \"Vendor16786\", \"Vendor1679\", \"Vendor16791\", \"Vendor16793\", \"Vendor16797\", \"Vendor16798\", \"Vendor168\", \"Vendor1680\", \"Vendor16800\", \"Vendor16801\", \"Vendor16804\", \"Vendor16805\", \"Vendor16806\", \"Vendor16810\", \"Vendor16815\", \"Vendor16819\", \"Vendor16822\", \"Vendor16823\", \"Vendor16825\", \"Vendor16826\", \"Vendor16830\", \"Vendor16831\", \"Vendor16833\", \"Vendor16836\", \"Vendor16837\", \"Vendor16838\", \"Vendor16840\", \"Vendor16843\", \"Vendor16844\", \"Vendor16846\", \"Vendor16847\", \"Vendor16849\", \"Vendor1685\", \"Vendor16851\", \"Vendor16854\", \"Vendor16855\", \"Vendor16859\", \"Vendor16865\", \"Vendor16868\", \"Vendor16870\", \"Vendor16872\", \"Vendor16873\", \"Vendor16875\", \"Vendor16879\", \"Vendor16882\", \"Vendor16885\", \"Vendor16886\", \"Vendor16888\", \"Vendor16891\", \"Vendor16896\", \"Vendor16897\", \"Vendor16899\", \"Vendor16901\", \"Vendor16904\", \"Vendor16906\", \"Vendor16910\", \"Vendor16911\", \"Vendor16914\", \"Vendor16916\", \"Vendor16919\", \"Vendor16921\", \"Vendor16923\", \"Vendor16926\", \"Vendor16929\", \"Vendor16931\", \"Vendor16937\", \"Vendor16941\", \"Vendor16945\", \"Vendor16948\", \"Vendor16949\", \"Vendor1695\", \"Vendor16954\", \"Vendor16955\", \"Vendor16957\", \"Vendor16959\", \"Vendor16961\", \"Vendor16962\", \"Vendor16968\", \"Vendor16969\", \"Vendor16971\", \"Vendor16974\", \"Vendor16975\", \"Vendor16977\", \"Vendor16978\", \"Vendor16979\", \"Vendor1698\", \"Vendor16981\", \"Vendor16983\", \"Vendor16985\", \"Vendor16986\", \"Vendor16987\", \"Vendor16991\", \"Vendor16993\", \"Vendor16995\", \"Vendor16997\", \"Vendor16998\", \"Vendor16999\", \"Vendor17\", \"Vendor17000\", \"Vendor17002\", \"Vendor17003\", \"Vendor17004\", \"Vendor17007\", \"Vendor17010\", \"Vendor17011\", \"Vendor17012\", \"Vendor17014\", \"Vendor17018\", \"Vendor17023\", \"Vendor17025\", \"Vendor17027\", \"Vendor17028\", \"Vendor17033\", \"Vendor17036\", \"Vendor17037\", \"Vendor17038\", \"Vendor17045\", \"Vendor17052\", \"Vendor17054\", \"Vendor17055\", \"Vendor17061\", \"Vendor17062\", \"Vendor17063\", \"Vendor17067\", \"Vendor17069\", \"Vendor1707\", \"Vendor17070\", \"Vendor17073\", \"Vendor17074\", \"Vendor17077\", \"Vendor17078\", \"Vendor17083\", \"Vendor17084\", \"Vendor17085\", \"Vendor17087\", \"Vendor1709\", \"Vendor17097\", \"Vendor17099\", \"Vendor17101\", \"Vendor17102\", \"Vendor17103\", \"Vendor17106\", \"Vendor17107\", \"Vendor17109\", \"Vendor1711\", \"Vendor17110\", \"Vendor17112\", \"Vendor17113\", \"Vendor17115\", \"Vendor17116\", \"Vendor17117\", \"Vendor17118\", \"Vendor1712\", \"Vendor17121\", \"Vendor17123\", \"Vendor17126\", \"Vendor17131\", \"Vendor17135\", \"Vendor17139\", \"Vendor1714\", \"Vendor17140\", \"Vendor17142\", \"Vendor17143\", \"Vendor17147\", \"Vendor1715\", \"Vendor17151\", \"Vendor17152\", \"Vendor17153\", \"Vendor17156\", \"Vendor17158\", \"Vendor17161\", \"Vendor17162\", \"Vendor17163\", \"Vendor17164\", \"Vendor17165\", \"Vendor17166\", \"Vendor17167\", \"Vendor17168\", \"Vendor17169\", \"Vendor1717\", \"Vendor17170\", \"Vendor17173\", \"Vendor17174\", \"Vendor17175\", \"Vendor17178\", \"Vendor17179\", \"Vendor1718\", \"Vendor17182\", \"Vendor17183\", \"Vendor17184\", \"Vendor17185\", \"Vendor17186\", \"Vendor17190\", \"Vendor17191\", \"Vendor17197\", \"Vendor17199\", \"Vendor172\", \"Vendor17201\", \"Vendor17202\", \"Vendor17203\", \"Vendor17205\", \"Vendor17206\", \"Vendor17207\", \"Vendor17209\", \"Vendor1721\", \"Vendor17211\", \"Vendor17212\", \"Vendor17214\", \"Vendor17215\", \"Vendor17216\", \"Vendor17218\", \"Vendor17219\", \"Vendor1722\", \"Vendor17220\", \"Vendor17221\", \"Vendor17222\", \"Vendor17223\", \"Vendor17224\", \"Vendor17226\", \"Vendor17232\", \"Vendor17235\", \"Vendor1724\", \"Vendor17241\", \"Vendor17245\", \"Vendor17246\", \"Vendor17247\", \"Vendor17249\", \"Vendor17253\", \"Vendor17254\", \"Vendor17256\", \"Vendor17259\", \"Vendor17263\", \"Vendor17267\", \"Vendor1727\", \"Vendor17275\", \"Vendor17277\", \"Vendor1728\", \"Vendor17284\", \"Vendor17285\", \"Vendor17286\", \"Vendor1729\", \"Vendor17290\", \"Vendor17291\", \"Vendor17292\", \"Vendor17295\", \"Vendor17296\", \"Vendor17298\", \"Vendor17299\", \"Vendor1730\", \"Vendor17304\", \"Vendor17307\", \"Vendor17308\", \"Vendor17312\", \"Vendor17313\", \"Vendor17314\", \"Vendor1732\", \"Vendor17321\", \"Vendor17322\", \"Vendor17324\", \"Vendor17325\", \"Vendor17330\", \"Vendor17337\", \"Vendor1734\", \"Vendor17340\", \"Vendor17341\", \"Vendor17342\", \"Vendor17343\", \"Vendor17344\", \"Vendor17345\", \"Vendor17347\", \"Vendor1735\", \"Vendor17358\", \"Vendor17359\", \"Vendor17360\", \"Vendor17363\", \"Vendor17364\", \"Vendor17368\", \"Vendor17370\", \"Vendor17377\", \"Vendor17378\", \"Vendor17379\", \"Vendor17381\", \"Vendor17383\", \"Vendor17384\", \"Vendor17385\", \"Vendor17386\", \"Vendor17387\", \"Vendor17389\", \"Vendor1739\", \"Vendor17390\", \"Vendor17393\", \"Vendor17395\", \"Vendor1740\", \"Vendor17402\", \"Vendor17405\", \"Vendor17407\", \"Vendor17408\", \"Vendor17410\", \"Vendor17411\", \"Vendor17419\", \"Vendor17424\", \"Vendor17425\", \"Vendor17427\", \"Vendor17428\", \"Vendor17432\", \"Vendor17433\", \"Vendor17436\", \"Vendor17438\", \"Vendor1744\", \"Vendor17440\", \"Vendor17441\", \"Vendor17444\", \"Vendor17447\", \"Vendor17448\", \"Vendor17450\", \"Vendor17461\", \"Vendor17462\", \"Vendor17466\", \"Vendor17468\", \"Vendor1747\", \"Vendor17470\", \"Vendor17471\", \"Vendor17473\", \"Vendor17474\", \"Vendor17475\", \"Vendor17479\", \"Vendor17488\", \"Vendor17489\", \"Vendor1749\", \"Vendor17490\", \"Vendor17497\", \"Vendor17498\", \"Vendor17499\", \"Vendor175\", \"Vendor17500\", \"Vendor17504\", \"Vendor17507\", \"Vendor17508\", \"Vendor17509\", \"Vendor17510\", \"Vendor17513\", \"Vendor17514\", \"Vendor17515\", \"Vendor17516\", \"Vendor17517\", \"Vendor17518\", \"Vendor17519\", \"Vendor1752\", \"Vendor17520\", \"Vendor17521\", \"Vendor17524\", \"Vendor17526\", \"Vendor17527\", \"Vendor17529\", \"Vendor17530\", \"Vendor17532\", \"Vendor17534\", \"Vendor17536\", \"Vendor17539\", \"Vendor1754\", \"Vendor17548\", \"Vendor17549\", \"Vendor17556\", \"Vendor17557\", \"Vendor17558\", \"Vendor17559\", \"Vendor1756\", \"Vendor17562\", \"Vendor17568\", \"Vendor17569\", \"Vendor1757\", \"Vendor17578\", \"Vendor1758\", \"Vendor17580\", \"Vendor17583\", \"Vendor17585\", \"Vendor17590\", \"Vendor17592\", \"Vendor17595\", \"Vendor17596\", \"Vendor17600\", \"Vendor17602\", \"Vendor17604\", \"Vendor17607\", \"Vendor1761\", \"Vendor17612\", \"Vendor17613\", \"Vendo..."
+	},
+	"keysExamined" : 931103694,
+	"docsExamined" : 931103691,
+	"cursorExhausted" : true,
+	"numYield" : 7293734,
+	"nreturned" : 6,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(7365244)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(7365244)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(7365244)
+			}
+		}
+	},
+	"responseLength" : 9130,
+	"protocol" : "op_msg",
+	"millis" : 10246304,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T08:50:53.175Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Review/,
+					"$comment" : "ISWC_SUB_ONEMil_Query8"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"language" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"language"
+								]
+							}
+						]
+					},
+					"title" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"title"
+								]
+							}
+						]
+					},
+					"text" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"text"
+								]
+							}
+						]
+					},
+					"reviewDate" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"reviewer" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewer"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"reviewFor" : "Product1",
+					"language" : "zh"
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "Subject",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$sort" : {
+					"reviewDate" : -1
+				}
+			},
+			{
+				"$limit" : 20
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 351103660,
+	"docsExamined" : 351103659,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 2750866,
+	"nreturned" : 0,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(2784026)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(2784026)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(2784025)
+			}
+		}
+	},
+	"responseLength" : 100,
+	"protocol" : "op_msg",
+	"millis" : 5020879,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T10:14:34.202Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Review/,
+					"$comment" : "ISWC_SUB_ONEMil_Query9"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"reviewFor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewFor"
+								]
+							}
+						]
+					},
+					"title" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"title"
+								]
+							}
+						]
+					},
+					"reviewer" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"reviewer"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "reviewer",
+					"foreignField" : "Subject",
+					"as" : "reviewer"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$reviewer",
+					"Reviews" : {
+						"$push" : {
+							"_id" : "$_id",
+							"title" : "$title",
+							"product" : "$reviewFor",
+							"date" : "$date"
+						}
+					}
+				}
+			},
+			{
+				"$match" : {
+					"_id.Subject" : "Reviewer1089"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 351103660,
+	"docsExamined" : 351103659,
+	"cursorExhausted" : true,
+	"numYield" : 2752960,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(63758044)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(63758044)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(63758043)
+			}
+		}
+	},
+	"responseLength" : 3408,
+	"protocol" : "op_msg",
+	"millis" : 9011916,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T12:44:46.211Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : /^Offer/,
+					"$comment" : "ISWC_SUB_ONEMil_Query10"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"deliveryDays" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"deliveryDays"
+								]
+							}
+						]
+					},
+					"vendor" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"vendor"
+								]
+							}
+						]
+					},
+					"date" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"date"
+								]
+							}
+						]
+					},
+					"price" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"price"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$match" : {
+					"deliveryDays" : {
+						"$lte" : 4
+					},
+					"date" : {
+						"$gt" : ISODate("2005-04-03T00:00:00Z")
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "vendor",
+					"foreignField" : "Subject",
+					"as" : "vendor"
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"deliveryDays" : 1,
+					"vendorPre" : "$vendor.Predicate",
+					"vendorObj" : "$vendor.Object",
+					"date" : 1,
+					"price" : 1
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"deliveryDays" : 1,
+					"vendorPre" : 1,
+					"vendorObj" : 1,
+					"date" : 1,
+					"vendorcountry" : {
+						"$arrayElemAt" : [
+							"$vendorObj",
+							{
+								"$indexOfArray" : [
+									"$vendorPre",
+									"country"
+								]
+							}
+						]
+					},
+					"price" : 1
+				}
+			},
+			{
+				"$match" : {
+					"vendorcountry" : "US"
+				}
+			},
+			{
+				"$sort" : {
+					"price" : 1
+				}
+			},
+			{
+				"$limit" : 10
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 580000001,
+	"docsExamined" : 580000000,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 4541552,
+	"nreturned" : 10,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(92037222)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(92037222)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(92037221)
+			}
+		}
+	},
+	"responseLength" : 7061,
+	"protocol" : "op_msg",
+	"millis" : 10279896,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T15:36:06.209Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+> 
+
+{
+	"op" : "command",
+	"ns" : "ONEBill.sub",
+	"command" : {
+		"aggregate" : "sub",
+		"pipeline" : [
+			{
+				"$match" : {
+					"Subject" : "Offer1",
+					"$comment" : "ISWC_SUB_ONEMil_Query11"
+				}
+			},
+			{
+				"$group" : {
+					"_id" : "$Subject",
+					"Predicates" : {
+						"$push" : "$Predicate"
+					},
+					"Objects" : {
+						"$push" : "$Object"
+					}
+				}
+			},
+			{
+				"$project" : {
+					"Predicates" : "$Predicates",
+					"Objects" : "$Objects",
+					"product" : {
+						"$arrayElemAt" : [
+							"$Objects",
+							{
+								"$indexOfArray" : [
+									"$Predicates",
+									"product"
+								]
+							}
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "sub",
+					"localField" : "product",
+					"foreignField" : "Subject",
+					"as" : "product"
+				}
+			}
+		],
+		"allowDiskUse" : true,
+		"cursor" : {
+			
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 10,
+	"docsExamined" : 10,
+	"cursorExhausted" : true,
+	"numYield" : 1,
+	"nreturned" : 1,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(6)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(6)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(5)
+			}
+		}
+	},
+	"responseLength" : 4756,
+	"protocol" : "op_msg",
+	"millis" : 92,
+	"planSummary" : "IXSCAN { Subject: 1 }",
+	"ts" : ISODate("2019-02-16T15:36:06.350Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.system.profile",
+	"command" : {
+		"find" : "system.profile",
+		"filter" : {
+			
+		},
+		"limit" : 10,
+		"singleBatch" : false,
+		"sort" : {
+			"ts" : 1
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 0,
+	"docsExamined" : 21,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 2,
+	"nreturned" : 10,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(3)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(3)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(3)
+			}
+		}
+	},
+	"responseLength" : 13744,
+	"protocol" : "op_msg",
+	"millis" : 228,
+	"planSummary" : "COLLSCAN",
+	"execStats" : {
+		"stage" : "SORT",
+		"nReturned" : 10,
+		"executionTimeMillisEstimate" : 42,
+		"works" : 35,
+		"advanced" : 10,
+		"needTime" : 24,
+		"needYield" : 0,
+		"saveState" : 2,
+		"restoreState" : 2,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"sortPattern" : {
+			"ts" : 1
+		},
+		"memUsage" : 13683,
+		"memLimit" : 33554432,
+		"limitAmount" : 10,
+		"inputStage" : {
+			"stage" : "SORT_KEY_GENERATOR",
+			"nReturned" : 21,
+			"executionTimeMillisEstimate" : 42,
+			"works" : 24,
+			"advanced" : 21,
+			"needTime" : 2,
+			"needYield" : 0,
+			"saveState" : 2,
+			"restoreState" : 2,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"nReturned" : 21,
+				"executionTimeMillisEstimate" : 42,
+				"works" : 23,
+				"advanced" : 21,
+				"needTime" : 1,
+				"needYield" : 0,
+				"saveState" : 2,
+				"restoreState" : 2,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"direction" : "forward",
+				"docsExamined" : 21
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-16T20:31:39.494Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+{
+	"op" : "query",
+	"ns" : "ONEBill.system.profile",
+	"command" : {
+		"find" : "system.profile",
+		"filter" : {
+			
+		},
+		"limit" : 20,
+		"singleBatch" : false,
+		"sort" : {
+			"ts" : 1
+		},
+		"lsid" : {
+			"id" : UUID("3aeafdc6-c4d2-4a63-9db9-eec10b8764d2")
+		},
+		"$db" : "ONEBill"
+	},
+	"keysExamined" : 0,
+	"docsExamined" : 22,
+	"hasSortStage" : true,
+	"cursorExhausted" : true,
+	"numYield" : 0,
+	"nreturned" : 20,
+	"locks" : {
+		"Global" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Database" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		},
+		"Collection" : {
+			"acquireCount" : {
+				"r" : NumberLong(1)
+			}
+		}
+	},
+	"responseLength" : 79648,
+	"protocol" : "op_msg",
+	"millis" : 3,
+	"planSummary" : "COLLSCAN",
+	"execStats" : {
+		"stage" : "SORT",
+		"nReturned" : 20,
+		"executionTimeMillisEstimate" : 0,
+		"works" : 46,
+		"advanced" : 20,
+		"needTime" : 25,
+		"needYield" : 0,
+		"saveState" : 0,
+		"restoreState" : 0,
+		"isEOF" : 1,
+		"invalidates" : 0,
+		"sortPattern" : {
+			"ts" : 1
+		},
+		"memUsage" : 79627,
+		"memLimit" : 33554432,
+		"limitAmount" : 20,
+		"inputStage" : {
+			"stage" : "SORT_KEY_GENERATOR",
+			"nReturned" : 22,
+			"executionTimeMillisEstimate" : 0,
+			"works" : 25,
+			"advanced" : 22,
+			"needTime" : 2,
+			"needYield" : 0,
+			"saveState" : 0,
+			"restoreState" : 0,
+			"isEOF" : 1,
+			"invalidates" : 0,
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"nReturned" : 22,
+				"executionTimeMillisEstimate" : 0,
+				"works" : 24,
+				"advanced" : 22,
+				"needTime" : 1,
+				"needYield" : 0,
+				"saveState" : 0,
+				"restoreState" : 0,
+				"isEOF" : 1,
+				"invalidates" : 0,
+				"direction" : "forward",
+				"docsExamined" : 22
+			}
+		}
+	},
+	"ts" : ISODate("2019-02-16T20:31:46.231Z"),
+	"client" : "127.0.0.1",
+	"appName" : "MongoDB Shell",
+	"allUsers" : [ ],
+	"user" : ""
+}
+> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
